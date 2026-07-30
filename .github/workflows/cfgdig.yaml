@@ -44,9 +44,6 @@ jobs:
       - name: install nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: cache the nix store
-        uses: DeterminateSystems/magic-nix-cache-action@main
-
       - name: harden cfgdig
         run: |
           nix run github:librelane/librelane/3.0.5 -- \
