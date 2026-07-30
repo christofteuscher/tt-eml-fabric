@@ -57,6 +57,55 @@ jobs:
             extra-substituters = https://nix-cache.fossi-foundation.org
             extra-trusted-public-keys = nix-cache.fossi-foundation.org:3+K59iFwXqKsL7BNu6Guy0v+uTlwsxYQxjspXzqLYQs=
 
+      # Fetch the PDK.  This run is EXPECTED to fail: LibreLane downloads
+      # every sky130 tarball, then validates the PDK config and quits,
+      # because the hvl SCL config still references two openlane-era
+      # exclude files -- no_synth.cells and drc_exclude.cells -- that
+      # ciel's fresh fetch of the pinned rev omits.  The download half
+      # completes regardless, leaving the full PDK tree on disk for the
+      # repair step.  `|| true` swallows the anticipated PDK-load exit.
+      - name: fetch the PDK (PDK-load failure here is expected)
+        run: |
+          nix run github:librelane/librelane/3.0.5 -- \
+            --pdk-root "$HOME/.ciel" \
+            --run-tag prefetch \
+            openlane/cfgdig/config.json || true
+
+      # Write the two files the fetched hvl library is missing.  The
+      # validation that just failed checks the PDK's OWN declared paths,
+      # which a design-config override cannot reach -- so the fix has to
+      # land in the PDK tree itself.  Content is copied verbatim from the
+      # rev the local --dockerized runs use (no_synth == synth_excluded;
+      # drc_exclude is empty).  Both sky130A and sky130B are patched so
+      # the flow is insensitive to which variant the config resolves.
+      - name: repair hvl exclude lists in the fetched PDK
+        run: |
+          set -e
+          patched=0
+          for CFG in $(find "$HOME/.ciel" -type d -path "*libs.tech/openlane/sky130_fd_sc_hvl"); do
+            cp openlane/cfgdig/synth_excluded.cells "$CFG/no_synth.cells"
+            : > "$CFG/drc_exclude.cells"
+            echo "patched $CFG"
+            patched=$((patched+1))
+          done
+          # If the fetched tree lacks the dir entirely, construct it from
+          # the version root so the PDK's declared path resolves.
+          if [ "$patched" -eq 0 ]; then
+            for VROOT in $(find "$HOME/.ciel" -type d -name versions); do
+              for REV in "$VROOT"/*; do
+                for VAR in sky130A sky130B; do
+                  D="$REV/$VAR/libs.tech/openlane/sky130_fd_sc_hvl"
+                  mkdir -p "$D"
+                  cp openlane/cfgdig/synth_excluded.cells "$D/no_synth.cells"
+                  : > "$D/drc_exclude.cells"
+                  echo "created $D"
+                  patched=$((patched+1))
+                done
+              done
+            done
+          fi
+          test "$patched" -gt 0 || { echo "no PDK tree found to patch"; exit 1; }
+
       - name: harden cfgdig
         run: |
           nix run github:librelane/librelane/3.0.5 -- \
