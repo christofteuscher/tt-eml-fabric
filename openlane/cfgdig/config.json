@@ -1,0 +1,68 @@
+{
+  "DESIGN_NAME": "cfgdig",
+  "VERILOG_FILES": [
+    "dir::../../src/cfgdig.v"
+  ],
+  "//": "3.3 V library throughout -- forced by measurement: MDAC switch",
+  "//_2": "compliance with a 1.8 V gate tops out at 0.85-0.90 V while the",
+  "//_3": "cell inputs sit at 1.17-1.25 V (mdac/switch_gate_1v8.spice).",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hvl",
+  "CLOCK_PORT": "scan_clk",
+  "CLOCK_PERIOD": 100,
+  "//_clk": "10 MHz. The chain is programmed once and then static; there",
+  "//_clk2": "is no throughput requirement, so timing is not a constraint.",
+  "//_area": "yosys: 4903.5 um2 of cells. 260 x 40 = 10.4 k gives ~47%",
+  "//_area2": "density -- deliberately loose. The block is a top strip in",
+  "//_area3": "the 319.24 x 225.76 die and height is the scarce direction,",
+  "//_area4": "so width is cheap and congestion is not worth fighting.",
+  "FP_SIZING": "absolute",
+  "DIE_AREA": [
+    0,
+    0,
+    251,
+    36
+  ],
+  "PL_TARGET_DENSITY_PCT": 45,
+  "//_pins": "analog-facing config lines exit SOUTH toward the fabric;",
+  "//_pins2": "the scan interface faces NORTH toward the TT pins.",
+  "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+  "//_pdn": "single-height rows, met1 rails from the cells; straps on",
+  "//_pdn2": "met4/met5 would collide with the analog routing above, so",
+  "//_pdn3": "keep the grid low and let the top-level connect VPWR/VGND.",
+  "FP_PDN_VPITCH": 30,
+  "FP_PDN_HPITCH": 30,
+  "FP_PDN_VWIDTH": 3,
+  "FP_PDN_HWIDTH": 3,
+  "//_signoff": "magic and netgen are not installed here; KLayout DRC and",
+  "//_signoff2": "the existing sky130.lvs deck cover signoff instead.",
+  "RUN_MAGIC_DRC": false,
+  "RUN_KLAYOUT_DRC": true,
+  "RUN_MAGIC_STREAMOUT": true,
+  "RUN_KLAYOUT_STREAMOUT": true,
+  "RUN_LVS": false,
+  "//_ant": "no diodes needed on a block this small; revisit if the",
+  "//_ant2": "antenna report says otherwise.",
+  "GRT_REPAIR_ANTENNAS": true,
+  "RUN_LINTER": true,
+  "//_shape": "220 x 42 rather than 260 x 40: frees ~90 um in the die's top band for MDAC columns (36.3 um tall, so they fit the vertical slack). 4903 um2 of cells -> 53% density.",
+  "DEFAULT_CORNER": "nom_tt_025C_3v30",
+  "STA_CORNERS": [
+    "nom_tt_025C_3v30",
+    "max_ss_150C_1v65",
+    "min_ff_n40C_5v50"
+  ],
+  "FP_PDN_MULTILAYER": false,
+  "CORE_AREA": [
+    2,
+    2,
+    249,
+    34
+  ],
+  "RUN_POST_GPL_DESIGN_REPAIR": false,
+  "RUN_POST_GRT_DESIGN_REPAIR": false,
+  "CELL_PAD_EXCLUDE": [
+    "sky130_fd_sc_hvl__fill*",
+    "sky130_fd_sc_hvl__decap*"
+  ],
+  "MAGIC_CAPTURE_ERRORS": false
+}

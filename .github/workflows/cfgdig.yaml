@@ -1,0 +1,96 @@
+# Harden the config block (cfgdig) with LibreLane.
+#
+# WHY THIS EXISTS.  cfgdig is a plain standard-cell macro -- a 64-bit scan
+# chain plus decode -- and place-and-route is a solved problem for it.  It
+# is hardened here rather than locally because the local toolchain cannot
+# be completed: LibreLane needs OpenROAD, OpenROAD needs Nix, and Nix on
+# macOS 26 needs an /etc/fstab entry that SIP refuses to create by any
+# method (rename, vifs, tee, cp, or the real path behind the symlink).
+# Ubuntu has none of those problems.
+#
+# It buys two things:
+#   1. The 3 nets the hand router could not place (n0/n1/n3 in the mux
+#      one-hot decode).  Those are OPENS -- observation channels would be
+#      dead on silicon.
+#   2. A choice of aspect ratio.  DIE_AREA is one line of config, and a
+#      220 x 42 macro instead of 289.7 x 34.5 frees ~90 um in the die's
+#      top band -- one of the three levers that could make a 3-cell
+#      fabric fit.
+#
+# The GDS is published as an artifact; the analog top level consumes it.
+
+name: cfgdig
+
+on:
+  push:
+    paths:
+      - "src/cfgdig.v"
+      - "openlane/cfgdig/**"
+      - ".github/workflows/cfgdig.yaml"
+  workflow_dispatch:
+
+jobs:
+  harden:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      # LibreLane ships its whole tool closure (OpenROAD, Yosys built WITH
+      # pyosys, KLayout, magic, netgen) through Nix.  Installing the tools
+      # individually is what fails: a Homebrew yosys rejects `-y` because
+      # it has no Python support, and version skew shows up one tool at a
+      # time.  The closure pins them together.
+      - name: install nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: cache the nix store
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: harden cfgdig
+        run: |
+          nix run github:librelane/librelane -- \
+            --pdk-root "$HOME/.ciel" \
+            --run-tag ci \
+            openlane/cfgdig/config.json
+
+      # Fail loudly on an unrouted net.  A macro that "completes" with
+      # opens is worse than one that fails: LVS at the top level would
+      # pass on the analog side and the dead channels would only show up
+      # on silicon.
+      - name: check routing completed
+        run: |
+          M=openlane/cfgdig/runs/ci/final/metrics.json
+          test -f "$M" || { echo "no metrics.json -- flow did not finish"; exit 1; }
+          python3 - "$M" <<'PY'
+          import json, sys
+          m = json.load(open(sys.argv[1]))
+          bad = {k: v for k, v in m.items()
+                 if ("antenna__violating" in k or "unconnected" in k
+                     or k.endswith("__drc_errors") or "open" in k.lower())
+                 and isinstance(v, (int, float)) and v > 0}
+          for k, v in sorted(bad.items()):
+              print(f"  {k} = {v}")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: publish the macro
+        uses: actions/upload-artifact@v4
+        with:
+          name: cfgdig-gds
+          path: |
+            openlane/cfgdig/runs/ci/final/gds/*.gds
+            openlane/cfgdig/runs/ci/final/lef/*.lef
+            openlane/cfgdig/runs/ci/final/nl/*.nl.v
+            openlane/cfgdig/runs/ci/final/metrics.json
+
+      - name: report the shape actually achieved
+        if: always()
+        run: |
+          M=openlane/cfgdig/runs/ci/final/metrics.json
+          [ -f "$M" ] && python3 -c "
+          import json;m=json.load(open('$M'))
+          for k in sorted(m):
+              if any(s in k for s in ('die__area','core__area','utilization',
+                                      'wire_length','drc','antenna')):
+                  print(f'  {k} = {m[k]}')" || true
