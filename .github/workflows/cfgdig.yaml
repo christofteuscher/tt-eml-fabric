@@ -41,8 +41,21 @@ jobs:
       # individually is what fails: a Homebrew yosys rejects `-y` because
       # it has no Python support, and version skew shows up one tool at a
       # time.  The closure pins them together.
+      #
+      # WHY THE SUBSTITUTER MATTERS.  Without it, `nix run` COMPILES the
+      # closure from source on the runner -- and iverilog fails 1 of its
+      # own 297 self-tests during that build, which aborts the whole
+      # derivation ("1 dependency failed" on librelane-3.0.5.drv).  The
+      # FOSSI Foundation cache is where LibreLane's own CI pulls the tools
+      # as prebuilt binaries, so iverilog is fetched, never recompiled,
+      # and the flaky test phase never runs.  (Locally, --dockerized does
+      # the same thing: prebuilt tools, no from-source compile.)
       - name: install nix
         uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            extra-substituters = https://nix-cache.fossi-foundation.org
+            extra-trusted-public-keys = nix-cache.fossi-foundation.org:3+K59iFwXqKsL7BNu6Guy0v+uTlwsxYQxjspXzqLYQs=
 
       - name: harden cfgdig
         run: |
