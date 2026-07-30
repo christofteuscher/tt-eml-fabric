@@ -31,7 +31,7 @@
   "PL_TARGET_DENSITY_PCT": 45,
   "//_pins": "analog-facing config lines exit SOUTH toward the fabric;",
   "//_pins2": "the scan interface faces NORTH toward the TT pins.",
-  "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+  "IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
   "//_pdn": "single-height rows, met1 rails from the cells; straps on",
   "//_pdn2": "met4/met5 would collide with the analog routing above, so",
   "//_pdn3": "keep the grid low and let the top-level connect VPWR/VGND.",
