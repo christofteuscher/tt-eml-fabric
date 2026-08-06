@@ -119,7 +119,7 @@ module tt_um_teuscher_eml_fabric (
       .rtrim  (rtrim),
       .porb   (porb),
       .x_in   (ua[0]),
-      .iref_in(ua[2])
+      .iref_in(ua[1])
   );
 
 endmodule
