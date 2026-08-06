@@ -71,7 +71,13 @@ module tt_um_teuscher_eml_fabric (
 
   wire sdata_hv, sclk_hv, rstn_hv;
   (* keep *) sky130_fd_sc_hvl__lsbuflv2hv_1 u_ls_sdata (.A(ui_in[0]), .X(sdata_hv));
-  (* keep *) sky130_fd_sc_hvl__lsbuflv2hv_1 u_ls_sclk  (.A(ui_in[1]), .X(sclk_hv));
+  /* ui_in[2], NOT ui_in[1].  ui_in[1] sits at x120.06, which is off the
+   * analog macro's 0.6 um routing grid by 0.36 -- both adjacent grid
+   * columns then fall inside the 0.40 via-to-via spacing, so no via can
+   * be placed beside that pad and scan_clk could not be connected in the
+   * layout at all.  ui_in[2] (x117.30) is exactly on grid.  MUST MATCH
+   * the GDS: silicon/gen_topnets.py and layout/gen_toplevel.py. */
+  (* keep *) sky130_fd_sc_hvl__lsbuflv2hv_1 u_ls_sclk  (.A(ui_in[2]), .X(sclk_hv));
   (* keep *) sky130_fd_sc_hvl__lsbuflv2hv_1 u_ls_rstn  (.A(rst_n),    .X(rstn_hv));
   (* keep *) sky130_fd_sc_hvl__lsbufhv2lv_1 u_ls_sout  (.A(scan_out_hv), .X(uo_out[0]));
 
@@ -96,7 +102,13 @@ module tt_um_teuscher_eml_fabric (
   /* Analog macro (hardened GDS, LVS'd against the SPICE netlists in
    * silicon/cell + silicon/bias + silicon/mdac).  Blackbox here; the
    * decoded config lines and rst_n are the digital-to-analog interface.
-   * ua[0]=x_in, ua[1]=mux_out, ua[2]=iref_in. */
+   * ua[0]=x_in, ua[2]=iref_in.  ua[1] IS SPARE -- the observation mux was
+   * removed from the layout (its only wired channels went to CELLA.mno /
+   * CELLB.mno and emlcell_b has no mno port, so it observed nothing while
+   * costing 19 of 81 nets in the most congested corner of the die).  The
+   * pin exists physically and is deliberately left unconnected: driving an
+   * analog node through an unbuffered pad loads it, and that has not been
+   * simulated.  See silicon/gen_topnets.py OBSMUX. */
   (* blackbox *)
   eml_fabric_analog u_analog (
       .w_therm(w_therm),
@@ -107,7 +119,6 @@ module tt_um_teuscher_eml_fabric (
       .rtrim  (rtrim),
       .porb   (porb),
       .x_in   (ua[0]),
-      .mux_out(ua[1]),
       .iref_in(ua[2])
   );
 
@@ -128,7 +139,6 @@ module eml_fabric_analog (
     input  wire [3:0]  rtrim,
     input  wire        porb,
     inout  wire        x_in,
-    inout  wire        mux_out,
-    inout  wire        iref_in
+    inout  wire        iref_in    /* mux_out removed with the obs mux */
 );
 endmodule

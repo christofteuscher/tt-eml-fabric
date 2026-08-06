@@ -26,8 +26,8 @@ project:
 pinout:
   # Inputs
   ui[0]: "scan_data"
-  ui[1]: "scan_clk"
-  ui[2]: ""
+  ui[1]: ""
+  ui[2]: "scan_clk"
   ui[3]: ""
   ui[4]: ""
   ui[5]: ""
@@ -56,7 +56,7 @@ pinout:
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
   ua[0]: "x_in (analog input current)"
-  ua[1]: "mux_out (observation current)"
+  ua[1]: ""
   ua[2]: "iref_in (external bias reference)"
   ua[3]: ""
   ua[4]: ""
