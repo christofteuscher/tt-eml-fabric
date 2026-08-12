@@ -63,10 +63,16 @@ module tt_um_teuscher_eml_fabric (
    * OpenLane can place-and-route it on its own; this wrapper is pure
    * structure and is never synthesised.  The four level shifters live
    * here, at the 1.8 V / 3.3 V boundary, rather than inside the macro. */
-  wire [65:0] w_therm;
-  wire [10:0] w_sgn, w_sgnb;
+  // BINARY digit lines (2 per radix-4 digit), not thermometer (3).
+  // See cfgdig.v: the MDAC switches are binary-weighted now, which
+  // removes 10 nets from the capacity-limited cfgdig->MDAC corridor.
+  // 5 weights now, not 11 -- see cfgdig.v (NW).  Leaving these at
+  // 44/11 against a 20/5 cfgdig would leave the upper bits floating
+  // and yosys would optimise the chain around them.
+  wire [19:0] w_bin;
+  wire [4:0]  w_sgn, w_sgnb;
   wire [7:0]  mux_oh, mux_ohb;
-  wire [3:0]  rtrim;
+  wire [2:0]  rtrim;
   wire        porb, scan_out_hv;
 
   wire sdata_hv, sclk_hv, rstn_hv;
@@ -86,11 +92,9 @@ module tt_um_teuscher_eml_fabric (
       .scan_clk (sclk_hv),
       .rst_n    (rstn_hv),
       .scan_out (scan_out_hv),
-      .w_therm  (w_therm),
+      .w_bin    (w_bin),
       .w_sgn    (w_sgn),
       .w_sgnb   (w_sgnb),
-      .mux_oh   (mux_oh),
-      .mux_ohb  (mux_ohb),
       .rtrim    (rtrim),
       .porb     (porb)
   );
@@ -111,11 +115,9 @@ module tt_um_teuscher_eml_fabric (
    * simulated.  See silicon/gen_topnets.py OBSMUX. */
   (* blackbox *)
   eml_fabric_analog u_analog (
-      .w_therm(w_therm),
+      .w_bin  (w_bin),
       .w_sgn  (w_sgn),
       .w_sgnb (w_sgnb),
-      .mux_oh (mux_oh),
-      .mux_ohb(mux_ohb),
       .rtrim  (rtrim),
       .porb   (porb),
       .x_in   (ua[0]),
@@ -131,12 +133,10 @@ endmodule
 /* Blackbox stub for synthesis/lint; replaced by the hardened macro. */
 (* blackbox *)
 module eml_fabric_analog (
-    input  wire [65:0] w_therm,
-    input  wire [10:0] w_sgn,
-    input  wire [10:0] w_sgnb,
-    input  wire [7:0]  mux_oh,
-    input  wire [7:0]  mux_ohb,
-    input  wire [3:0]  rtrim,
+    input  wire [19:0] w_bin,
+    input  wire [4:0]  w_sgn,
+    input  wire [4:0]  w_sgnb,
+    input  wire [2:0]  rtrim,
     input  wire        porb,
     inout  wire        x_in,
     inout  wire        iref_in    /* mux_out removed with the obs mux */

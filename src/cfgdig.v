@@ -42,7 +42,7 @@ module cfgdig (
     output wire [19:0] w_bin,       // 5 weights x 2 digits x 2 bits
     output wire [4:0]  w_sgn,
     output wire [4:0]  w_sgnb,
-    output wire [3:0]  rtrim,
+    output wire [2:0]  rtrim,      // 3, not 4 -- see TRIM_BITS below
     output wire        porb
 );
 
@@ -65,7 +65,19 @@ module cfgdig (
    * 11 that literal pointed into empty chain. */
   localparam NW        = 5;
   localparam TRIM_BASE = NW * 5;          // 25
-  localparam NBITS     = TRIM_BASE + 5;   // 30 -- 4 trim bits + the tail
+  // TRIM_BITS = 3, NOT 4.  rptat_trim is THREE binary segments (1x/2x/4x the
+  // 5k unit) over a 15k base -- see bias/rptat_trim.inc: "Eight levels in 5k
+  // steps ... coarse ON PURPOSE: this is a range-setter, not a precision
+  // knob".  It has exactly three shorting switches (t0/t1/t2) and there is
+  // no fourth tap to drive.  Allocating 4 bits here made trim3 a config bit
+  // that reaches nothing: it showed up as an OPEN pin at the top level
+  // ("each is a pin the netlist gives no net") while every geometric check
+  // stayed clean.  A 4th bit would need eight more res_5k for the 8x segment,
+  // and the 3-bit range (15-50k) already covers the measured poly spread
+  // (21-39k = +40%/-22% of design current).  So the WORD shrinks; the trim
+  // network is correct as laid out.
+  localparam TRIM_BITS = 3;
+  localparam NBITS     = TRIM_BASE + TRIM_BITS + 1;   // 29 -- 3 trim + tail
                                           // flop that drives scan_out
 
   reg [NBITS-1:0] shift_q;
@@ -115,6 +127,6 @@ module cfgdig (
     end
   endgenerate
 
-  assign rtrim = shift_q[TRIM_BASE +: 4];
+  assign rtrim = shift_q[TRIM_BASE +: TRIM_BITS];
 
 endmodule
