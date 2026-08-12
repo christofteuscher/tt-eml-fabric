@@ -82,10 +82,15 @@ continuous-time.
   is binary rather than thermometer (the thermometer decoder was removed
   to fit the config routing), so a code step at an inter-digit carry is a
   *difference* between matched devices instead of simply adding a leg.
-  Simulated: nominal DNL −0.139/+0.057 LSB, and across 30 mismatch
-  samples 0 were non-monotonic but the worst case reached −0.981 LSB
-  against the −1.0 limit.  If weight sweeps show a flat or reversed step,
-  suspect codes 4, 8, 12 of a digit pair before suspecting your setup.
+  Simulated (schematic level): nominal DNL −0.139/+0.057 LSB; across 70
+  mismatch samples **0 were non-monotonic**, with the per-sample worst
+  DNL distributed mean −0.276, σ 0.190 LSB, worst observed −0.981 against
+  the −1.0 limit.  That puts the limit ~3.8σ out — but note −0.981 turned
+  up once in 70 samples where a Gaussian at that σ predicts nearer 1 in
+  3800, so the tail is heavier than normal and 70 samples cannot resolve
+  it.  The margin is real but not large.  If weight sweeps show a flat or
+  reversed step, suspect codes 4, 8, 12 of a digit pair before suspecting
+  your setup.
 - **The thermistor-linearisation figure has not been re-validated.**  The
   "residual 1.1 % of span" result was obtained with the earlier
   three-digit thermometer weight; this build has two digits, binary.
