@@ -39,17 +39,34 @@ module cfgdig (
     input  wire        rst_n,
     output wire        scan_out,
 
-    output wire [65:0] w_therm,     // 11 weights x 2 digits x 3 legs
-    output wire [10:0] w_sgn,
-    output wire [10:0] w_sgnb,
-    output wire [7:0]  mux_oh,      // one-hot + complement for the
-    output wire [7:0]  mux_ohb,     // pass-gate observation mux
+    output wire [19:0] w_bin,       // 5 weights x 2 digits x 2 bits
+    output wire [4:0]  w_sgn,
+    output wire [4:0]  w_sgnb,
     output wire [3:0]  rtrim,
     output wire        porb
 );
 
-  localparam NBITS = 64;
-  localparam NW    = 11;
+  /* NW WAS 11 BUT ONLY 5 WEIGHTS ARE WIRED.  The die carries 5 MDACs
+   * (CA.ua/CA.va/CB.ua/CB.va + link1.gamma); weights 5..10 reached no
+   * silicon at all, and gen_toplvs listed their pins under "OPEN pins --
+   * each is a pin the netlist gives no net": t20..t43, sgn5..sgn10,
+   * sgnb5..sgnb10.  That is 30 dead flops of a 64-bit chain, each one a
+   * dfrtp_1 contributing hvi.5 fragments and area for nothing.
+   *
+   * Cutting them is also what makes the custom all-MV flop affordable:
+   * a continuous-diffusion dfrtp cannot use diffusion breaks for
+   * isolation, so it needs dummy GATE columns instead and comes out
+   * ~41-45 sites against the PDK's 32 (+30-40%).  Growing cfgdig by that
+   * much would push it down into the 16.4 um emlcell->cfgdig corridor
+   * whose ~23 lanes are exactly what forced the binary encoding.  Losing
+   * 30 of 64 flops more than pays for it.
+   *
+   * TRIM_BASE replaces the hardcoded shift_q[61:58]: with NW no longer
+   * 11 that literal pointed into empty chain. */
+  localparam NW        = 5;
+  localparam TRIM_BASE = NW * 5;          // 25
+  localparam NBITS     = TRIM_BASE + 5;   // 30 -- 4 trim bits + the tail
+                                          // flop that drives scan_out
 
   reg [NBITS-1:0] shift_q;
 
@@ -63,11 +80,17 @@ module cfgdig (
   assign scan_out = shift_q[NBITS-1];
   assign porb     = rst_n;
 
-  /* ---- thermometer decode: 2 bits -> 3 lines per digit.
-   * d=0 -> 000, 1 -> 001, 2 -> 011, 3 -> 111.
-   * w_therm is weight-major then digit-major: weight i, digit j, leg k is
-   * w_therm[i*6 + j*3 + k], j=0 for digit a (weight 1), j=1 for digit b
-   * (weight 1/4) -- a straight concatenation of per-weight 6-bit fields. */
+  /* ---- BINARY digit lines: 2 bits per digit, no decode.
+   * The MDAC switches are now binary-weighted (switch 2 shares switch 1's
+   * control), so a radix-4 digit reads value = c0*1 + c1*2 over 0..3 -- the
+   * same range the 3-line thermometer covered.  Thermometer spent 3 wires
+   * on 4 levels; this spends 2, which removes 10 nets from the single
+   * cfgdig->MDAC corridor that is capacity-limited (task #35: it carries
+   * ~23 and ~29 wanted to cross, so exactly 10 always failed).
+   * The decoder is DELETED rather than relocated -- the raw digit IS the
+   * binary code, so this is strictly less logic.
+   * w_bin is weight-major then digit-major: weight i, digit j, bit k is
+   * w_bin[i*4 + j*2 + k], j=0 for digit a (weight 1), j=1 for digit b. */
   genvar i, j, c;
   generate
     for (i = 0; i < NW; i = i + 1) begin : g_weight
@@ -75,9 +98,8 @@ module cfgdig (
 
       for (j = 0; j < 2; j = j + 1) begin : g_digit
         wire [1:0] d = code[(1-j)*2 +: 2];
-        assign w_therm[i*6 + j*3 + 0] = (d >= 2'd1);
-        assign w_therm[i*6 + j*3 + 1] = (d >= 2'd2);
-        assign w_therm[i*6 + j*3 + 2] = (d >= 2'd3);
+        assign w_bin[i*4 + j*2 + 0] = d[0];
+        assign w_bin[i*4 + j*2 + 1] = d[1];
       end
 
       /* Steering is a complementary NMOS pair off one summing node (mdac
@@ -90,11 +112,9 @@ module cfgdig (
     /* one-hot mux select: each channel needs a transmission gate to the
      * output bus and one to the dump rail, hence the complement too */
     for (c = 0; c < 8; c = c + 1) begin : g_mux
-      assign mux_oh[c]  = (shift_q[57:55] == c[2:0]);
-      assign mux_ohb[c] = ~mux_oh[c];
     end
   endgenerate
 
-  assign rtrim = shift_q[61:58];
+  assign rtrim = shift_q[TRIM_BASE +: 4];
 
 endmodule
