@@ -7,49 +7,90 @@ connections between cells are radix-4, all-unit-device current MDACs
 (4 magnitude bits + sign per weight), and the whole fabric is biased from
 an on-chip PTAT core with a 3-bit trimmed reference resistor.
 
-The demonstration function is thermistor linearisation: with the weights
-programmed, `out = a + b·ln(x)` over about 1.5 decades of input current
-(measured in simulation: residual 1.1 % of span, monotonic).
+The signal path, with every stage boundary brought out to a pad:
 
-Configuration is a 64-bit scan chain (3.3 V logic, `sky130_fd_sc_hvl`):
+```
+ua[3] ──> [CELL A] ──> ua[4] ──> [γ weight] ──> ua[0] ──> [CELL B] ──> ua[2]
+x_in              out_CELLA                   sum_Bv               out_CELLB
+```
+
+That means a wrong answer at the output can be localised to one stage
+rather than guessed at.
+
+### Configuration — a 29-bit scan chain (3.3 V logic, `sky130_fd_sc_hvl`)
 
 | bits | function |
 |---|---|
-| `[54:0]` | eleven 5-bit signed weights (2-cell build uses the first five: A.u, A.v, B.u, B.v, B.gamma) |
-| `[57:55]` | observation-mux channel select (one of 8 internal currents to `mux_out`) |
-| `[61:58]` | R_ptat trim (build uses 3 of 4 bits) |
-| `[63:62]` | spare |
+| `[24:0]` | five 5-bit signed weights: `A.u`, `A.v`, `B.u`, `B.v`, `B.gamma` |
+| `[27:25]` | R_ptat trim (3 bits, 8 codes) |
+| `[28]` | chain tail — appears on `scan_out` |
 
 Each 5-bit weight is `w[4]` = sign, `w[3:0]` = magnitude m, value = m/4
-(full scale ±3.75 in unit currents).  The chain is **latchless**: the
-analog follows the shift register directly, so program first, then
-measure — values wiggle harmlessly while a word shifts.
+(full scale ±3.75 unit currents).  The magnitude is **two base-4 digits,
+binary within each digit**: `m = (a0 + 2·a1) + (b0 + 2·b1)/4`.
 
-The three analog pins carry currents, not voltages: `x_in` sources the
-input, `mux_out` sinks the selected observable into your meter, and
-`iref_in` can override/augment the internal bias reference (the chip
-self-biases; this pin is for characterisation).
+The chain is **latchless**: the analog follows the shift register
+directly, so program first, then measure — values wiggle harmlessly while
+a word shifts.
+
+### Analog pins — currents, not voltages
+
+| pin | net | role |
+|---|---|---|
+| `ua[0]` | `sum_Bv` | γ coupling node into CELL B. **Observation only — leave open.** |
+| `ua[1]` | `iref_in` | override/augment the internal bias reference (the chip self-biases; this is for characterisation) |
+| `ua[2]` | `out_CELLB` | final output of the chain |
+| `ua[3]` | `x_in` | input current |
+| `ua[4]` | `out_CELLA` | stage-A output |
+
+**`x_in` is on `ua[3]`, not `ua[0]`.** The pads run east-to-west with
+increasing index while the cells do not, so the pins were assigned by
+which pad sits nearest each node — that is what made the coupling node
+routable at all.
+
+**Leave `ua[0]` open-circuit unless you are measuring it.** It taps a
+high-impedance current-summing node, so leakage into it perturbs the
+coupling accuracy it exists to observe.  Use a low-bias-current
+transimpedance stage, not a bench DMM.
 
 ## How to test
 
 1. Power up (1.8 V digital + 3.3 V VAPWR).  Release `rst_n` — the config
    chain resets to a safe all-zero state (all weights off).
-2. Shift 64 configuration bits into `ui[0]` (scan_data), clocked on the
-   rising edge of `ui[1]` (scan_clk).  `uo[0]` (scan_out) echoes the
-   chain 64 clocks later — shift 128 clocks and compare the second 64 to
+2. Shift 29 configuration bits into `ui[0]` (scan_data), clocked on the
+   rising edge of **`ui[2]`** (scan_clk).  `uo[0]` (scan_out) echoes the
+   chain 29 clocks later — shift 58 clocks and compare the second 29 to
    verify programming.
-3. Drive `ua[0]` (x_in) with the input current: unit current is 0.5 µA,
+   *`ui[2]`, not `ui[1]`: `ui[1]` sits off the analog macro's 0.6 µm
+   routing grid, so no via could be placed beside it.*
+3. Drive `ua[3]` (x_in) with the input current: unit current is 0.5 µA,
    useful range roughly 0.1–6.5 µA.
-4. Select an observation channel via bits `[57:55]` and measure the
-   current at `ua[1]` (mux_out) with an SMU or transimpedance stage
-   (channel currents are ~0.1–5 µA; unselected channels park on an
-   internal dump rail so their mirrors stay biased).
-5. Optionally trim the PTAT current via bits `[61:58]` (8 monotonic codes
-   spanning ~127 % of design current; nominal at code 100) and observe
-   the effect on any channel.
+4. Measure `ua[2]` (out_CELLB) for the chain result.  To localise a
+   fault, also measure `ua[4]` (out_CELLA, stage-A result) and `ua[0]`
+   (sum_Bv, the coupling node) — between them the three taps isolate
+   CELL A, the γ weight, and CELL B.
+5. Optionally trim the PTAT current via bits `[27:25]` (8 monotonic codes
+   spanning 15–50 kΩ, ~127 % of design current; nominal at code `100`)
+   and observe the effect on any output.
 
 No clock is required beyond the scan clock you provide; the analog is
 continuous-time.
+
+## Known limitations
+
+- **Weight monotonicity is likely, not guaranteed.**  Each radix-4 digit
+  is binary rather than thermometer (the thermometer decoder was removed
+  to fit the config routing), so a code step at an inter-digit carry is a
+  *difference* between matched devices instead of simply adding a leg.
+  Simulated: nominal DNL −0.139/+0.057 LSB, and across 30 mismatch
+  samples 0 were non-monotonic but the worst case reached −0.981 LSB
+  against the −1.0 limit.  If weight sweeps show a flat or reversed step,
+  suspect codes 4, 8, 12 of a digit pair before suspecting your setup.
+- **The thermistor-linearisation figure has not been re-validated.**  The
+  "residual 1.1 % of span" result was obtained with the earlier
+  three-digit thermometer weight; this build has two digits, binary.
+- All results quoted here are simulation, schematic-level except where
+  stated.  Nothing has been measured on silicon.
 
 ## External hardware
 
