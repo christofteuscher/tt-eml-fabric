@@ -91,6 +91,17 @@ continuous-time.
   it.  The margin is real but not large.  If weight sweeps show a flat or
   reversed step, suspect codes 4, 8, 12 of a digit pair before suspecting
   your setup.
+- **The ln term is ~0.34 of nominal, not 1.0.**  Measured 2026-08-12: the
+  cell computes roughly `exp(u) − 0.34·ln(v)`.  The cause is servo gain —
+  `nva` should be pinned to `vrefb` and instead drifts ~17 mV, so most of
+  the transdiode differential that should drive the ln resistor appears as
+  servo input error.  This is a **design-level** limitation, not a layout
+  or process effect: the schematic model with idealised OTAs and perfect
+  bias sources measures −0.70, so a single 5-transistor servo stage never
+  had the gain a translinear loop needs.  It went unnoticed because the
+  characterisation always held `v = 1`, which zeroes the ln term.
+  Fixing it needs a cell redesign (cascoded or two-stage servo).
+  **The exp path is unaffected** and behaves as designed.
 - **The thermistor-linearisation figure has not been re-validated.**  The
   "residual 1.1 % of span" result was obtained with the earlier
   three-digit thermometer weight; this build has two digits, binary.
