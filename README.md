@@ -43,8 +43,13 @@ Everything below is **simulation**; nothing has been measured on silicon.
 Both are measured, not suspected, and both are described in detail in
 [docs/info.md](docs/info.md):
 
-- **The ln term is ~0.34 of nominal.** The cell computes approximately
-  `exp(u) − 0.34·ln(v)`. The cause is servo gain: the transdiode base
+- **The ln term is not a scaled logarithm — its shape is wrong.** A fit
+  over `v = 0.25 … 4` gives `exp(u) − 0.34·ln(v)`, but 0.34 is only the
+  average slope: the local slope runs from −0.12 at `v = 0.35` to −0.65 at
+  `v = 4`. This **cannot** be calibrated out by pre-distorting the input —
+  a true constant `k` would invert as `v^(1/k)`, but no single `k` fits.
+  Drive the fabric through `u`; treat `v` as unusable for quantitative
+  work on this build. The cause is servo gain: the transdiode base
   loads the servo amplifier and collapses its open-loop gain from 112 to
   3.2, so it cannot hold the transdiode collector still. This is a
   design-level limit present since the original schematic — it was never

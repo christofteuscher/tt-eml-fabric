@@ -108,8 +108,19 @@ continuous-time.
   `exp(1.23·u)` because the poly resistors were sized by `L/W × rsheet`,
   which ignores end resistance (~24 % low).  Corrected: the exponent is
   now 0.96 of nominal.
-- **The ln term is ~0.34 of nominal, not 1.0.**  Measured 2026-08-12: the
-  cell computes roughly `exp(u) − 0.34·ln(v)`.  The cause is servo gain —
+- **The ln term is not a scaled logarithm — its *shape* is wrong.**  A
+  least-squares fit over `v = 0.25 … 4` gives `exp(u) − 0.34·ln(v)`, but
+  that 0.34 is only the *average* slope.  Measured 2026-08-13 on the
+  layout-matched netlist, the local slope `d(out)/d(ln v)` sweeps from
+  **−0.12 at v = 0.35 to −0.65 at v = 4** — a factor of 5.5 across the
+  range (fit R² = 0.94, max residual 0.13 units).
+  **This cannot be calibrated out by pre-distorting the input.**  Since
+  `k·ln(v) = ln(v^k)`, a genuine constant `k` would be undone by feeding
+  `v^(1/k)` and costing only input dynamic range.  No single `k` fits this
+  curve, so that escape is not available: the part does not compute a
+  logarithm of any argument.  Treat the `v` input as unusable for
+  quantitative work on this build and drive the fabric through `u`.
+  The cause is servo gain —
   `nva` should be pinned to `vrefb` and instead drifts ~17 mV, so most of
   the transdiode differential that should drive the ln resistor appears as
   servo input error.  This is a **design-level** limitation, not a layout
