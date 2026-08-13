@@ -108,28 +108,32 @@ continuous-time.
   `exp(1.23·u)` because the poly resistors were sized by `L/W × rsheet`,
   which ignores end resistance (~24 % low).  Corrected: the exponent is
   now 0.96 of nominal.
-- **The ln term is not a scaled logarithm — its *shape* is wrong.**  A
-  least-squares fit over `v = 0.25 … 4` gives `exp(u) − 0.34·ln(v)`, but
-  that 0.34 is only the *average* slope.  Measured 2026-08-13 on the
-  layout-matched netlist, the local slope `d(out)/d(ln v)` sweeps from
-  **−0.12 at v = 0.35 to −0.65 at v = 4** — a factor of 5.5 across the
-  range (fit R² = 0.94, max residual 0.13 units).
-  **This cannot be calibrated out by pre-distorting the input.**  Since
-  `k·ln(v) = ln(v^k)`, a genuine constant `k` would be undone by feeding
-  `v^(1/k)` and costing only input dynamic range.  No single `k` fits this
-  curve, so that escape is not available: the part does not compute a
-  logarithm of any argument.  Treat the `v` input as unusable for
-  quantitative work on this build and drive the fabric through `u`.
-  The cause is servo gain —
-  `nva` should be pinned to `vrefb` and instead drifts ~17 mV, so most of
-  the transdiode differential that should drive the ln resistor appears as
-  servo input error.  This is a **design-level** limitation, not a layout
-  or process effect: the schematic model with idealised OTAs and perfect
-  bias sources measures −0.70, so a single 5-transistor servo stage never
-  had the gain a translinear loop needs.  It went unnoticed because the
-  characterisation always held `v = 1`, which zeroes the ln term.
-  Fixing it needs a cell redesign (cascoded or two-stage servo).
-  **The exp path is unaffected** and behaves as designed.
+- **The ln term is correct as of this build, for `v ≥ 0.5`.**  Measured
+  2026-08-13 on the layout-matched netlist, over `v = 0.5 … 4`:
+
+  | | fit | local slope | max residual |
+  |---|---|---|---|
+  | this build | `1.06 − 1.05·ln(v)` | −1.13 … −1.00 | **0.019 units** |
+  | previous build | `1.00 − 0.34·ln(v)` | −0.12 … −0.65 | 0.134 units |
+
+  The second row is the one that mattered: a slope wandering by 5.5× is not
+  a logarithm at any gain, so no input pre-distortion could recover it
+  (`k·ln(v) = ln(v^k)` only inverts for a *constant* `k`).  The cause was
+  that the servo output drove the transdiode base directly, and that base
+  — `r_pi ≈ 1.5 MΩ` at `beta ≈ 29` — collapsed the servo's open-loop gain
+  from 112 to 3.2, so it could not hold the transdiode collector still and
+  the two legs sat at different `V_BC`.
+
+  **The fix is a source-follower buffer on the servo output** (`MSF`, W16
+  L1), which keeps the gain node high-Z and supplies base current itself,
+  plus a 0.5 µA sink (`MBM`, W4 L8) mirrored off the OTA's own `n1` diode
+  load.  Two devices, no change to the cell's footprint.
+
+  **Below `v ≈ 0.35` the slope still collapses to −0.05.**  That floor is a
+  low-current effect, not a topology one: the transdiode carries under
+  0.2 µA there, `beta` falls away, and a fixed buffer current cannot track
+  it.  Treat `v < 0.35` as out of range; `v ≥ 1` is where the residual is
+  under 0.05 units.
 - **The thermistor-linearisation figure has not been re-validated.**  The
   "residual 1.1 % of span" result was obtained with the earlier
   three-digit thermometer weight; this build has two digits, binary.

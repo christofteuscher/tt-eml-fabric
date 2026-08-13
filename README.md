@@ -40,24 +40,30 @@ Everything below is **simulation**; nothing has been measured on silicon.
 
 ## Known limitations
 
-Both are measured, not suspected, and both are described in detail in
+Measured, not suspected, and described in detail in
 [docs/info.md](docs/info.md):
 
-- **The ln term is not a scaled logarithm — its shape is wrong.** A fit
-  over `v = 0.25 … 4` gives `exp(u) − 0.34·ln(v)`, but 0.34 is only the
-  average slope: the local slope runs from −0.12 at `v = 0.35` to −0.65 at
-  `v = 4`. This **cannot** be calibrated out by pre-distorting the input —
-  a true constant `k` would invert as `v^(1/k)`, but no single `k` fits.
-  Drive the fabric through `u`; treat `v` as unusable for quantitative
-  work on this build. The cause is servo gain: the transdiode base
-  loads the servo amplifier and collapses its open-loop gain from 112 to
-  3.2, so it cannot hold the transdiode collector still. This is a
-  design-level limit present since the original schematic — it was never
-  caught because every characterisation sweep held `v = 1`, which zeroes
-  the ln term. The **exp path is correct** and behaves as designed.
+- **The ln term is usable for `v ≥ 0.5`, and degrades below that.** Over
+  `v = 0.5 … 4` the cell fits `exp(u) − 1.05·ln(v)` with a maximum residual
+  of 0.02 units and a local slope holding between −1.13 and −1.00. Below
+  `v ≈ 0.35` the slope collapses toward −0.05: the transdiode is carrying
+  under 0.2 µA there and beta falls away, which a fixed buffer current
+  cannot track. **Treat `v < 0.35` as out of range.**
+  An earlier build of this design had a far worse problem — the ln term was
+  not a logarithm at all, with the local slope varying 5.5× across the
+  range — because the servo output drove the transdiode base directly and
+  that base collapsed the open-loop gain from 112 to 3.2. A source-follower
+  buffer on the servo output fixes it; the gain node is now high-Z and the
+  follower supplies the base current.
 - **Only the final output is observable.** With three analog pins there is
   no room for stage taps, so a wrong answer cannot be localised to CELL A,
   the coupling, or CELL B.
+- **All figures are simulation**, at schematic-level sizing with
+  layout-verified topology. `emlcell_b`'s parasitic extraction is blocked
+  (Magic mis-recognises its poly resistors and shorts them), so the ln
+  numbers above are **not** parasitic-annotated. For reference, adding
+  parasitics to the MDAC moved its DNL by 0.005 LSB — reassuring, but not
+  evidence about the servo loop.
 
 ## Repository layout
 
