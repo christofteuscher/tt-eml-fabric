@@ -91,6 +91,10 @@ continuous-time.
   it.  The margin is real but not large.  If weight sweeps show a flat or
   reversed step, suspect codes 4, 8, 12 of a digit pair before suspecting
   your setup.
+- **The exp term is correct as of this build.**  An earlier build computed
+  `exp(1.23·u)` because the poly resistors were sized by `L/W × rsheet`,
+  which ignores end resistance (~24 % low).  Corrected: the exponent is
+  now 0.96 of nominal.
 - **The ln term is ~0.34 of nominal, not 1.0.**  Measured 2026-08-12: the
   cell computes roughly `exp(u) − 0.34·ln(v)`.  The cause is servo gain —
   `nva` should be pinned to `vrefb` and instead drifts ~17 mV, so most of
