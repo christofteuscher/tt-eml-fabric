@@ -11,7 +11,7 @@ project:
   tiles: "2x2"          # Valid values for analog projects: 1x2, 2x2
 
   # How many analog pins does your project use?
-  analog_pins: 5        # Valid values: 0 to 6
+  analog_pins: 3        # Valid values: 0 to 6
   uses_vapwr: true       # Set to true if your project uses second analog power supply (VAPWR) in addition to 1.8V (VDPWR)
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
@@ -55,11 +55,11 @@ pinout:
   uio[7]: ""
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
-  ua[0]: "sum_Bv (gamma coupling node into CELLB.nv -- observation, leave OPEN, high-Z)"
+  ua[0]: "x_in (analog input current)"
   ua[1]: "iref_in (external bias reference)"
   ua[2]: "out_CELLB (analog output of the second EML cell)"
-  ua[3]: "x_in (analog input current)"
-  ua[4]: "out_CELLA (analog output of the first EML cell -- stage-A observation)"
+  ua[3]: ""
+  ua[4]: ""
   ua[5]: ""
 
 # Do not change!

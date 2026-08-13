@@ -7,15 +7,10 @@ connections between cells are radix-4, all-unit-device current MDACs
 (4 magnitude bits + sign per weight), and the whole fabric is biased from
 an on-chip PTAT core with a 3-bit trimmed reference resistor.
 
-The signal path, with every stage boundary brought out to a pad:
-
-```
-ua[3] ──> [CELL A] ──> ua[4] ──> [γ weight] ──> ua[0] ──> [CELL B] ──> ua[2]
-x_in              out_CELLA                   sum_Bv               out_CELLB
-```
-
-That means a wrong answer at the output can be localised to one stage
-rather than guessed at.
+The chain is `x_in` → CELL A → γ weight → CELL B → `out_CELLB`.  Only the
+final output is observable: with three analog pins there is no room for
+stage taps, so a wrong answer cannot be localised to CELL A, the coupling
+or CELL B.
 
 ### Configuration — a 29-bit scan chain (3.3 V logic, `sky130_fd_sc_hvl`)
 
@@ -37,21 +32,10 @@ a word shifts.
 
 | pin | net | role |
 |---|---|---|
-| `ua[0]` | `sum_Bv` | γ coupling node into CELL B. **Observation only — leave open.** |
+| `ua[0]` | `x_in` | input current |
 | `ua[1]` | `iref_in` | override/augment the internal bias reference (the chip self-biases; this is for characterisation) |
 | `ua[2]` | `out_CELLB` | final output of the chain |
-| `ua[3]` | `x_in` | input current |
-| `ua[4]` | `out_CELLA` | stage-A output |
 
-**`x_in` is on `ua[3]`, not `ua[0]`.** The pads run east-to-west with
-increasing index while the cells do not, so the pins were assigned by
-which pad sits nearest each node — that is what made the coupling node
-routable at all.
-
-**Leave `ua[0]` open-circuit unless you are measuring it.** It taps a
-high-impedance current-summing node, so leakage into it perturbs the
-coupling accuracy it exists to observe.  Use a low-bias-current
-transimpedance stage, not a bench DMM.
 
 ## How to test
 
@@ -63,12 +47,9 @@ transimpedance stage, not a bench DMM.
    verify programming.
    *`ui[2]`, not `ui[1]`: `ui[1]` sits off the analog macro's 0.6 µm
    routing grid, so no via could be placed beside it.*
-3. Drive `ua[3]` (x_in) with the input current: unit current is 0.5 µA,
+3. Drive `ua[0]` (x_in) with the input current: unit current is 0.5 µA,
    useful range roughly 0.1–6.5 µA.
-4. Measure `ua[2]` (out_CELLB) for the chain result.  To localise a
-   fault, also measure `ua[4]` (out_CELLA, stage-A result) and `ua[0]`
-   (sum_Bv, the coupling node) — between them the three taps isolate
-   CELL A, the γ weight, and CELL B.
+4. Measure `ua[2]` (out_CELLB) for the chain result.
 5. Optionally trim the PTAT current via bits `[27:25]` (8 monotonic codes
    spanning 15–50 kΩ, ~127 % of design current; nominal at code `100`)
    and observe the effect on any output.
