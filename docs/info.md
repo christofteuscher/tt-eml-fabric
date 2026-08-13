@@ -12,6 +12,38 @@ final output is observable: with three analog pins there is no room for
 stage taps, so a wrong answer cannot be localised to CELL A, the coupling
 or CELL B.
 
+### Block diagram
+
+```
+              ua[1] iref_in
+                 │  (optional external bias override)
+                 ▼
+        ┌──────────────────┐        ┌──────────────┐
+        │  PTAT bias core  │──pbias─┤ rptat_trim   │  3-bit R trim
+        │  + refchain      │        │ 15–50 kΩ     │  bits [27:25]
+        └────────┬─────────┘        └──────────────┘
+                 │ pbias / vcasc / vg / vg4  (to everything below)
+                 ▼
+ ua[0]      ┌─────────┐   out_A   ┌────────┐   ┌────────┐  sum_Bv  ┌─────────┐
+ x_in ─────►│ CELL A  ├──────────►│ glue   ├──►│ γ MDAC ├─────────►│ CELL B  ├──► ua[2]
+            │ exp−ln  │           │ pedestal│   │ weight │          │ exp−ln  │   out_CELLB
+            └────▲────┘           └────────┘   └────▲───┘          └────▲────┘
+                 │                                  │                   │
+              A.u A.v                             B.γ                B.u B.v
+                 │                                  │                   │
+            ┌────┴──────────────────────────────────┴───────────────────┴────┐
+            │   cfgdig — 29-bit scan chain, 5 weights × (4 mag + sign)        │
+            └────────────────────────────────────────────────────────────────┘
+                 ▲              ▲                ▲
+              ui[0]          ui[2]            uo[0]
+             scan_data      scan_clk          scan_out
+```
+
+Each cell computes `eml(u,v) = exp(u) − ln(v)`.  Every weight is a signed
+radix-4 current MDAC built from identical unit devices; the weights set
+`u` and `v` at each cell input, and the γ weight scales the coupling from
+CELL A into CELL B.
+
 ### Configuration — a 29-bit scan chain (3.3 V logic, `sky130_fd_sc_hvl`)
 
 | bits | function |
@@ -98,3 +130,28 @@ continuous-time.
 A source-measure unit (or one current source + one current meter) for the
 analog pins.  Everything else — bias, references, configuration — is
 on-chip.
+
+## Reference
+
+The operator this fabric implements:
+
+> A. Odrzywołek, **"All elementary functions from a single operator"**,
+> Institute of Theoretical Physics, Jagiellonian University, Kraków.
+> [arXiv:2603.21852v2](https://arxiv.org/abs/2603.21852) \[cs.SC\], 4 Apr 2026.
+
+The paper shows that the single binary operator
+
+```
+eml(x, y) = exp(x) − ln(y)
+```
+
+together with the constant 1 generates the standard scientific-calculator
+repertoire — constants (`e`, `π`, `i`), arithmetic (`+ − × /`,
+exponentiation) and the transcendental and algebraic functions.  For
+example `eˣ = eml(x, 1)` and `ln x = eml(1, eml(eml(1, x), 1))`.  Every
+expression becomes a binary tree of identical nodes under the grammar
+`S → 1 | eml(S, S)`.
+
+This chip is a hardware realisation of that node: two `eml` cells with
+programmable weights, so a depth-2 tree can be evaluated in continuous
+time rather than symbolically.
