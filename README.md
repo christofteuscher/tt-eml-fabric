@@ -43,18 +43,32 @@ Everything below is **simulation**; nothing has been measured on silicon.
 Measured, not suspected, and described in detail in
 [docs/info.md](docs/info.md):
 
-- **The ln term is usable for `v ≥ 0.5`, and degrades below that.** Over
-  `v = 0.5 … 4` the cell fits `exp(u) − 1.05·ln(v)` with a maximum residual
-  of 0.02 units and a local slope holding between −1.13 and −1.00. Below
-  `v ≈ 0.35` the slope collapses toward −0.05: the transdiode is carrying
-  under 0.2 µA there and beta falls away, which a fixed buffer current
-  cannot track. **Treat `v < 0.35` as out of range.**
-  An earlier build of this design had a far worse problem — the ln term was
-  not a logarithm at all, with the local slope varying 5.5× across the
-  range — because the servo output drove the transdiode base directly and
-  that base collapsed the open-loop gain from 112 to 3.2. A source-follower
-  buffer on the servo output fixes it; the gain node is now high-Z and the
-  follower supplies the base current.
+- **The ln argument is shifted and scaled: the cell computes
+  `ln((v + 1.87)/2.79)`, not `ln(v)`.** This is the single most important
+  thing to know before driving the `v` input.
+  Against its true argument the logarithm is excellent — measured on the
+  layout-matched netlist over `v = 0.5 … 4`:
+
+  | fitted against | result | max residual |
+  |---|---|---|
+  | `ln(v + 1.74)` | `2.10 − 1.005·ln(v + 1.74)` | **0.0002 units** |
+  | `ln(v)` | `1.04 − 0.454·ln(v)` | 0.072 units |
+
+  So the cell is a near-ideal log amplifier whose input is offset. The
+  cause is a bias pedestal: the layout hard-wires 936 nA onto the `nv`
+  transdiode (`XLPA`) against a 1394 nA reference (`XLPB_LVR`), making the
+  translinear ratio `(v + 1.87)/2.79` rather than `v`.
+  **To get `ln(v)`, pre-map the input as `v_ext = 2.79·v_eff − 1.87`**
+  (in units of the 0.5 µA reference). This *must* be done in the compiler
+  or the drive electronics: `ln((v+1.87)/2.79)` is **not** `k·ln(v)` for
+  any `k`, so no gain or offset trim on the output can recover it.
+  Without the mapping the apparent local slope rises smoothly from −0.15
+  at `v = 0.35` to −0.66 at `v = 4` and never reaches −1.
+  Earlier revisions of this file quoted `−1.05·ln(v)` with a 0.019 residual.
+  That figure was measured on a schematic bench that (a) omits the pedestal
+  legs the layout generates internally and (b) self-oscillates, so it was
+  read off an equilibrium the bench does not occupy. It was wrong; this
+  supersedes it.
 - **Only the final output is observable.** With three analog pins there is
   no room for stage taps, so a wrong answer cannot be localised to CELL A,
   the coupling, or CELL B.

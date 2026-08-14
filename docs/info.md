@@ -108,32 +108,52 @@ continuous-time.
   `exp(1.23·u)` because the poly resistors were sized by `L/W × rsheet`,
   which ignores end resistance (~24 % low).  Corrected: the exponent is
   now 0.96 of nominal.
-- **The ln term is correct as of this build, for `v ≥ 0.5`.**  Measured
-  2026-08-13 on the layout-matched netlist, over `v = 0.5 … 4`:
+- **THE ln ARGUMENT IS NOT `v`.  The cell computes `ln((v + 1.87)/2.79)`.**
+  Measured 2026-08-14 on the layout-matched netlist (`emlcell_b_sim14_buf.inc`,
+  derived from `lvsref/emlcell_b_flat.spice`, which LVS-matches the shipped
+  layout), tt, 27 °C, over `v = 0.5 … 4`:
 
-  | | fit | local slope | max residual |
-  |---|---|---|---|
-  | this build | `1.06 − 1.05·ln(v)` | −1.13 … −1.00 | **0.019 units** |
-  | previous build | `1.00 − 0.34·ln(v)` | −0.12 … −0.65 | 0.134 units |
+  | fitted against | result | max residual |
+  |---|---|---|
+  | `ln(v + 1.74)` | `2.10 − 1.005·ln(v + 1.74)` | **0.0002 units** |
+  | `ln(v)` | `1.04 − 0.454·ln(v)` | 0.072 units |
 
-  The second row is the one that mattered: a slope wandering by 5.5× is not
-  a logarithm at any gain, so no input pre-distortion could recover it
-  (`k·ln(v) = ln(v^k)` only inverts for a *constant* `k`).  The cause was
-  that the servo output drove the transdiode base directly, and that base
-  — `r_pi ≈ 1.5 MΩ` at `beta ≈ 29` — collapsed the servo's open-loop gain
-  from 112 to 3.2, so it could not hold the transdiode collector still and
-  the two legs sat at different `V_BC`.
+  Read the first row: as a log amplifier the cell is close to ideal — slope
+  −1.005 against its true argument, residual two ten-thousandths of a unit.
+  It is only the *argument* that is offset.
 
-  **The fix is a source-follower buffer on the servo output** (`MSF`, W16
-  L1), which keeps the gain node high-Z and supplies base current itself,
-  plus a 0.5 µA sink (`MBM`, W4 L8) mirrored off the OTA's own `n1` diode
-  load.  Two devices, no change to the cell's footprint.
+  **Mechanism.**  The layout hard-wires a bias pedestal the schematic bench
+  never modelled: `XLPA` puts a fixed 936 nA (1.872 units) on the `nv`
+  transdiode, and the reference leg `XLPB_LVR` carries 1394 nA (2.789 units).
+  The translinear ratio is therefore `(v + 1.87)/2.79`, not `v`.  The
+  predicted local slope from the pedestal alone, `−1.05·500v/(936 + 500v)`,
+  reproduces the measurement at every point (predicted/measured: −0.221/−0.225
+  at v = 0.5, −0.365/−0.367 at v = 1, −0.695/−0.683 at v = 3.67).
 
-  **Below `v ≈ 0.35` the slope still collapses to −0.05.**  That floor is a
-  low-current effect, not a topology one: the transdiode carries under
-  0.2 µA there, `beta` falls away, and a fixed buffer current cannot track
-  it.  Treat `v < 0.35` as out of range; `v ≥ 1` is where the residual is
-  under 0.05 units.
+  **How to use it.**  Pre-map the input as `v_ext = 2.79·v_eff − 1.87` (units
+  of the 0.5 µA reference).  This has to happen in the compiler or the drive
+  electronics: `ln((v + 1.87)/2.79)` is **not** `k·ln(v)` for any `k`, so no
+  output gain or offset trim recovers it.  `silicon/README.md:158` records
+  this as the original design intent — "ln input becomes ln((v+2)/3);
+  constants absorbed by alpha/compiler" — it simply was never carried into
+  this document.
+
+  **CORRECTION.**  Earlier revisions of this file claimed `1.06 − 1.05·ln(v)`
+  with a 0.019-unit residual and a usable range of `|error| < 0.05` for
+  `v ≥ 1`.  All three claims were wrong.  That figure came from a schematic
+  bench (`char/_v2d_lay2.inc`) which (a) omits the pedestal legs the layout
+  generates internally, and (b) is byte-identical to `char/_v2d_quiet.inc`
+  and self-oscillates, so the number was read off a DC equilibrium the bench
+  does not occupy.  Time-averaging that bench through its limit cycle gives
+  `0.83 − 1.38·ln(v)` with a 0.53-unit residual.  The statement that the
+  slope only collapses below `v ≈ 0.35` was also wrong: without the input
+  mapping the apparent slope varies continuously across the whole range,
+  −0.15 at `v = 0.35` to −0.66 at `v = 4`, never reaching −1.
+
+  The source-follower buffer (`MSF`, W16 L1) and its 0.5 µA sink (`MBM`,
+  W4 L8, mirrored off the OTA's `n1` diode load) are still present and still
+  do their job — they were tested independently and are **not** the cause of
+  the argument offset.
 - **The thermistor-linearisation figure has not been re-validated.**  The
   "residual 1.1 % of span" result was obtained with the earlier
   three-digit thermometer weight; this build has two digits, binary.
