@@ -44,26 +44,28 @@ Measured, not suspected, and described in detail in
 [docs/info.md](docs/info.md):
 
 - **The ln argument is shifted and scaled: the cell computes
-  `ln((v + 1.87)/2.79)`, not `ln(v)`.** This is the single most important
+  `ln(v + 2.57)` up to scale, not `ln(v)`.** This is the single most important
   thing to know before driving the `v` input.
   Against its true argument the logarithm is excellent — measured on the
   layout-matched netlist over `v = 0.5 … 4`:
 
   | fitted against | result | max residual |
   |---|---|---|
-  | `ln(v + 1.74)` | `2.10 − 1.005·ln(v + 1.74)` | **0.0002 units** |
-  | `ln(v)` | `1.04 − 0.454·ln(v)` | 0.072 units |
+  | `ln(v + 2.57)` | `2.55 − 1.145·ln(v + 2.57)` | **0.0002 units** |
+  | `ln(v)` | `1.05 − 0.416·ln(v)` | 0.078 units |
 
   So the cell is a near-ideal log amplifier whose input is offset. The
   cause is a bias pedestal: the layout hard-wires 936 nA onto the `nv`
-  transdiode (`XLPA`) against a 1394 nA reference (`XLPB_LVR`), making the
-  translinear ratio `(v + 1.87)/2.79` rather than `v`.
-  **To get `ln(v)`, pre-map the input as `v_ext = 2.79·v_eff − 1.87`**
+  transdiode (`XLPA`) against a 1394 nA reference (`XLPB_LVR`), which
+  accounts for roughly 1.87 units of the offset. The measured offset is
+  2.57, so the pedestal explains most but **not all** of it — the remainder
+  is not yet accounted for.
+  **To get `ln(v)`, pre-map the input as `v_ext = a·v_eff − 2.57`**
   (in units of the 0.5 µA reference). This *must* be done in the compiler
-  or the drive electronics: `ln((v+1.87)/2.79)` is **not** `k·ln(v)` for
-  any `k`, so no gain or offset trim on the output can recover it.
+  or the drive electronics: `ln(v + 2.57)` is **not** `k·ln(v)` for any
+  `k`, so no gain or offset trim on the output can recover it.
   Without the mapping the apparent local slope rises smoothly from −0.15
-  at `v = 0.35` to −0.66 at `v = 4` and never reaches −1.
+  at `v = 0.35` to −0.63 at `v = 4` and never reaches −1.
   Earlier revisions of this file quoted `−1.05·ln(v)` with a 0.019 residual.
   That figure was measured on a schematic bench that (a) omits the pedestal
   legs the layout generates internally and (b) self-oscillates, so it was

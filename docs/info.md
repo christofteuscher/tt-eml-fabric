@@ -108,32 +108,35 @@ continuous-time.
   `exp(1.23·u)` because the poly resistors were sized by `L/W × rsheet`,
   which ignores end resistance (~24 % low).  Corrected: the exponent is
   now 0.96 of nominal.
-- **THE ln ARGUMENT IS NOT `v`.  The cell computes `ln((v + 1.87)/2.79)`.**
-  Measured 2026-08-14 on the layout-matched netlist (`emlcell_b_sim14_buf.inc`,
+- **THE ln ARGUMENT IS NOT `v`.  The cell computes `ln(v + 2.57)` up to scale.**
+  Measured 2026-08-14 on the layout-matched netlist (`emlcell_b_sim12.inc`,
   derived from `lvsref/emlcell_b_flat.spice`, which LVS-matches the shipped
   layout), tt, 27 °C, over `v = 0.5 … 4`:
 
   | fitted against | result | max residual |
   |---|---|---|
-  | `ln(v + 1.74)` | `2.10 − 1.005·ln(v + 1.74)` | **0.0002 units** |
-  | `ln(v)` | `1.04 − 0.454·ln(v)` | 0.072 units |
+  | `ln(v + 2.57)` | `2.55 − 1.145·ln(v + 2.57)` | **0.0002 units** |
+  | `ln(v)` | `1.05 − 0.416·ln(v)` | 0.078 units |
 
   Read the first row: as a log amplifier the cell is close to ideal — slope
-  −1.005 against its true argument, residual two ten-thousandths of a unit.
+  −1.145 against its true argument, residual two ten-thousandths of a unit.
   It is only the *argument* that is offset.
 
   **Mechanism.**  The layout hard-wires a bias pedestal the schematic bench
   never modelled: `XLPA` puts a fixed 936 nA (1.872 units) on the `nv`
   transdiode, and the reference leg `XLPB_LVR` carries 1394 nA (2.789 units).
-  The translinear ratio is therefore `(v + 1.87)/2.79`, not `v`.  The
-  predicted local slope from the pedestal alone, `−1.05·500v/(936 + 500v)`,
-  reproduces the measurement at every point (predicted/measured: −0.221/−0.225
-  at v = 0.5, −0.365/−0.367 at v = 1, −0.695/−0.683 at v = 3.67).
+  That accounts for roughly 1.87 units of offset.  **The measured offset on
+  the shipping (unbuffered) cell is 2.57**, so the pedestal explains most but
+  not all of it; the remaining ~0.7 units is not yet accounted for and is an
+  open item.  The pedestal model was validated against the *buffered* build,
+  where it matched the local slope at every point; it has not been re-fitted
+  for this one.  What is directly measured, and what should be relied on, is
+  the fit in the table above.
 
-  **How to use it.**  Pre-map the input as `v_ext = 2.79·v_eff − 1.87` (units
-  of the 0.5 µA reference).  This has to happen in the compiler or the drive
-  electronics: `ln((v + 1.87)/2.79)` is **not** `k·ln(v)` for any `k`, so no
-  output gain or offset trim recovers it.  `silicon/README.md:158` records
+  **How to use it.**  Pre-map the input as `v_ext = a·v_eff − 2.57` (units
+  of the 0.5 µA reference; `a` is absorbed by the compiler's alpha).  This has to happen in the compiler or the drive
+  electronics: `ln(v + 2.57)` is **not** `k·ln(v)` for any `k`, so no output
+  gain or offset trim recovers it.  `silicon/README.md:158` records
   this as the original design intent — "ln input becomes ln((v+2)/3);
   constants absorbed by alpha/compiler" — it simply was never carried into
   this document.
@@ -148,12 +151,20 @@ continuous-time.
   `0.83 − 1.38·ln(v)` with a 0.53-unit residual.  The statement that the
   slope only collapses below `v ≈ 0.35` was also wrong: without the input
   mapping the apparent slope varies continuously across the whole range,
-  −0.15 at `v = 0.35` to −0.66 at `v = 4`, never reaching −1.
+  −0.15 at `v = 0.35` to −0.63 at `v = 4`, never reaching −1.
 
-  The source-follower buffer (`MSF`, W16 L1) and its 0.5 µA sink (`MBM`,
-  W4 L8, mirrored off the OTA's `n1` diode load) are still present and still
-  do their job — they were tested independently and are **not** the cause of
-  the argument offset.
+  **A source-follower buffer was briefly shipped and has been REVERTED.**
+  Between 2026-08-13 and 2026-08-14 this repository carried a build with a
+  source follower (`MSF`, W16 L1) plus a 0.5 µA sink (`MBM`, W4 L8) added to
+  the two ln servos, intended to fix an apparent slope error.  That apparent
+  error was an artifact of fitting against `ln(v)` instead of the true
+  argument — the unbuffered cell was already a clean logarithm — and the
+  buffer made the servo loop **unstable**: a sustained ~7.2 MHz limit cycle
+  from the DC operating point with no stimulus, 1.37 units peak-to-peak at
+  the output for `v = 1` (126 % of the signal), confirmed under both
+  trapezoidal and Gear-2 integration and by active perturbation.  Reverting
+  either added device restores 0.00000 units of ripple with the DC law
+  unchanged.  The current GDS is the unbuffered cell and is stable.
 - **The thermistor-linearisation figure has not been re-validated.**  The
   "residual 1.1 % of span" result was obtained with the earlier
   three-digit thermometer weight; this build has two digits, binary.
