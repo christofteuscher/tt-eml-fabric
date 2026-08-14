@@ -104,10 +104,19 @@ continuous-time.
   it.  The margin is real but not large.  If weight sweeps show a flat or
   reversed step, suspect codes 4, 8, 12 of a digit pair before suspecting
   your setup.
-- **The exp term is correct as of this build.**  An earlier build computed
-  `exp(1.23·u)` because the poly resistors were sized by `L/W × rsheet`,
-  which ignores end resistance (~24 % low).  Corrected: the exponent is
-  now 0.96 of nominal.
+- **The exp term is correct as of this build: `exp(0.927·u)`.**  An earlier
+  build computed `exp(1.23·u)` because the poly resistors were sized by
+  `L/W × rsheet`, which ignores end resistance (~24 % low).  Corrected.
+  Measured 2026-08-14 on the layout-matched netlist (`emlcell_b_sim12.inc`),
+  tt, 27 °C, `u = −1 … +1.25`, `v` held at 1:
+
+      io = 1.101 · exp(0.927·u) − 0.010      max residual 0.0004 units
+
+  It is a clean exponential — the residual is four ten-thousandths of a unit.
+  The coefficient drifts slightly across the range (0.931 at `u = +0.6` to
+  0.955 at `u = −1.25`), so it is not perfectly pure, but close.
+  *Earlier revisions quoted 0.96; that came from a schematic bench and was
+  ~3.5 % optimistic.  0.927 is the die figure.*
 - **THE ln ARGUMENT IS NOT `v`.  The cell computes `ln(v + 2.57)` up to scale.**
   Measured 2026-08-14 on the layout-matched netlist (`emlcell_b_sim12.inc`,
   derived from `lvsref/emlcell_b_flat.spice`, which LVS-matches the shipped
