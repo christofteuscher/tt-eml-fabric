@@ -71,6 +71,17 @@ Measured, not suspected, and described in detail in
   legs the layout generates internally and (b) self-oscillates, so it was
   read off an equilibrium the bench does not occupy. It was wrong; this
   supersedes it.
+- **Per-cell output level varies by 24 % (1σ)** — mean 1.098 units, σ 0.266,
+  range 0.446–1.838 over 440 Monte Carlo samples. Mismatch-limited, so it does
+  **not** average out across cells. The *shape* is unaffected (fits still hold
+  to ~2.5e-4 units), so each cell is an excellent log amplifier with an
+  uncertain gain and offset. **Every cell output needs per-cell calibration.**
+- **Useful temperature window ≈ −8 °C to +54 °C.** No thermal-voltage
+  compensation, so the scale factor is PTAT by construction: `k_ln` runs
+  0.887 at −40 °C to 1.520 at +125 °C (tracks `T` to within 0.6 %). Only
+  0.54 % of that swing is process. A design limit, not a defect.
+- **Stable across the full box** — `i(VOUT)` pk-pk = 0.000e+00 at all 25
+  corner × temperature conditions and all 440 Monte Carlo samples.
 - **Only the final output is observable.** With three analog pins there is
   no room for stage taps, so a wrong answer cannot be localised to CELL A,
   the coupling, or CELL B.

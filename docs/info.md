@@ -174,6 +174,43 @@ continuous-time.
   trapezoidal and Gear-2 integration and by active perturbation.  Reverting
   either added device restores 0.00000 units of ripple with the DC law
   unchanged.  The current GDS is the unbuffered cell and is stable.
+- **Per-cell output level varies by 24 % (1 sigma).  This is the accuracy
+  floor.**  440 Monte Carlo samples of the layout-matched netlist
+  (`tt_mm` plus the four skew corners), measuring `io` at `v = 1, u = 0`:
+
+      mean 1.098 units, sigma 0.266 units = 24.3 %
+      observed range 0.446 .. 1.838 units over 440 samples
+
+  The peak-to-peak spread is 1.27x the nominal output itself.  It is
+  **mismatch-limited, not process-limited** — `tt_mm` alone produces the full
+  24.3 % and the skew corners add nothing — so it will **not** average out
+  across the fabric: every cell draws independently.
+  The *shape* is unaffected: under full mismatch the log and antilog fits
+  still hold to ~2.5e-4 and ~3.2e-4 units respectively.  Mismatch translates
+  the curve without bending it.  So a cell remains an excellent log amplifier
+  with an uncertain gain and offset.
+  **Consequence: treat every cell output as needing per-cell calibration.**
+  Using a raw cell output as a quantitative value carries ~24 % 1-sigma
+  error.  This cannot be trimmed out in the current silicon (it is set by
+  device area in the level-setting legs) and it is not a corner or binning
+  issue.
+- **Useful temperature window is roughly −8 °C to +54 °C.**  The cell has no
+  thermal-voltage compensation, so its scale factor tracks absolute
+  temperature by construction: `k_ln` is PTAT (measured, it tracks
+  `k_ln(27 °C)·T/300 K` to within 0.6 % at every temperature from −40 to
+  +125 °C) and the exp coefficient is the reciprocal, ~1/T.  Measured `k_ln`
+  runs 0.887 at −40 °C through 1.151 at 27 °C to 1.520 at +125 °C — a 72 %
+  swing, of which only 0.54 % is process.
+  This is what an uncompensated bipolar translinear pair does; it is a design
+  limit, not a defect.  Because the drift is thermal rather than process,
+  guardbanding or binning does not help — only a PTAT-referenced gain trim or
+  a temperature-tracking reference would.  The exp path binds the window.
+- **Stability: verified across the full box.**  Zero-stimulus transients from
+  the DC operating point show `i(VOUT)` peak-to-peak = 0.000e+00 at all 25
+  corner × temperature conditions and in all 440 Monte Carlo samples.  Worst
+  fit residual anywhere in the corner matrix is 6.6e-4 units.
+  *(An earlier build with a source-follower buffer oscillated at ~7.2 MHz and
+  was reverted — see the note further down.)*
 - **The thermistor-linearisation figure has not been re-validated.**  The
   "residual 1.1 % of span" result was obtained with the earlier
   three-digit thermometer weight; this build has two digits, binary.
