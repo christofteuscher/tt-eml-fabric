@@ -104,13 +104,13 @@ continuous-time.
   it.  The margin is real but not large.  If weight sweeps show a flat or
   reversed step, suspect codes 4, 8, 12 of a digit pair before suspecting
   your setup.
-- **The exp term is correct as of this build: `exp(0.927·u)`.**  An earlier
+- **The exp term is correct as of this build: `exp(0.967·u)`.**  An earlier
   build computed `exp(1.23·u)` because the poly resistors were sized by
   `L/W × rsheet`, which ignores end resistance (~24 % low).  Corrected.
   Measured 2026-08-14 on the layout-matched netlist (`emlcell_b_sim12.inc`),
   tt, 27 °C, `u = −1 … +1.25`, `v` held at 1:
 
-      io = 1.101 · exp(0.927·u) − 0.010      max residual 0.0004 units
+      io = 1.101 · exp(0.967·u) − 0.009      max residual 0.0004 units
 
   It is a clean exponential — the residual is four ten-thousandths of a unit.
   The coefficient drifts slightly across the range (0.931 at `u = +0.6` to
@@ -124,11 +124,11 @@ continuous-time.
 
   | fitted against | result | max residual |
   |---|---|---|
-  | `ln(v + 2.57)` | `2.55 − 1.145·ln(v + 2.57)` | **0.0002 units** |
-  | `ln(v)` | `1.05 − 0.416·ln(v)` | 0.078 units |
+  | `ln(v + 2.55)` | `2.478 − 1.094·ln(v + 2.547)` | **0.0002 units** |
+  | `ln(v)` | `1.05 − 0.42·ln(v)` | 0.078 units |
 
   Read the first row: as a log amplifier the cell is close to ideal — slope
-  −1.145 against its true argument, residual two ten-thousandths of a unit.
+  −1.094 against its true argument, residual two ten-thousandths of a unit.
   It is only the *argument* that is offset.
 
   **Mechanism.**  The layout hard-wires a bias pedestal the schematic bench
@@ -174,6 +174,21 @@ continuous-time.
   trapezoidal and Gear-2 integration and by active perturbation.  Reverting
   either added device restores 0.00000 units of ripple with the DC law
   unchanged.  The current GDS is the unbuffered cell and is stable.
+
+  **RESISTOR SEGMENTATION — why these differ from earlier revisions by ~4 %.**
+  The layout draws `RU` and `RLN` as FOUR series bodies of `L = 11.44 µm`;
+  the simulation netlists and LVS references lump each as a single
+  `L = 45.76 µm` device.  Those are not the same resistor: each body carries
+  its own ~741 Ω of end resistance, so 4 × 11.44 measures **53.75 kΩ**
+  against 51.53 kΩ for the lump, **+4.31 %**.  Simulating the segmented form
+  moves the ln slope −1.145 → **−1.094** and the exp coefficient
+  0.927 → **0.967**, i.e. both ~4 % CLOSER to ideal than previously
+  published.  Post-layout extraction confirms the split: parasitic R and C
+  contribute only 0.01 % (ln) and 0.35 % (exp) at DC, so essentially all of
+  the difference is the segmentation, not the parasitics.
+  *The corner, temperature and Monte Carlo figures below were taken on the
+  LUMPED netlist and carry the same ~4 % systematic; their spreads and
+  trends are unaffected.*
 - **Per-cell output level varies by 24 % (1 sigma).  This is the accuracy
   floor.**  440 Monte Carlo samples of the layout-matched netlist
   (`tt_mm` plus the four skew corners), measuring `io` at `v = 1, u = 0`:
