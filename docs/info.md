@@ -226,6 +226,45 @@ continuous-time.
   fit residual anywhere in the corner matrix is 6.6e-4 units.
   *(An earlier build with a source-follower buffer oscillated at ~7.2 MHz and
   was reverted — see the note further down.)*
+- **Bias-current tolerance is the tightest operating constraint.**  The
+  reference current sets BOTH transfer coefficients — they are properties of
+  the bias, not of the topology.  Scaling the whole bias generator gives
+  `exp` coefficient `B = 1.853 x I[uA]`, constant to 0.5 %, with the ln slope
+  moving inversely.  Measured on the layout-matched netlist at tt / 27 C,
+  varying `pbias` alone:
+
+  | pbias | ln slope k | usable v range |
+  |---|---|---|
+  | 0.25 uA | -1.309 | 0.25 … **≈1.8** |
+  | 0.35 uA | -1.215 | 0.25 … **≈3.4** |
+  | **0.50 uA (nominal)** | **-1.151** | **full 0.25 … 4** |
+  | 0.70 uA | -1.115 | full |
+  | 1.00 uA | -1.094 | full, residual 19x better |
+
+  **A −30 % bias error already clips the top of the input range** — the output
+  crosses zero at v ≈ 3.4 and goes negative beyond it.  Nominal 0.5 uA sits at
+  the LOW EDGE of the range that keeps the full v span usable.  Above nominal
+  the log conformance actually improves (max residual 1.8e-5 units at 1 uA),
+  at the cost of DC level and MDAC headroom.  This is what the 3-bit R_ptat
+  trim (bits `[27:25]`) is for; use it.
+- **Output loading: only DC compliance and bandwidth, never stability.**
+  `out` is the drain of three devices and the gate or source of none, so it
+  sits outside every feedback loop and a load cannot move a loop pole.
+  Measured `R_out` = 7.1 MΩ, `C_self` ≈ 24–40 fF; |Zout| is a single
+  non-peaking pole for every load tested up to 100 nF.
+  - Resistive: `v(out) = 0.9 V + io·R_L`.  At ≤ 100 kΩ the cost is ≤ 1.5 % on
+    the ln slope; at 1 MΩ the node reaches 1.38 V and costs 12.7 %.
+  - Capacitive: sets the output pole at `1/(2π·7.1 MΩ·C_L)` — 22 kHz at 1 pF,
+    2.6 kHz at 10 pF, ~22 Hz at 1 nF.  DC is untouched.
+  No load, supply, reference or bias condition in 43 tested destabilised the
+  cell.
+- **PSRR is 0.113 units/V (56.5 nA/V), flat to ~10 kHz.**  That is ~10 % of
+  the DC output per volt, i.e. ~1 % per 100 mV of supply ripple.  It degrades
+  above 10 kHz: x3.6 at 1 MHz and x22 at 10 MHz, still rising.  Supply
+  sensitivity of the transfer itself is small — over 3.0–3.6 V the ln slope
+  moves 0.21 % and the DC level +6.4 %.  Both references are far less
+  critical: ±10 % on `vrefb` moves the slope 0.08 %, and ±10 % on `ve` leaves
+  it unchanged to four decimals.
 - **The thermistor-linearisation figure has not been re-validated.**  The
   "residual 1.1 % of span" result was obtained with the earlier
   three-digit thermometer weight; this build has two digits, binary.

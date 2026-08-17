@@ -82,6 +82,15 @@ Measured, not suspected, and described in detail in
   0.54 % of that swing is process. A design limit, not a defect.
 - **Stable across the full box** — `i(VOUT)` pk-pk = 0.000e+00 at all 25
   corner × temperature conditions and all 440 Monte Carlo samples.
+- **Bias-current tolerance is the tightest constraint.** The reference
+  current sets both transfer coefficients (`exp` coefficient = 1.853×I[µA]).
+  A **−30 % bias error clips the top of the input range** — nominal 0.5 µA is
+  at the low edge of what keeps `v = 0.25…4` usable. Use the 3-bit R_ptat trim.
+- **Output loading costs compliance and bandwidth, never stability.** `out` is
+  drain-only and outside every feedback loop; `R_out` = 7.1 MΩ, single
+  non-peaking pole to 100 nF. ≤100 kΩ costs ≤1.5 % on the ln slope.
+  PSRR 0.113 units/V flat to ~10 kHz. None of 43 load/supply/reference/bias
+  conditions destabilised the cell.
 - **Only the final output is observable.** With three analog pins there is
   no room for stage taps, so a wrong answer cannot be localised to CELL A,
   the coupling, or CELL B.
