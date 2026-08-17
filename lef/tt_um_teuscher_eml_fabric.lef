@@ -160,7 +160,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END ui_in[7]
   PIN uio_in[0]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -168,7 +168,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[0]
   PIN uio_in[1]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -176,7 +176,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[1]
   PIN uio_in[2]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -184,7 +184,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[2]
   PIN uio_in[3]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -192,7 +192,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[3]
   PIN uio_in[4]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -200,7 +200,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[4]
   PIN uio_in[5]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -208,7 +208,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[5]
   PIN uio_in[6]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -216,7 +216,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[6]
   PIN uio_in[7]
-    DIRECTION INOUT ;
+    DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -224,7 +224,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_in[7]
   PIN uio_oe[0]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -232,7 +232,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[0]
   PIN uio_oe[1]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -240,7 +240,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[1]
   PIN uio_oe[2]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -248,7 +248,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[2]
   PIN uio_oe[3]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -256,7 +256,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[3]
   PIN uio_oe[4]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -264,7 +264,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[4]
   PIN uio_oe[5]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -272,7 +272,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[5]
   PIN uio_oe[6]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -280,7 +280,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[6]
   PIN uio_oe[7]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -288,7 +288,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_oe[7]
   PIN uio_out[0]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -296,7 +296,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_out[0]
   PIN uio_out[1]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -304,7 +304,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_out[1]
   PIN uio_out[2]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -312,7 +312,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_out[2]
   PIN uio_out[3]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -320,7 +320,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_out[3]
   PIN uio_out[4]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -328,7 +328,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_out[4]
   PIN uio_out[5]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -336,7 +336,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_out[5]
   PIN uio_out[6]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
@@ -344,7 +344,7 @@ MACRO tt_um_teuscher_eml_fabric
     END
   END uio_out[6]
   PIN uio_out[7]
-    DIRECTION INOUT ;
+    DIRECTION OUTPUT ;
     USE SIGNAL ;
     PORT
       LAYER met4 ;
