@@ -82,6 +82,15 @@ Measured, not suspected, and described in detail in
   0.54 % of that swing is process. A design limit, not a defect.
 - **Stable across the full box** — `i(VOUT)` pk-pk = 0.000e+00 at all 25
   corner × temperature conditions and all 440 Monte Carlo samples.
+- **Wait ≥10 ms after power-up before reading.** The PTAT core's start-up
+  escape is 5.5 pA and junction-leakage limited; simulated at ss/−40 °C it is
+  still dead at 1 ms and wakes between 1 and 10 ms. Warm parts wake in
+  microseconds, so a cold part read too early looks dead when it is not.
+- **The bias core needs no trimming.** 476.5 nA (0.953 units) nominal, σ 1.75 %
+  over 200 mismatch samples, 0/200 outside ±30 %. The cell's and the core's
+  PTAT behaviours **cancel** — both are `vt/R` in the same material — so the
+  delivered/wanted ratio moves only 2.27 % over −40…+125 °C. The temperature
+  window is set by the cell, not the bias.
 - **Bias-current tolerance is the tightest constraint.** The reference
   current sets both transfer coefficients (`exp` coefficient = 1.853×I[µA]).
   A **−30 % bias error clips the top of the input range** — nominal 0.5 µA is

@@ -73,6 +73,15 @@ a word shifts.
 
 1. Power up (1.8 V digital + 3.3 V VAPWR).  Release `rst_n` — the config
    chain resets to a safe all-zero state (all weights off).
+   **WAIT AT LEAST 10 ms BEFORE READING ANYTHING.**  The PTAT bias core's
+   start-up escape path is 5.5 pA and is junction-leakage limited, so it is
+   slow when the leakage is small: simulated at the ss corner and −40 °C the
+   core is still in its degenerate zero-current state at 1 ms and wakes
+   somewhere between 1 ms and 10 ms.  At tt / 27 °C it is up in
+   microseconds, so a warm bench will not show this — but a cold part read
+   too early will look dead, and that is a measurement artefact, not a
+   failure.  Being leakage-limited, the delay does not scale with anything
+   you can control from outside.
 2. Shift 29 configuration bits into `ui[0]` (scan_data), clocked on the
    rising edge of **`ui[2]`** (scan_clk).  `uo[0]` (scan_out) echoes the
    chain 29 clocks later — shift 58 clocks and compare the second 29 to
@@ -226,6 +235,33 @@ continuous-time.
   fit residual anywhere in the corner matrix is 6.6e-4 units.
   *(An earlier build with a source-follower buffer oscillated at ~7.2 MHz and
   was reverted — see the note further down.)*
+- **The on-chip bias core delivers a usable current everywhere measured, and
+  needs no trimming to do it.**  Simulated on netlists derived from the
+  shipped LVS references: nominal output **476.5 nA = 0.953 cell units**
+  (−4.7 %) at tt / 27 °C / 3.3 V / trim code 100.  Supply sensitivity
+  0.11 %/%.  Mismatch over 200 samples: sigma **1.75 %**, range
+  0.902…1.000 units, **0 of 200 outside the ±30 % window** that keeps the
+  full input range usable — counted, not extrapolated from a sigma.  The
+  3-bit trim is monotonic in 100 % of 9 corners × 3 temperatures × 8 codes
+  and in 200/200 mismatch samples, spanning 15.44–50.24 kΩ (×2.95,
+  ~17.5 %/code); a single code covers every corner at every temperature.
+  **The two PTAT effects cancel rather than compound.**  The cell wants
+  `vt/RU` and the core delivers `vt·ln8/R_ptat` — both `vt/R` in the *same*
+  poly resistor material — so the resistor corner cancels to ~1 %.  The
+  delivered/wanted ratio is 0.990 at tt / 27 °C and moves only **2.27 %**
+  across −40…+125 °C, spanning 0.873…1.054 over all 27 corner ×
+  temperature combinations.  The absolute current swings 2.6× across that
+  box and looks alarming until the ratio is taken.  **So the temperature
+  window above is set by the cell, not by its bias.**
+  *Caveat, stated because it matters:* sky130's ngspice `tt_mm` varies
+  MOSFETs only — the resistor models carry no statistical terms and NPN
+  mismatch is left as an inactive comment.  The 1.75 % sigma is therefore
+  optimistic.  Bounded by hand, 1 mV of Vbe offset between the core's
+  mirror pair is worth 1.9 % of current, and 1 % on R_ptat is worth 1.08 %.
+  A separate systematic: the core's mirror pair sees 1.3 V of uncascoded
+  Vds asymmetry and runs 3.07 % apart, so the loop solves `ln(8.25)` rather
+  than `ln(8)` — about +3.7 % of current, with a further −3.3 % spread
+  across consumer drain voltages from 0.4 to 2.0 V.
 - **Bias-current tolerance is the tightest operating constraint.**  The
   reference current sets BOTH transfer coefficients — they are properties of
   the bias, not of the topology.  Scaling the whole bias generator gives
