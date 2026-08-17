@@ -253,11 +253,20 @@ continuous-time.
   temperature combinations.  The absolute current swings 2.6× across that
   box and looks alarming until the ratio is taken.  **So the temperature
   window above is set by the cell, not by its bias.**
-  *Caveat, stated because it matters:* sky130's ngspice `tt_mm` varies
-  MOSFETs only — the resistor models carry no statistical terms and NPN
-  mismatch is left as an inactive comment.  The 1.75 % sigma is therefore
-  optimistic.  Bounded by hand, 1 mV of Vbe offset between the core's
-  mirror pair is worth 1.9 % of current, and 1 % on R_ptat is worth 1.08 %.
+  *What the 1.75 % does and does not include.*  `.lib tt_mm` sets
+  `mc_mm_switch = 1` with `mc_pr_switch = 0`, i.e. device **mismatch on,
+  global process off**.  The mismatch is real for every device class that
+  matters here: `sky130_fd_pr__npn_05v5_W1p00L1p00` carries `AGAUSS` terms
+  on both `is` (0.473 %) and `bf` (5.24 %), and `res_high_po_0p35` carries
+  Pelgrom `res_match` and `rend` terms — all gated on `MC_MM_SWITCH`.  So
+  the figure covers NPN, resistor and MOSFET mismatch together.  What it
+  excludes is the global process corner, which the corner sweep above
+  covers separately.
+  *(An earlier revision of this document claimed `tt_mm` varies MOSFETs
+  only and that the sigma was therefore optimistic.  That was wrong —
+  checked against the model files — and is corrected here.)*
+  For scale, 1 mV of Vbe offset between the core's mirror pair is worth
+  1.9 % of current and 1 % on R_ptat is worth 1.08 %.
   A separate systematic: the core's mirror pair sees 1.3 V of uncascoded
   Vds asymmetry and runs 3.07 % apart, so the loop solves `ln(8.25)` rather
   than `ln(8)` — about +3.7 % of current, with a further −3.3 % spread
