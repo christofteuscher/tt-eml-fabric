@@ -1,0 +1,313 @@
+============================================================================================
+PART 1  THE DERIVATION:  why bias current cancels out of energy per evaluation
+============================================================================================
+
+A translinear cell is a current-mode circuit held at its operating point by servo
+amplifiers.  Two facts fix its energy per evaluation:
+
+  (a) POWER is proportional to bias current.   MEASURED, POWER.md 2.3:
+      P_vdd = 204.4 * pbias[uA] - 2.9 uW  over an 8:1 range, i.e. P = k_I * I.
+      Every leg is a fixed-ratio mirror of pbias, so k_I = V_dd * (I_vdd/I_pbias).
+
+  (b) SETTLING TIME is proportional to C / gm, and in the subthreshold /
+      translinear regime gm = I_branch / (n V_T).   Therefore
+
+          t_settle = N_tau * C / gm = N_tau * C * n V_T / I_branch    ~  1/I.
+
+  Multiply:   E = P * t = [V_dd * I_vdd] * [N_tau * C * n V_T / I_branch]
+
+          +--------------------------------------------------------+
+          |   E_op  =  F * N_tau * C * V_dd * n * V_T               |
+          |   with  F = I_vdd / I_branch   (the scaffolding fanout) |
+          +--------------------------------------------------------+
+
+  The bias current CANCELS EXACTLY.  Not approximately -- it appears once in the
+  numerator (power) and once in the denominator (bandwidth) with the same exponent.
+  Scaling the whole fabric to nanoamps buys nothing: it buys proportionally less
+  power and proportionally more time.  Note the form is C*V_dd*(n V_T), NOT C*V^2:
+  analog settling is exponential, so the second voltage is the thermal voltage times
+  the number of e-folds you demand, not the supply rail.
+
+  FORWARD PREDICTION from device physics, nothing fitted:
+    C  = CC_OT (Miller comp. on the exp servo)          = 2.00 pF
+    I_branch = I_tail/2 (XMT_OT input pair)             = 1.980 uA
+    gm = I_branch/(n V_T), n=1.3, V_T=25.85 mV          = 58.9 uS
+    tau = C/gm                             PREDICTED    = 33.9 ns
+    tau                                    MEASURED     = 45.9 ns  (POWER.md 3.1, 38-57 ns range)
+    ratio predicted/measured = 0.74  -- a forward prediction good to 26 %
+
+    F = I_vdd / I_branch                                = 15.1  (scaffolding fanout)
+    N_tau = t_1%/tau                                    = 8.8 e-folds
+    E = F * N_tau * C * V_dd * n V_T       PREDICTED    = 29.3 pJ
+    E = P_cell * t_1% (post-layout)        MEASURED     = 39.6 pJ  (POWER.md 6)
+    ratio = 0.74  -> THE DERIVATION IS CONFIRMED to 26 %
+
+============================================================================================
+PART 1b  DIRECT TEST OF BIAS INVARIANCE  (NEW MEASUREMENT, bias_sweep.py)
+============================================================================================
+
+POWER.md 2.3 measured P vs pbias.  Nobody had measured t_settle vs pbias, so E(I) was
+never tested.  bias_sweep.py does it: same netlist, same die context, same normalised
+operating point and same full-scale exp step at 4 bias points over an 8:1 range,
+tt/27C, gear/maxord=2, 2 ns grid.  MEASURED:
+
+  pbias/uA     I_vdd/uA      P/uW    t1%/ns   tau/ns     E1%/pJ
+  0.125          7.1346    23.544     821.0    121.0      19.33
+  0.250         14.5270    47.939     458.9     61.0      22.00
+  0.500         29.5979    97.673     342.9     45.9      33.49   <-- as shipped
+  1.000         60.2693   198.889     342.8     49.2      68.17
+
+  Piecewise log-log exponents (E ~ I^p):
+
+    bias range        tau exponent      E exponent     regime
+    0.125 -> 0.25 uA     -0.99            +0.19        SUBTHRESHOLD: hypothesis HOLDS
+    0.25  -> 0.50 uA     -0.41            +0.61        knee
+    0.50  -> 1.00 uA     +0.10            +1.03        RC-LIMITED: hypothesis FAILS
+
+  THE HYPOTHESIS IS CONFIRMED EXACTLY -- BUT ONLY BELOW A KNEE, AND THE SHIPPED PART
+  SITS ON THE WRONG SIDE OF IT.
+
+  * Below 250 nA the cancellation is essentially perfect: tau ~ I^-0.99 against the
+    predicted I^-1.0, and energy moves only 19.33 -> 22.00 pJ (I^+0.19) for a 2x change
+    in bias.  Scaling to nanoamps buys nothing, exactly as predicted.
+  * Above 500 nA the cancellation BREAKS: tau stops falling (+0.10, i.e. flat) and energy
+    becomes strictly proportional to bias current (I^+1.03).  Extra current buys zero
+    speed and costs proportional power.  This is pure waste.
+  * WHY: a current-INDEPENDENT pole takes over.  The exp path runs through RU
+    (res_high_po, L=45.76, = 51.5 kohm, POWER.md 3.4) into CFU = 1 pF.
+    RU * CFU = 51.5 ns -- and the measured tau floors at 45.9-49.2 ns.  Once C/gm falls
+    below the fixed RC of the signal path, gm no longer sets the bandwidth and the
+    denominator of E = P*t stops tracking I.  The floor is a RESISTOR, not a transistor.
+  * CONSEQUENCE: the shipped 500 nA bias is at or past the knee.  The cell would be
+    1.73x CHEAPER per evaluation at 125 nA (19.33 vs 33.49 pJ) at the price of 2.4x
+    latency -- and POWER.md 2.3 notes bias current is the paper's accuracy lever, so
+    that saving is paid for in bits.  Even so: 19.33 pJ is still 1.4x a whole
+    13.8 pJ digital datapath, for ONE of the seven cells the task needs.
+  * So the practical statement is stronger than the hypothesis, not weaker:
+    THERE IS NO BIAS CURRENT AT WHICH THIS FABRIC IS CHEAP.  Lowering bias hits a
+    floor of ~19 pJ/cell; raising it is strictly wasted energy.  The lever does not exist.
+
+============================================================================================
+PART 2  IS THE FLOOR SET BY kT/C NOISE?   -- the hypothesis fails here
+============================================================================================
+
+The hypothesis says C is bounded below by kT/C noise at the required SNR, giving a
+hard thermodynamic floor.  Evaluate it: a sampled node with swing V_sig has
+v_n^2 = kT/C, so SNR = 2^b demands  C >= kT * 2^(2b) / V_sig^2.
+
+  bits       C_min (kT/C)   vs CC_OT=2pF E floor if C=C_min
+  2.28       9.770e-20 F       4.9e-08     1.432e-18 J
+  4.30       1.607e-18 F       8.0e-07     2.355e-17 J
+  8.00       2.714e-16 F       1.4e-04     3.977e-15 J
+  10.00      4.343e-15 F       2.2e-03     6.364e-14 J
+  12.00      6.949e-14 F       3.5e-02     1.018e-12 J
+  14.00      1.112e-12 F       5.6e-01     1.629e-11 J
+  16.00      1.779e-11 F       8.9e+00     2.607e-10 J
+  18.00      2.846e-10 F       1.4e+02     4.171e-09 J
+
+  VERDICT: THE kT/C HALF OF THE HYPOTHESIS IS WRONG, AND WRONG BY 6 ORDERS OF MAGNITUDE.
+  At the fabric's actual precision (2.28-4.30 bits) kT/C permits C = 1.6e-18 F -- ATTOFARADS.
+  The 2 pF that is actually there is 1e+06 times larger than noise requires.
+  kT/C does not bind until b = 14.4 bits with a 1 V swing.
+
+  So what DOES set C?  Three things, all architectural, none thermodynamic:
+    1. STABILITY.  CC_OT = 2 pF is a Miller compensation capacitor.  It exists to give
+       the servo loop phase margin.  Its size is set by the loop's non-dominant pole,
+       not by noise.  PEX_CHAIN/PEX_SHIPPED record that the BUFFERED variant rang in
+       15 of 25 corners; the shipped cell is stable, and 2 pF is what bought that.
+    2. PARASITICS.  The extracted cell carries 1773 fF over 1317 capacitors
+       (PEX_SHIPPED.md 1) before any deliberate cap, and parasitics cost +19 %% of
+       settling time (POWER.md 6).  That is a lithographic floor, not a noise floor.
+    3. MATCHING, not noise, sets the precision.  FAB_ERROR.md measures 1.288 u of
+       swing against 0.266 u of LEVEL SIGMA = 2.28 bits.  That sigma is device
+       mismatch and servo offset -- static, uncorrelated with bandwidth, and NOT
+       reducible by spending charge.  A 1.88 %% ln-slope mismatch caps the root at
+       5.73 bits and "no offset trim removes" it.  The fabric is mismatch-limited,
+       not noise-limited, so the kT/C argument never engages.
+
+============================================================================================
+PART 3  THE REAL FLOOR, AND HOW FAR ABOVE IT THE FABRIC SITS
+============================================================================================
+
+The correct fundamental floor for a current-mode translinear circuit is SHOT noise on
+the delivered charge, not kT/C on a stored voltage.  Deliver charge Q = I_sig * t through
+a junction; Poisson statistics give sigma_Q = sqrt(q Q), so SNR = sqrt(Q/q).  Hence
+
+        Q_min = q * 4^b      and      E_min = V_swing * q * 4^b.
+
+This is Sarpeshkar's scaling: analog cost grows as 4^b (2 bits per 4x charge), while a
+digital datapath's cost grows roughly LINEARLY in bit width for adders and quadratically
+for multipliers -- i.e. polynomially in b, against the analog exponential.  That is
+exactly why he concludes analog is more efficient at LOW precision and digital wins at
+HIGH precision, with the crossover at intermediate precision (his stated figure is of
+order 8-10 bits for the technologies he analysed; the qualitative claim -- exponential
+vs polynomial in b -- is the load-bearing part and is reproduced below).
+
+  bits     E_min shot (J)     E_dig130 (J)   analog/digital
+  2.28       3.779e-18       3.554e-12          1.1e-06
+  4.30       6.217e-17       6.547e-12          9.5e-06
+  8.00       1.050e-14       1.382e-11          7.6e-04
+  10.00      1.680e-13       1.884e-11          8.9e-03
+  12.00      2.688e-12       2.467e-11          1.1e-01
+  13.00      1.075e-11       2.789e-11          3.9e-01
+  14.00      4.301e-11       3.131e-11          1.4e+00
+  16.00      6.881e-10       3.878e-11          1.8e+01
+
+  CROSSOVER (fundamental analog floor = this 130 nm digital datapath): b* = 13.8 bits
+  Sarpeshkar's regime claim is REPRODUCED: below b* analog is fundamentally cheaper.
+  The fabric operates at 2.28-4.30 bits -- 9 to 11 bits INSIDE the analog-wins regime.
+
+  AND YET IT LOSES.  Quantify the gap:
+    fundamental shot-noise floor at 4.30 bits          = 6.22e-17 J  (0.062 fJ)
+    what one cell actually costs (POWER.md 6)         = 3.96e-11 J  (39.6 pJ)
+    ratio                                             = 6.4e+05
+    equivalently: the cell spends the charge of a 13.9-bit computation to deliver 4.30 bits.
+
+============================================================================================
+PART 4  THE RECONCILIATION:  what would it cost if the scaffolding were free?
+============================================================================================
+
+The measured asymmetry (POWER.md 1.1 / FAB_AREA.md): the four bipolar junctions that
+actually evaluate eml are 2.7 % of cell area and draw 0 % DIRECTLY from the 3.3 V rail
+(13.3 % of supply current, at 1.2 V collectors).  The four servo amplifiers that exist
+only to hold their operating points are 42.5 % of area and 74.5 % of supply current.
+
+Price the bare translinear core.  It carries I_core = 3.962 uA at V_core = 1.2 V.  Its own
+capacitance is junction + local wiring only -- no Miller compensation, because with no
+servo loop there is no loop to compensate.  Take C_core from the extracted total scaled
+by the core's area share, a deliberately PESSIMISTIC estimate (the core is resistors and
+NPNs, which are not the capacitive part of the cell).
+
+    C_core = C_pex * 2.7 %                 = 47.9 fF
+    gm_core = I_c / V_T  (BJT, n = 1)     = 153.3 uS
+    tau_core                              = 0.31 ns   (vs 45.9 ns for the servoed cell)
+    t_settle = 8.8 tau                    = 2.7 ns   (vs 402 ns measured)
+    E_core = V_core * I_core * t_settle   = 13.0 fJ   (vs 39624 fJ measured)
+
+    ---> THE SCAFFOLDING TAX IS 3046x IN ENERGY PER CELL.
+         (compare: 16x in area, 5.6x in supply current -- energy is the harshest of the three)
+
+  Does the scaffolding-free fabric beat digital?  Use the same 7-cell, 4.0-bit task
+  that the matched comparison used (energy_area_compare.py CASE 1):
+    fabric as built,   N=7 d=3        =    420.8 pJ
+    digital datapath, matched 4.0 b   =    13.82 pJ   -> fabric loses 30x  [PRIOR RESULT, reproduced]
+    7 bare translinear cores          =   0.0910 pJ   -> IDEAL CORE BEATS DIGITAL BY 152x
+
+  So Sarpeshkar is not contradicted -- he is CONFIRMED, on this very circuit.  The
+  primitive is 152x cheaper than the digital datapath at 4 bits, exactly as his argument
+  predicts for the low-precision regime.  The fabric loses anyway because it pays a
+  3046x tax to make that primitive addressable, composable and stable.
+
+  THE CENTRAL RESULT:  a single-primitive analog fabric pays a COMPOSABILITY OVERHEAD
+  that swamps the primitive's efficiency.  The overhead is not a defect of this layout;
+  it is what the primitive needs in order to be a fabric element rather than a curiosity:
+    - servo amplifiers, because a translinear loop only holds its law if its collector
+      voltages are pinned (42.5 % of area, 74.5 % of current, and they set F = 15.1);
+    - Miller caps, because the servos are feedback loops that must not ring
+      (2 pF each, and C is the OTHER term in E = F*N_tau*C*V_dd*n*V_T);
+    - weight DACs and config flops, because a fabric must be programmable
+      (27.4 % of fabric area, FAB_AREA.md; and the LINK costs 88 % of a cell in power
+      against 28 % in area, POWER.md 4.2).
+  Every one of those is a consequence of composability, not of the exp/ln primitive.
+  Both terms in the energy law -- F and C -- are scaffolding terms.  The primitive
+  contributes NEITHER.
+
+  At what precision would the fabric AS BUILT beat digital?  Solve E_fab(N=7) = E_dig(b):
+    b = 60.2 bits.  The fabric delivers 4.30.  It would have to be 56 bits more accurate
+    than it is, in a design whose mismatch caps it at 5.73 bits (FAB_ERROR.md).  Unreachable.
+
+============================================================================================
+PART 5  WHERE COULD IT WIN?  Each regime as an inequality, then evaluated.
+============================================================================================
+
+[1] VERY LOW PRECISION (< 4 bits): digital still pays a full datapath
+    condition : E_fab(1 cell) < E_dig(b)   for b < 4
+    evaluated : E_fab = 39.6 pJ (ONE cell, the indivisible quantum)  vs  E_dig(2 b) = 3.178 pJ
+    VERDICT   : FAIL -- digital gets CHEAPER as precision falls (a 4-entry LUT is nearly free) while the
+                fabric does not: 98.57 uW and 402 ns are fixed costs paid at ANY precision.
+                Analog has no sub-linear low-precision mode here. Loses by 12x.
+
+[2] ALWAYS-ON CONTINUOUS-TIME MONITORING (neither side can duty-cycle)
+    condition : P_fab < E_dig * f_required   AND   f_required <= 1/t_settle (feasibility)
+    evaluated : f_break-even = P_fab/E_dig = 7.1 MHz (1 cell) / 86.4 MHz (N=7)  vs  f_max = 1/t_settle = 2.49 MHz (1 cell) / 2.84 MHz (N=7)
+    VERDICT   : FAIL -- the two conditions are MUTUALLY EXCLUSIVE. The fabric must be re-evaluated
+                2.9x (1 cell) to 30x (N=7) faster than it can physically settle. Its own
+                bandwidth ceiling closes the door its static power opens. This is structural:
+                E = P*t means break-even rate = 1/t_dig, and t_dig << t_analog always.
+
+[3] ANALOG-IN / ANALOG-OUT: the fabric skips conversion the digital path must pay
+    condition : n_ports * E_conv(b_sensor) > E_fab - E_dig
+    evaluated : deficit to make up = 407 pJ;  E_conv = 34.0 fJ/conv-step x 2^b
+                b_sensor= 4 b: E_conv=    0.54 pJ -> need   748.1 conversions/eval
+                b_sensor= 8 b: E_conv=    8.70 pJ -> need    46.8 conversions/eval
+                b_sensor=10 b: E_conv=   34.82 pJ -> need    11.7 conversions/eval
+                b_sensor=12 b: E_conv=  139.26 pJ -> need     2.9 conversions/eval
+                a 7-cell fabric HAS AT MOST 14 input ports (2 per cell, FAB_AREA 1.2)
+    VERDICT   : FAIL -- at a FAIR converter width (the fabric answers to 4.3 bits, so a
+                4-6 bit converter is what the digital path needs) you would need 187 to 748
+                conversions per evaluation against 14 available ports: short by 13-53x.
+                It only closes if you grant the digital side 10-12 bit converters it does
+                not need (12-3 conversions), which is not a fair comparison.
+
+[4] EXPENSIVE TRANSCENDENTALS (CORDIC: ~1 iteration per bit)
+    condition : E_fab(1 cell) < 2 * b * E_cordic_iter    [one eml cell = exp AND ln, so 2 CORDICs]
+    evaluated : E_fab = 39.6 pJ (ONE cell)
+                b= 2.28: 2 CORDICs =    19.0 pJ  -> fabric loses by 2.09x
+                b= 3.00: 2 CORDICs =    25.0 pJ  -> fabric loses by 1.59x
+                b= 4.00: 2 CORDICs =    33.3 pJ  -> fabric loses by 1.19x
+                b= 4.30: 2 CORDICs =    35.8 pJ  -> fabric loses by 1.11x
+                b= 6.00: 2 CORDICs =    49.9 pJ  -> fabric WINS by 1.26x
+                b= 8.00: 2 CORDICs =    66.6 pJ  -> fabric WINS by 1.68x
+                b=16.00: 2 CORDICs =   133.1 pJ  -> fabric WINS by 3.36x
+    crossover : b* = 4.76 bits.  The fabric delivers 4.30 at a tree root -- it MISSES the
+                crossover by 0.46 bits and loses by 1.11x, its narrowest defeat anywhere.
+    VERDICT   : FAIL, but this is the CLOSEST regime and it is worth stating precisely why.
+                (i) The margin is only 1.11x -- inside the +-19 % parasitic and +-4.6 % corner
+                     spread, so this regime is a genuine near-miss rather than a rout.
+                (ii) It vanishes the instant digital is allowed a LUT instead of CORDIC:
+                     a 16-entry exp LUT + interpolation costs 4.85 pJ, and the fabric loses 8x.
+                     NOBODY COMPUTES A 4-BIT EXPONENTIAL WITH CORDIC. At 4 bits a LUT has 16
+                     entries. CORDIC is only the right baseline at >=12 bits -- precisely where
+                     the fabric cannot go (mismatch caps it at 5.73 bits, FAB_ERROR.md).
+                (iii) It holds for ONE cell only. Any real function needs a tree, and each link
+                     costs 85.64 uW = 88 % of a cell (POWER.md 4.2), so N=7 loses 12x.
+
+[5] HIGH-DIMENSIONAL INTERPOLATION (LUT cost N^d)
+    condition : E_fab < min( E_LUT(N^d), E_closedform, E_MLP )
+    evaluated : d=9, 8b axes -> 256^9 = 4.7e+21 bytes: LUT INFEASIBLE, as claimed.
+                BUT the digital escape hatch is not a LUT, it is the closed form:
+                I.9.18 (9 vars) as 9 mul + 5 add = 88.7 pJ, exact to 8 bits.
+                fabric N=32 d=4 = 2474 pJ at 4.7 bits (IDEAL hw) -> loses 28x.
+    VERDICT   : FAIL -- the LUT^d blow-up is real but it is a straw man: digital only
+                uses a LUT when no closed form exists, and when none exists the comparison
+                is against an MLP, where PRIOR WORK ALREADY MEASURED the fabric losing
+                7-15x on ACCURACY at matched parameter count. Both exits are closed.
+
+[6] [OWN] A SCAFFOLDING-FREE SUCCESSOR -- the only regime the derivation actually opens
+    condition : E = F*N_tau*C*V_dd*n*V_T  <  E_dig.  Three levers, all architectural.
+    evaluated : as built  F=15.1, C=2000 fF, V_dd=3.3 V   -> 39.6 pJ/cell
+                open-loop core, no servo    F= 1.0 C=   48 fF V=1.2 ->   0.0130 pJ/cell (7 cells:   0.091 pJ, vs digital 13.8 pJ)
+                + 1.2 V rail                F= 1.0 C=   48 fF V=1.2 ->   0.0130 pJ/cell (7 cells:   0.091 pJ, vs digital 13.8 pJ)
+                F=3 (partial servo), 100 fF F= 3.0 C=  100 fF V=1.8 ->   0.1589 pJ/cell (7 cells:   1.113 pJ, vs digital 13.8 pJ)
+                F=15 but C=100 fF (no comp) F=15.1 C=  100 fF V=3.3 ->   1.4653 pJ/cell (7 cells:  10.257 pJ, vs digital 13.8 pJ)
+    VERDICT   : WIN, by up to 152x -- BUT the levers are exactly the composability
+                machinery. F=1 means no servo, so collector voltages float and the
+                translinear law fails (POWER.md: the ln port IS a servo-held node).
+                C=50 fF means no Miller compensation, and PEX_SHIPPED records the
+                uncompensated variant RINGING in 15 of 25 corners. The win is available
+                only to a circuit that is no longer a programmable fabric.
+
+============================================================================================
+SUMMARY OF REGIME TESTS
+============================================================================================
+  [1] VERY LOW PRECISION (< 4 bits): digital still pays a full datapath FAIL
+  [2] ALWAYS-ON CONTINUOUS-TIME MONITORING (neither side can duty-cycle) FAIL
+  [3] ANALOG-IN/ANALOG-OUT                          FAIL
+  [4] EXPENSIVE TRANSCENDENTALS (CORDIC)            FAIL
+  [5] HIGH-DIM INTERPOLATION                        FAIL
+  [6] SCAFFOLDING-FREE SUCCESSOR                    WIN
+
+  5 of 6 regimes fail on measured numbers. The 6th wins only by deleting the scaffolding,
+  which is the same as saying: THE PRIMITIVE WINS, THE FABRIC LOSES, AND THE DIFFERENCE
+  BETWEEN THEM IS THE PAPER. The fabric's energy law contains no term belonging to eml.
+

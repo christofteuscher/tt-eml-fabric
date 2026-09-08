@@ -1,0 +1,20 @@
+* Same, WITHOUT uic: start from the DC operating point.
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _v2d_tran_unbuf.inc
+.control
+set noaskquit
+tran 100n 3m
+let io = i(VOUT)/0.5u
+* quiescent window, no input change anywhere near it
+meas tran nva_lmin MIN v(nva) from=1.40m to=1.50m
+meas tran nva_lmax MAX v(nva) from=1.40m to=1.50m
+meas tran io_lmin  MIN io     from=1.40m to=1.50m
+meas tran io_lmax  MAX io     from=1.40m to=1.50m
+* very late, long after the last step at 1.5m
+meas tran nva_emin MIN v(nva) from=2.80m to=3.00m
+meas tran nva_emax MAX v(nva) from=2.80m to=3.00m
+meas tran io_emin  MIN io     from=2.80m to=3.00m
+meas tran io_emax  MAX io     from=2.80m to=3.00m
+print v(nva) v(oa) io
+.endc
+.end

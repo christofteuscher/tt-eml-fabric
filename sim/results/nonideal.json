@@ -1,0 +1,1048 @@
+{
+  "spec": {
+    "topology": "mesh",
+    "depth": 4,
+    "width": 8,
+    "window": 3
+  },
+  "iters": 2500,
+  "seeds": 3,
+  "rows": [
+    {
+      "target": "thermistor_sh",
+      "config": "ideal",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.01676270696607602,
+      "transfer": 0.01676270696607602,
+      "over_dec": 0.0,
+      "under_dec": 1.5049523718895275
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "ideal",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.03305167522309438,
+      "transfer": 0.03305167522309438,
+      "over_dec": 0.0,
+      "under_dec": 2.6711287652417406
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "ideal",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.0051955217747052486,
+      "transfer": 0.0051955217747052486,
+      "over_dec": 0.0,
+      "under_dec": 6.499984272861002
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "a_pedestal",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.09546468833008724,
+      "transfer": 84.6476450910482,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "a_pedestal",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.13891700215563313,
+      "transfer": 75.00238593071028,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "a_pedestal",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.09099301833602559,
+      "transfer": 34.784320118436234,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "b_atten",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.026928839420567594,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 2.015658936823021
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "b_atten",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.05440580827393854,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 4.879085233515832
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "b_atten",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.019477039387709102,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 7.818738372398566
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "c_span",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.016751305621192862,
+      "transfer": 0.016756629398368573,
+      "over_dec": 0.0,
+      "under_dec": 1.5317060424376865
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "c_span",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.0332078573581815,
+      "transfer": 0.03311835633047232,
+      "over_dec": 0.0,
+      "under_dec": 2.6543793952744927
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "c_span",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.0051939017452481695,
+      "transfer": 0.005194176953977532,
+      "over_dec": 0.0,
+      "under_dec": 6.499428714508913
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "c_span_2dec",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 21.379056482057308,
+      "transfer": 98085.24196743776,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 2.8098148105461784
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "c_span_2dec",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 21.379056482057308,
+      "transfer": 87096.95356351847,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 2.4303498890648108
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "c_span_2dec",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 21.379056482057308,
+      "transfer": 48089.184686416185,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 3.0208346647448847
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "ab_ped_atten",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.1050921071668774,
+      "transfer": 32.67942033356584,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "ab_ped_atten",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.16941207733832503,
+      "transfer": 26.206383562360624,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "ab_ped_atten",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.18309900758777933,
+      "transfer": 21.66123794533248,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.1050921071668774,
+      "transfer": 32.679890171495515,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.16941207733832503,
+      "transfer": 26.206795992245603,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.18309900758777933,
+      "transfer": 21.66128448535411,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon_lumped",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.02952166067383243,
+      "transfer": 33.30811758870781,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon_lumped",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.19002985106308154,
+      "transfer": 26.595208998866198,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon_lumped",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.19123407637374723,
+      "transfer": 21.517578991435002,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon_secant",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.1285666907372491,
+      "transfer": 26.249713674608273,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon_secant",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.15455884711441206,
+      "transfer": 22.052442207750815,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "abc_silicon_secant",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.21148823449368637,
+      "transfer": 25.48046499897454,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "pdk",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.07850430052859779,
+      "transfer": 3.118069994589873,
+      "over_dec": 0.0,
+      "under_dec": 0.4544946382732151
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "pdk",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.2926568498534886,
+      "transfer": 5.269541229286391,
+      "over_dec": 0.0,
+      "under_dec": 4.972225092713738
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "pdk",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.7908641540951145,
+      "transfer": 3.4689791165650052,
+      "over_dec": 0.15976332789475023,
+      "under_dec": 3.705668606403575
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "pdk_abc_silicon",
+      "seed": 0,
+      "unit": "K",
+      "insitu": 0.47288638951645623,
+      "transfer": 33.43110420500949,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "pdk_abc_silicon",
+      "seed": 1,
+      "unit": "K",
+      "insitu": 0.1649441109857052,
+      "transfer": 27.140482066436682,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "thermistor_sh",
+      "config": "pdk_abc_silicon",
+      "seed": 2,
+      "unit": "K",
+      "insitu": 0.25271305813031447,
+      "transfer": 22.207231579700018,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "ideal",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.15498792276697734,
+      "transfer": 0.15498792276697734,
+      "over_dec": 0.0,
+      "under_dec": 7.832089751139441
+    },
+    {
+      "target": "osc_k3",
+      "config": "ideal",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.1476811036507076,
+      "transfer": 0.1476811036507076,
+      "over_dec": 0.0,
+      "under_dec": 5.955476936526106
+    },
+    {
+      "target": "osc_k3",
+      "config": "ideal",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.121684355285031,
+      "transfer": 0.121684355285031,
+      "over_dec": 0.0,
+      "under_dec": 1.5867381144806474
+    },
+    {
+      "target": "osc_k3",
+      "config": "a_pedestal",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.157960022711977,
+      "transfer": 48.08537939550567,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "a_pedestal",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.0932061000237708,
+      "transfer": 15.147945134252902,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "a_pedestal",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.16728105445470584,
+      "transfer": 77.34391526961501,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "b_atten",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.06278083416757244,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 5.113113863927048
+    },
+    {
+      "target": "osc_k3",
+      "config": "b_atten",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.10953728243249126,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 3.01847999431618
+    },
+    {
+      "target": "osc_k3",
+      "config": "b_atten",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.1590559272442044,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 11.513932904289552
+    },
+    {
+      "target": "osc_k3",
+      "config": "c_span",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.08207674237678063,
+      "transfer": 0.15510841124649508,
+      "over_dec": 0.0,
+      "under_dec": 7.47821261829546
+    },
+    {
+      "target": "osc_k3",
+      "config": "c_span",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.1128757052536547,
+      "transfer": 0.14767912843315123,
+      "over_dec": 0.0,
+      "under_dec": 5.917837846606713
+    },
+    {
+      "target": "osc_k3",
+      "config": "c_span",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.19589219762137167,
+      "transfer": 0.1216509008764844,
+      "over_dec": 0.0,
+      "under_dec": 4.449513714331196
+    },
+    {
+      "target": "osc_k3",
+      "config": "c_span_2dec",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.6676551635928937,
+      "transfer": 51506.40341160952,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 2.8098148105461784
+    },
+    {
+      "target": "osc_k3",
+      "config": "c_span_2dec",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.6676551635928937,
+      "transfer": 18089.777245873287,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 2.4303498890648108
+    },
+    {
+      "target": "osc_k3",
+      "config": "c_span_2dec",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.6676551635928937,
+      "transfer": 103680.9750680985,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 3.0208346647448847
+    },
+    {
+      "target": "osc_k3",
+      "config": "ab_ped_atten",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.18642205135383194,
+      "transfer": 29.927448729117,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "ab_ped_atten",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.17137113749026078,
+      "transfer": 11.185952994363852,
+      "over_dec": 0.0,
+      "under_dec": 0.3928508960209872
+    },
+    {
+      "target": "osc_k3",
+      "config": "ab_ped_atten",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.1461425542965132,
+      "transfer": 42.938698361571866,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.18642205135383194,
+      "transfer": 29.927169043955047,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.17527110285360284,
+      "transfer": 11.186321044713438,
+      "over_dec": 0.0,
+      "under_dec": 0.40210453957627196
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.1461425542965132,
+      "transfer": 42.93879799085194,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon_lumped",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.1007059671567552,
+      "transfer": 30.302925964378115,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon_lumped",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.2009480298240494,
+      "transfer": 11.321204675210543,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon_lumped",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.13638956359211352,
+      "transfer": 43.67323402726988,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon_secant",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.14177389685170275,
+      "transfer": 27.717401794008545,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon_secant",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.19721890911605253,
+      "transfer": 10.969558271056691,
+      "over_dec": 0.0,
+      "under_dec": 1.596757582801907
+    },
+    {
+      "target": "osc_k3",
+      "config": "abc_silicon_secant",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.3365083520837285,
+      "transfer": 33711.46265135906,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "pdk",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.49510740243331997,
+      "transfer": 1.0319152071643467,
+      "over_dec": 0.0,
+      "under_dec": 7.318410994079987
+    },
+    {
+      "target": "osc_k3",
+      "config": "pdk",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.552765947802844,
+      "transfer": 1.648256014922026,
+      "over_dec": 0.0,
+      "under_dec": 3.7365384230315217
+    },
+    {
+      "target": "osc_k3",
+      "config": "pdk",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.6451953074294331,
+      "transfer": 2.785383030294153,
+      "over_dec": 0.0,
+      "under_dec": 16.55952535406262
+    },
+    {
+      "target": "osc_k3",
+      "config": "pdk_abc_silicon",
+      "seed": 0,
+      "unit": "au",
+      "insitu": 0.3171527823439568,
+      "transfer": 29.98555734766443,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "osc_k3",
+      "config": "pdk_abc_silicon",
+      "seed": 1,
+      "unit": "au",
+      "insitu": 0.3889859910310779,
+      "transfer": 10.502111568951136,
+      "over_dec": 0.0,
+      "under_dec": 2.222467166793577
+    },
+    {
+      "target": "osc_k3",
+      "config": "pdk_abc_silicon",
+      "seed": 2,
+      "unit": "au",
+      "insitu": 0.23317925860774455,
+      "transfer": 1114.1027707668059,
+      "over_dec": 0.0,
+      "under_dec": 2.4361807017660104
+    },
+    {
+      "target": "I.12.1",
+      "config": "ideal",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.6496107979590898,
+      "transfer": 0.6496107979590898,
+      "over_dec": 0.0,
+      "under_dec": 4.151554965324645
+    },
+    {
+      "target": "I.12.1",
+      "config": "ideal",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.04153239839894268,
+      "transfer": 0.04153239839894268,
+      "over_dec": 0.0,
+      "under_dec": 7.347159151994267
+    },
+    {
+      "target": "I.12.1",
+      "config": "ideal",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.04131182395934616,
+      "transfer": 0.04131182395934616,
+      "over_dec": 0.0,
+      "under_dec": 3.119418996126505
+    },
+    {
+      "target": "I.12.1",
+      "config": "a_pedestal",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.04330122993255457,
+      "transfer": 14.509092727359398,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "a_pedestal",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.034477039339135956,
+      "transfer": 7.6995423224879245,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "a_pedestal",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.041165010785142425,
+      "transfer": 4.448578861936509,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "b_atten",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.02920677341952055,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 8.178086837687687
+    },
+    {
+      "target": "I.12.1",
+      "config": "b_atten",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.06187619867734025,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 6.490849850652558
+    },
+    {
+      "target": "I.12.1",
+      "config": "b_atten",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.036155933004616995,
+      "transfer": 1000000.0,
+      "over_dec": 0.0,
+      "under_dec": 6.64511592070846
+    },
+    {
+      "target": "I.12.1",
+      "config": "c_span",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.02209585579782403,
+      "transfer": 0.6497138393720224,
+      "over_dec": 0.0,
+      "under_dec": 7.985308443145244
+    },
+    {
+      "target": "I.12.1",
+      "config": "c_span",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.063963202330788,
+      "transfer": 0.04149393380700704,
+      "over_dec": 0.0,
+      "under_dec": 7.692994248359183
+    },
+    {
+      "target": "I.12.1",
+      "config": "c_span",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.046574607386896255,
+      "transfer": 0.04130698752709075,
+      "over_dec": 0.0,
+      "under_dec": 3.5180424043225687
+    },
+    {
+      "target": "I.12.1",
+      "config": "c_span_2dec",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 1.2243913306571723,
+      "transfer": 20273.019143748086,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 2.6730773754680572
+    },
+    {
+      "target": "I.12.1",
+      "config": "c_span_2dec",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 1.2243913306571723,
+      "transfer": 10787.154735358627,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 2.424746090735582
+    },
+    {
+      "target": "I.12.1",
+      "config": "c_span_2dec",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 1.2243913306571723,
+      "transfer": 5511.308258036851,
+      "over_dec": 2.1714724095162596,
+      "under_dec": 2.451401601626838
+    },
+    {
+      "target": "I.12.1",
+      "config": "ab_ped_atten",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.03335696639296397,
+      "transfer": 11.26102197243997,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "ab_ped_atten",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.030418392089697262,
+      "transfer": 8.076678185282395,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "ab_ped_atten",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.026977586581792338,
+      "transfer": 4.238756373333549,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.03335696639296397,
+      "transfer": 11.261182232343735,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.030418392089697262,
+      "transfer": 8.076691015206649,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.026977586581792338,
+      "transfer": 4.238759441431522,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon_lumped",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.0381864574442795,
+      "transfer": 11.39565113090138,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon_lumped",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.029724029776709265,
+      "transfer": 8.154932039074968,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon_lumped",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.018841029301774573,
+      "transfer": 4.274034515854539,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon_secant",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.031486360471888596,
+      "transfer": 10.964681280791755,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon_secant",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.02849754703123684,
+      "transfer": 8.30083844675184,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "abc_silicon_secant",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.019603548143624226,
+      "transfer": 4.282429345087299,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "pdk",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.08048653766304928,
+      "transfer": 0.18868133714602398,
+      "over_dec": 0.5131429648904081,
+      "under_dec": 4.395493217780484
+    },
+    {
+      "target": "I.12.1",
+      "config": "pdk",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.1021553354943704,
+      "transfer": 2.0746905753003415,
+      "over_dec": 0.0,
+      "under_dec": 7.141267848457688
+    },
+    {
+      "target": "I.12.1",
+      "config": "pdk",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.4854706744943007,
+      "transfer": 3.0541335606245537,
+      "over_dec": 0.0,
+      "under_dec": 6.463945516391271
+    },
+    {
+      "target": "I.12.1",
+      "config": "pdk_abc_silicon",
+      "seed": 0,
+      "unit": "nrmse",
+      "insitu": 0.05052320807251113,
+      "transfer": 11.30534540202982,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "pdk_abc_silicon",
+      "seed": 1,
+      "unit": "nrmse",
+      "insitu": 0.04207926838995291,
+      "transfer": 7.495061595872986,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    },
+    {
+      "target": "I.12.1",
+      "config": "pdk_abc_silicon",
+      "seed": 2,
+      "unit": "nrmse",
+      "insitu": 0.07087459368432744,
+      "transfer": 4.988539980701504,
+      "over_dec": 0.0,
+      "under_dec": 0.0
+    }
+  ],
+  "lambda_v": {
+    "ideal": {
+      "1.0": 1.0939999999710943,
+      "1.741": 0.6283744973359928
+    },
+    "a_pedestal": {
+      "1.0": 0.3084296588666824,
+      "1.741": 0.2551305970523998
+    },
+    "b_atten": {
+      "1.0": 1.0939999999100003,
+      "1.741": 0.628374497396722
+    },
+    "c_span": {
+      "1.0": 1.0939999999710943,
+      "1.741": 0.6283744973359928
+    },
+    "c_span_2dec": {
+      "1.0": 0.0004376000362071864,
+      "1.741": 0.0004376000362071864
+    },
+    "ab_ped_atten": {
+      "1.0": 0.09959651685487182,
+      "1.741": 0.09330235861471083
+    },
+    "abc_silicon": {
+      "1.0": 0.09959651685487182,
+      "1.741": 0.09330235861471083
+    },
+    "abc_silicon_lumped": {
+      "1.0": 0.09864600042930328,
+      "1.741": 0.09246768143666985
+    },
+    "abc_silicon_secant": {
+      "1.0": 0.06515239951454532,
+      "1.741": 0.062398758824855356
+    },
+    "pdk": {
+      "1.0": 1.0939999999710943,
+      "1.741": 0.6283744973359928
+    },
+    "pdk_abc_silicon": {
+      "1.0": 0.09959651685487182,
+      "1.741": 0.09330235861471083
+    }
+  }
+}

@@ -1,0 +1,61 @@
+* OTA2B SHRINK: XMS is 48% of the block's gate area (W48 L8 = 384 um2)
+* and, unlike the tail, it is NOT a harmless current source -- it is the
+* PMOS load of the second stage, so its ro sets stage-2 gain directly:
+*     A2 = gm(XMN3) * ( ro(XMN3) || ro(XMS) )
+* XMN3 is already L=1, so ro(XMN3) may well dominate the parallel pair, in
+* which case shrinking XMS costs nothing.  That is the hypothesis; this
+* deck tests it instead of assuming either way.
+*
+* Candidates at constant W/L = 6 (constant current):
+*   XMS W48 L8 (baseline)   W24 L4   W12 L2
+* Tail shrunk to W8 L2 throughout -- ota_shrink_mc/dc showed that costs
+* nothing (offset 0.97x, follower error identical to 3 digits).
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param ws=48 ls=8
+
+.subckt ota2p inp inn out vdd pbias ws=48 ls=8
+XMT ntail pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=2
+XMP1 n1  inp ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=32 L=2
+XMP2 no1 inn ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=32 L=2
+XMN1 n1  n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+XMN2 no1 n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+XMN3 out no1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=16 L=1
+XMS out pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W='ws' L='ls'
+.ends
+
+VDD vdd 0 3.3
+IB  pb 0 2u
+XPB pb pb vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+
+* Follower.  ota2b's INVERTING input is `inp` (inp -> n1 -> no1 -> XMN3
+* -> out gives one net inversion), so feedback closes on inp and the
+* signal drives inn -- which is exactly how raildrv instantiates it
+* (XBUF1 vrefb nd12 vrefb ...).  Wiring it the other way is POSITIVE
+* feedback: the first run of this deck railed the baseline at +2.1 V and
+* would have "proved" that the small XMS is better than the big one.
+VIN inp 0 1.2
+XO out inp out vdd pb ota2p ws='ws' ls='ls'
+
+.control
+set filetype=ascii
+alterparam ws = 48
+alterparam ls = 8
+reset
+dc VIN 0.6 2.0 0.05
+wrdata ota2b_dc_0.csv v(out)
+
+alterparam ws = 24
+alterparam ls = 4
+reset
+dc VIN 0.6 2.0 0.05
+wrdata ota2b_dc_1.csv v(out)
+
+alterparam ws = 12
+alterparam ls = 2
+reset
+dc VIN 0.6 2.0 0.05
+wrdata ota2b_dc_2.csv v(out)
+echo OTA2B_DONE
+.endc
+.end

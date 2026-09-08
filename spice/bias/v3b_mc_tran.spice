@@ -1,0 +1,52 @@
+* Integrated MC with TRANSIENT SAMPLING (methodology fix: op-based
+* characterization falls into wrong DC basins; power-up transients are
+* ground truth). One 300us transient per sample visits all 3 points:
+*   t<100u: (u=0,veff=3); 100-200u: (u=2,veff=3); 200-300u: (u=0,veff=6)
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+
+VDD vdd 0 PWL(0 0 1u 0 10u 3.3)
+XBIAS vdd pbias nd12 nd055 ptatbias
+XDRV ve nd055 vdd pbias raildrv
+* vrefb is no longer buffered (one-buffer raildrv, 2026-07-29):
+* it IS the divider tap.
+RVRB nd12 vrefb 0.001
+XLMON nmon pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+VMON nmon 0 1.0
+XCELL nu nv out vdd vrefb ve pbias emlcell_b
+VOUT out 0 0.9
+XLU pbias_u pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=8
+XMNU1 pbias_u pbias_u 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=32 L=2
+XMNU2 nusw pbias_u 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=32 L=2
+SU nu nusw ctlu 0 tbsw
+VCTLU ctlu 0 PWL(0 0 100u 0 100.5u 3.3 200u 3.3 200.5u 0)
+XLV nvsw pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=12 L=8
+SV nv nvsw ctlv 0 tbsw
+VCTLV ctlv 0 PWL(0 0 200u 0 200.5u 3.3)
+XLV1 nv pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+.model tbsw SW(Ron=100 Roff=1G Vt=1.65)
+.include /Users/cteusche/data/projects/eml/code/silicon/cell/v3/eml_cell_v3.inc
+.include /Users/cteusche/data/projects/eml/code/silicon/cell/v3/eml_cell_v3b.inc
+.include /Users/cteusche/data/projects/eml/code/silicon/bias/ptat_bias.inc
+
+.control
+set filetype=ascii
+echo > v3b_mc_tran.txt
+let idx = 0
+dowhile idx < 40
+  reset
+  tran 0.5u 300u
+  meas tran miu AVG i(vmon) from=80u to=100u
+  meas tran p1 AVG i(vout) from=80u to=100u
+  meas tran p2 AVG i(vout) from=180u to=200u
+  meas tran p3 AVG i(vout) from=280u to=300u
+  set smiu = $&miu
+  set sp1 = $&p1
+  set sp2 = $&p2
+  set sp3 = $&p3
+  echo $smiu $sp1 $sp2 $sp3 >> v3b_mc_tran.txt
+  destroy all
+  let idx = idx + 1
+end
+echo MCT_DONE
+.endc
+.end

@@ -1,0 +1,33 @@
+**************************************************************************
+*** SUPERSEDED: every "mlp" line below is WRONG -- do not cite it.
+*** The MLP grid winner was selected on TRAIN NRMSE, which picks the
+*** most overfitting member of the grid and understates the baseline;
+*** the fabric win it produced was spurious.  Corrected MLP column
+*** (held-out-validation selection): ml_mlp_val.json / log_mlpfix.txt.
+*** The fabric and poly lines below are unaffected.
+***
+***   task                MLP test NRMSE:  stale  ->  corrected
+***   reg/diabetes               1.0866  ->  0.7121
+***   reg/wine_proline           0.8490  ->  0.7521
+*** Marked 2026-08-19.
+**************************************************************************
+
+=== diabetes: 331 train / 111 test, 10 features ===
+fabric ideal     cells= 32 P=  873 train 0.7097 test 0.7134 (best 0.7067) [10s]
+fabric pedestal  cells= 32 P=  873 train 0.7048 test 0.7143 (best 0.7064) [10s]
+fabric pdk+ped   cells= 32 P=  873 train 0.8119 test 0.8694 (best 0.7456) [12s]
+mlp    [24, 24]  tanh lr=0.03 P=  889 train 0.2474 test 1.0866 (best 1.0312)
+poly1     P=   11 train 0.7045 test 0.7158
+poly2     P=   66 train 0.7005 test 0.7002
+poly3     P=  286 train 0.6940 test 0.6932
+
+=== wine_proline: 133 train / 45 test, 12 features ===
+fabric ideal     cells= 32 P= 1001 train 0.6239 test 0.5726 (best 0.5689) [8s]
+fabric pedestal  cells= 32 P= 1001 train 0.6297 test 0.5888 (best 0.5730) [8s]
+fabric pdk+ped   cells= 32 P= 1001 train 0.6805 test 0.6644 (best 0.5734) [10s]
+mlp    [25, 25]  tanh lr=0.03 P= 1001 train 0.0366 test 0.8490 (best 0.8446)
+poly1     P=   13 train 0.6284 test 0.5695
+poly2     P=   91 train 0.4424 test 0.6635
+poly3     P=  455 train 0.4840 test 0.6071
+
+Saved /Users/cteusche/data/projects/eml/code/fabric_sim/ml/results/ml_reg.json (106s)

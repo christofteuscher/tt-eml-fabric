@@ -1,0 +1,194 @@
+{
+  "iters": 150,
+  "seeds": 1,
+  "res": {
+    "diabetes": {
+      "n_train": 331,
+      "n_test": 111,
+      "n_feat": 10,
+      "fabric": [
+        {
+          "hw": "ideal",
+          "train": 0.9536916643384021,
+          "test": 0.9466204462068837,
+          "test_best": 0.9466204462068837,
+          "params": 873,
+          "cells": 32,
+          "secs": 1.1,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.9536916643384021,
+              "test": 0.9466204462068837,
+              "params": 873,
+              "cells": 32,
+              "secs": 1.1
+            }
+          ]
+        },
+        {
+          "hw": "pedestal",
+          "train": 0.7398885386199585,
+          "test": 0.7278144258092651,
+          "test_best": 0.7278144258092651,
+          "params": 873,
+          "cells": 32,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7398885386199585,
+              "test": 0.7278144258092651,
+              "params": 873,
+              "cells": 32,
+              "secs": 0.3
+            }
+          ]
+        }
+      ],
+      "mlp": [
+        {
+          "method": "mlp",
+          "hidden": [
+            24,
+            24
+          ],
+          "act": "relu",
+          "lr": 0.03,
+          "train": 0.6961362951492902,
+          "test": 0.7005241721725621,
+          "test_best": 0.7005241721725621,
+          "params": 889,
+          "cells": null
+        }
+      ],
+      "poly": [
+        {
+          "method": "poly1",
+          "train": 0.7044503013470438,
+          "test": 0.7158256935489159,
+          "params": 11,
+          "cells": null
+        },
+        {
+          "method": "poly2",
+          "train": 0.7005207831879934,
+          "test": 0.700232304744321,
+          "params": 66,
+          "cells": null
+        },
+        {
+          "method": "poly3",
+          "train": 0.6940372524741555,
+          "test": 0.693158998024934,
+          "params": 286,
+          "cells": null
+        }
+      ]
+    },
+    "wine_proline": {
+      "n_train": 133,
+      "n_test": 45,
+      "n_feat": 12,
+      "fabric": [
+        {
+          "hw": "ideal",
+          "train": 0.7897026851662533,
+          "test": 0.8016636950859599,
+          "test_best": 0.8016636950859599,
+          "params": 1001,
+          "cells": 32,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7897026851662533,
+              "test": 0.8016636950859599,
+              "params": 1001,
+              "cells": 32,
+              "secs": 0.2
+            }
+          ]
+        },
+        {
+          "hw": "pedestal",
+          "train": 0.6722194501240478,
+          "test": 0.682742697665972,
+          "test_best": 0.682742697665972,
+          "params": 1001,
+          "cells": 32,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.6722194501240478,
+              "test": 0.682742697665972,
+              "params": 1001,
+              "cells": 32,
+              "secs": 0.2
+            }
+          ]
+        }
+      ],
+      "mlp": [
+        {
+          "method": "mlp",
+          "hidden": [
+            25,
+            25
+          ],
+          "act": "relu",
+          "lr": 0.03,
+          "train": 0.4612413145046852,
+          "test": 0.6273939681226435,
+          "test_best": 0.6273939681226435,
+          "params": 1001,
+          "cells": null
+        }
+      ],
+      "poly": [
+        {
+          "method": "poly1",
+          "train": 0.6284278165477553,
+          "test": 0.5695318302100789,
+          "params": 13,
+          "cells": null
+        },
+        {
+          "method": "poly2",
+          "train": 0.4423665898669462,
+          "test": 0.6635300969669959,
+          "params": 91,
+          "cells": null
+        },
+        {
+          "method": "poly3",
+          "train": 0.48400228785516386,
+          "test": 0.6071494656507221,
+          "params": 455,
+          "cells": null
+        }
+      ]
+    }
+  }
+}

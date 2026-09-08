@@ -1,0 +1,402 @@
+[
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "std",
+  "med": 0.030891651935167692,
+  "best": 0.01573737646136542,
+  "params": 103
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext0",
+  "med": 0.02326191256223892,
+  "best": 0.01163817904741949,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext15",
+  "med": 0.043375196643726716,
+  "best": 0.019694008435102033,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext33",
+  "med": 0.06825799683117546,
+  "best": 0.016711034821714564,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "extfree",
+  "med": 0.08068676233527149,
+  "best": 0.06964278752480953,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "std",
+  "med": 0.08537926990488047,
+  "best": 0.025420556892445476,
+  "params": 109
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext0",
+  "med": 0.021077453130135038,
+  "best": 0.00886703058183892,
+  "params": 161
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext15",
+  "med": 0.013447573802881295,
+  "best": 0.007755249247051297,
+  "params": 161
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext33",
+  "med": 0.013894359749337871,
+  "best": 0.0065435499433234255,
+  "params": 161
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "extfree",
+  "med": 0.04602930038535025,
+  "best": 0.018595843307485167,
+  "params": 161
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "std",
+  "med": 0.42846040303977834,
+  "best": 0.13978023328313882,
+  "params": 103
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext0",
+  "med": 0.5361969122809501,
+  "best": 0.49479340000934985,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext15",
+  "med": 0.591110603070217,
+  "best": 0.41601870714798267,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext33",
+  "med": 0.7648128186145893,
+  "best": 0.5508972208223331,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "extfree",
+  "med": 0.5397450554475616,
+  "best": 0.42623541563214173,
+  "params": 151
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "std",
+  "med": 0.11539626540549519,
+  "best": 0.07548206516702873,
+  "params": 109
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext0",
+  "med": 0.2276974016315904,
+  "best": 0.1617398459169152,
+  "params": 161
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext15",
+  "med": 0.22180808574116623,
+  "best": 0.10611108272432243,
+  "params": 161
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext33",
+  "med": 0.7657005608411748,
+  "best": 0.09798145852675175,
+  "params": 161
+ },
+ {
+  "target": "thermistor_sh",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "extfree",
+  "med": 0.21228694332288875,
+  "best": 0.09457487795306471,
+  "params": 161
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "std",
+  "med": 0.07732590360334574,
+  "best": 0.06595030438864594,
+  "params": 127
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext0",
+  "med": 0.12408716340881241,
+  "best": 0.06900727932545253,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext15",
+  "med": 0.14189771878974408,
+  "best": 0.08473616234347398,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext33",
+  "med": 0.2455582074055226,
+  "best": 0.17759071139097485,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 2,
+  "width": 6,
+  "kind": "extfree",
+  "med": 0.14872133904678408,
+  "best": 0.10639054790884217,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "std",
+  "med": 0.08584493825108411,
+  "best": 0.07527570403723714,
+  "params": 133
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext0",
+  "med": 0.09316118406582646,
+  "best": 0.0815661636719155,
+  "params": 197
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext15",
+  "med": 0.10088250263663465,
+  "best": 0.0720016035557857,
+  "params": 197
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext33",
+  "med": 0.07402725912859962,
+  "best": 0.05690386501579149,
+  "params": 197
+ },
+ {
+  "target": "expdiff",
+  "hw": "ideal",
+  "depth": 3,
+  "width": 4,
+  "kind": "extfree",
+  "med": 0.06258345268861942,
+  "best": 0.055401681914594415,
+  "params": 197
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "std",
+  "med": 0.09767426679702039,
+  "best": 0.07805676298530591,
+  "params": 127
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext0",
+  "med": 0.15672026827682167,
+  "best": 0.05682871488004027,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext15",
+  "med": 0.20656810389357788,
+  "best": 0.18116510246263293,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "ext33",
+  "med": 0.27096272295106794,
+  "best": 0.14289939710366148,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 2,
+  "width": 6,
+  "kind": "extfree",
+  "med": 0.14934851359574347,
+  "best": 0.10295593338782773,
+  "params": 187
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "std",
+  "med": 0.057839882324842926,
+  "best": 0.028078584580649834,
+  "params": 133
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext0",
+  "med": 0.07625887864662864,
+  "best": 0.05591640954401787,
+  "params": 197
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext15",
+  "med": 0.1199298347516203,
+  "best": 0.060789588681528,
+  "params": 197
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "ext33",
+  "med": 0.1143490595232282,
+  "best": 0.06956466598174922,
+  "params": 197
+ },
+ {
+  "target": "expdiff",
+  "hw": "pedestal",
+  "depth": 3,
+  "width": 4,
+  "kind": "extfree",
+  "med": 0.1264586237590628,
+  "best": 0.05130021916701841,
+  "params": 197
+ }
+]

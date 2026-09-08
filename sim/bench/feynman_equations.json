@@ -1,0 +1,4935 @@
+{
+ "source": "AI Feynman benchmark (Udrescu & Tegmark 2020), transcribed offline from knowledge",
+ "n_equations": 100,
+ "equations": [
+  {
+   "id": "I.6.2a",
+   "name": "gaussian_unit",
+   "expr": "exp(-theta**2/2)/sqrt(2*pi)",
+   "out": {
+    "symbol": "f",
+    "dim": "1"
+   },
+   "vars": {
+    "theta": {
+     "dim": "1",
+     "low": 0.5,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "exp",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 1,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Gaussian with sigma=1 equals unit Gaussian",
+     "unit Gaussian integrates to 1 (trapezoid)"
+    ],
+    "dynamic_range_decades": 1.9
+   }
+  },
+  {
+   "id": "I.6.2",
+   "name": "gaussian_sigma",
+   "expr": "exp(-(theta/sigma)**2/2)/(sqrt(2*pi)*sigma)",
+   "out": {
+    "symbol": "f",
+    "dim": "1"
+   },
+   "vars": {
+    "sigma": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "exp",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Gaussian with sigma=1 equals unit Gaussian",
+     "shifted Gaussian with theta1=0 equals I.6.2"
+    ],
+    "dynamic_range_decades": 1.63
+   }
+  },
+  {
+   "id": "I.6.2b",
+   "name": "gaussian_shifted",
+   "expr": "exp(-((theta-theta1)/sigma)**2/2)/(sqrt(2*pi)*sigma)",
+   "out": {
+    "symbol": "f",
+    "dim": "1"
+   },
+   "vars": {
+    "sigma": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta1": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "exp",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "shifted Gaussian with theta1=0 equals I.6.2"
+    ],
+    "dynamic_range_decades": 0.75
+   }
+  },
+  {
+   "id": "I.8.14",
+   "name": "distance_2d",
+   "expr": "sqrt((x2-x1)**2+(y2-y1)**2)",
+   "out": {
+    "symbol": "d",
+    "dim": "L"
+   },
+   "vars": {
+    "x1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "x2": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "y1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "y2": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "3-4-5 triangle"
+    ],
+    "dynamic_range_decades": 2.03
+   }
+  },
+  {
+   "id": "I.9.18",
+   "name": "newton_gravity",
+   "expr": "G*m1*m2/((x2-x1)**2+(y2-y1)**2+(z2-z1)**2)",
+   "out": {
+    "symbol": "F",
+    "dim": "M*L/T**2"
+   },
+   "vars": {
+    "G": {
+     "dim": "L**3/(M*T**2)",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    },
+    "m1": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    },
+    "m2": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    },
+    "x1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "denom_safe"
+    },
+    "x2": {
+     "dim": "L",
+     "low": 3.0,
+     "high": 5.0,
+     "range_provenance": "denom_safe"
+    },
+    "y1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "denom_safe"
+    },
+    "y2": {
+     "dim": "L",
+     "low": 3.0,
+     "high": 5.0,
+     "range_provenance": "denom_safe"
+    },
+    "z1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "denom_safe"
+    },
+    "z2": {
+     "dim": "L",
+     "low": 3.0,
+     "high": 5.0,
+     "range_provenance": "denom_safe"
+    }
+   },
+   "note": "r^2 kept >= 12 by disjoint coordinate ranges",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 9,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "|-dU/dr| of the gravitational PE is Newton's force"
+    ],
+    "dynamic_range_decades": 1.34
+   }
+  },
+  {
+   "id": "I.10.7",
+   "name": "relativistic_mass",
+   "expr": "m_0/sqrt(1-v**2/c**2)",
+   "out": {
+    "symbol": "m",
+    "dim": "M"
+   },
+   "vars": {
+    "m_0": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "relativistic mass -> m0 as v->0"
+    ],
+    "dynamic_range_decades": 0.8
+   }
+  },
+  {
+   "id": "I.11.19",
+   "name": "dot_product",
+   "expr": "x1*y1+x2*y2+x3*y3",
+   "out": {
+    "symbol": "A",
+    "dim": "1"
+   },
+   "vars": {
+    "x1": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "x2": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "x3": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "y1": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "y2": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "y3": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 6,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 0.96
+   }
+  },
+  {
+   "id": "I.12.1",
+   "name": "friction",
+   "expr": "mu*Nn",
+   "out": {
+    "symbol": "F",
+    "dim": "M*L/T**2"
+   },
+   "vars": {
+    "mu": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Nn": {
+     "dim": "M*L/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.34
+   }
+  },
+  {
+   "id": "I.12.2",
+   "name": "coulomb_force",
+   "expr": "q1*q2/(4*pi*epsilon*r**2)",
+   "out": {
+    "symbol": "F",
+    "dim": "M*L/T**2"
+   },
+   "vars": {
+    "q1": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "q2": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "F = q2 * E(q1) reproduces Coulomb's law"
+    ],
+    "dynamic_range_decades": 2.89
+   }
+  },
+  {
+   "id": "I.12.4",
+   "name": "coulomb_field",
+   "expr": "q1/(4*pi*epsilon*r**2)",
+   "out": {
+    "symbol": "Ef",
+    "dim": "M*L/(T**3*I)"
+   },
+   "vars": {
+    "q1": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "F = q2 * E(q1) reproduces Coulomb's law"
+    ],
+    "dynamic_range_decades": 2.49
+   }
+  },
+  {
+   "id": "I.12.5",
+   "name": "force_on_charge",
+   "expr": "q2*Ef",
+   "out": {
+    "symbol": "F",
+    "dim": "M*L/T**2"
+   },
+   "vars": {
+    "q2": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "F = q2 * E(q1) reproduces Coulomb's law"
+    ],
+    "dynamic_range_decades": 1.34
+   }
+  },
+  {
+   "id": "I.12.11",
+   "name": "lorentz_force",
+   "expr": "q*(Ef+B*v*sin(theta))",
+   "out": {
+    "symbol": "F",
+    "dim": "M*L/T**2"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 0.0,
+     "high": 6.28,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "mul",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.12
+   }
+  },
+  {
+   "id": "I.13.4",
+   "name": "kinetic_energy_3d",
+   "expr": "m*(v**2+u**2+w**2)/2",
+   "out": {
+    "symbol": "K",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "u": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "w": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.7
+   }
+  },
+  {
+   "id": "I.13.12",
+   "name": "gravitational_pe",
+   "expr": "G*m1*m2*(1/r2-1/r1)",
+   "out": {
+    "symbol": "U",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "G": {
+     "dim": "L**3/(M*T**2)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m1": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m2": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r2": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "|-dU/dr| of the gravitational PE is Newton's force"
+    ],
+    "dynamic_range_decades": 4.76
+   }
+  },
+  {
+   "id": "I.14.3",
+   "name": "potential_energy_height",
+   "expr": "m*g_acc*z",
+   "out": {
+    "symbol": "U",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "g_acc": {
+     "dim": "L/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "z": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.71
+   }
+  },
+  {
+   "id": "I.14.4",
+   "name": "spring_energy",
+   "expr": "k_spring*x**2/2",
+   "out": {
+    "symbol": "U",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "k_spring": {
+     "dim": "M/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "x": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.01
+   }
+  },
+  {
+   "id": "I.15.3x",
+   "name": "lorentz_x",
+   "expr": "(x-u*t)/sqrt(1-u**2/c**2)",
+   "out": {
+    "symbol": "x1",
+    "dim": "L"
+   },
+   "vars": {
+    "x": {
+     "dim": "L",
+     "low": 5.0,
+     "high": 10.0,
+     "range_provenance": "aif_generic"
+    },
+    "u": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 20.0,
+     "range_provenance": "vlt_c"
+    },
+    "t": {
+     "dim": "T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Lorentz transform preserves c^2 t^2 - x^2"
+    ],
+    "dynamic_range_decades": 0.85
+   }
+  },
+  {
+   "id": "I.15.3t",
+   "name": "lorentz_t",
+   "expr": "(t-u*x/c**2)/sqrt(1-u**2/c**2)",
+   "out": {
+    "symbol": "t1",
+    "dim": "T"
+   },
+   "vars": {
+    "x": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "u": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 20.0,
+     "range_provenance": "vlt_c"
+    },
+    "t": {
+     "dim": "T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Lorentz transform preserves c^2 t^2 - x^2"
+    ],
+    "dynamic_range_decades": 1.11
+   }
+  },
+  {
+   "id": "I.15.1",
+   "name": "relativistic_momentum",
+   "expr": "m_0*v/sqrt(1-v**2/c**2)",
+   "out": {
+    "symbol": "p",
+    "dim": "M*L/T"
+   },
+   "vars": {
+    "m_0": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "relativistic momentum at v=0.6c is 1.25 m0 v"
+    ],
+    "dynamic_range_decades": 1.06
+   }
+  },
+  {
+   "id": "I.16.6",
+   "name": "velocity_addition",
+   "expr": "(u+v)/(1+u*v/c**2)",
+   "out": {
+    "symbol": "v1",
+    "dim": "L/T"
+   },
+   "vars": {
+    "u": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "velocity addition: c (+) c = c"
+    ],
+    "dynamic_range_decades": 0.28
+   }
+  },
+  {
+   "id": "I.18.4",
+   "name": "center_of_mass",
+   "expr": "(m1*r1+m2*r2)/(m1+m2)",
+   "out": {
+    "symbol": "r",
+    "dim": "L"
+   },
+   "vars": {
+    "m1": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m2": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r2": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 0.67
+   }
+  },
+  {
+   "id": "I.18.12",
+   "name": "torque",
+   "expr": "r*F*sin(theta)",
+   "out": {
+    "symbol": "tau",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "F": {
+     "dim": "M*L/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 0.0,
+     "high": 6.28,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 3.52
+   }
+  },
+  {
+   "id": "I.18.16",
+   "name": "angular_momentum",
+   "expr": "m*r*v*sin(theta)",
+   "out": {
+    "symbol": "L",
+    "dim": "M*L**2/T"
+   },
+   "vars": {
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 0.0,
+     "high": 6.28,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 3.63
+   }
+  },
+  {
+   "id": "I.24.6",
+   "name": "oscillator_energy",
+   "expr": "m*(omega**2+omega_0**2)*x**2/4",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega_0": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "x": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "at omega = omega_0 it is the oscillator energy m w^2 x^2/2"
+    ],
+    "dynamic_range_decades": 2.73
+   }
+  },
+  {
+   "id": "I.25.13",
+   "name": "capacitor_voltage",
+   "expr": "q/C",
+   "out": {
+    "symbol": "Volt",
+    "dim": "M*L**2/(T**3*I)"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "C": {
+     "dim": "I**2*T**4/(M*L**2)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.35
+   }
+  },
+  {
+   "id": "I.26.2",
+   "name": "snell_law",
+   "expr": "asin(n*sin(theta2))",
+   "out": {
+    "symbol": "theta1",
+    "dim": "1"
+   },
+   "vars": {
+    "n": {
+     "dim": "1",
+     "low": 0.3,
+     "high": 0.9,
+     "range_provenance": "domain"
+    },
+    "theta2": {
+     "dim": "1",
+     "low": 0.1,
+     "high": 1.0,
+     "range_provenance": "domain"
+    }
+   },
+   "note": "n*sin(theta2) <= 0.76 keeps asin real",
+   "ops": [
+    "asin",
+    "mul",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Snell: n=1 gives theta1 = theta2"
+    ],
+    "dynamic_range_decades": 1.38
+   }
+  },
+  {
+   "id": "I.27.6",
+   "name": "focal_length",
+   "expr": "1/(1/d1+n/d2)",
+   "out": {
+    "symbol": "foc",
+    "dim": "L"
+   },
+   "vars": {
+    "d1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d2": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.12
+   }
+  },
+  {
+   "id": "I.29.4",
+   "name": "wavenumber",
+   "expr": "omega/c",
+   "out": {
+    "symbol": "k",
+    "dim": "1/L"
+   },
+   "vars": {
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.35
+   }
+  },
+  {
+   "id": "I.29.16",
+   "name": "phasor_sum",
+   "expr": "sqrt(x1**2+x2**2-2*x1*x2*cos(theta1-theta2))",
+   "out": {
+    "symbol": "x",
+    "dim": "L"
+   },
+   "vars": {
+    "x1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "x2": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta1": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "angle"
+    },
+    "theta2": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "cos",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "phasor sum with equal phases = |x1 - x2|"
+    ],
+    "dynamic_range_decades": 2.09
+   }
+  },
+  {
+   "id": "I.30.3",
+   "name": "n_slit_interference",
+   "expr": "Int_0*sin(n*theta/2)**2/sin(theta/2)**2",
+   "out": {
+    "symbol": "Int",
+    "dim": "1"
+   },
+   "vars": {
+    "Int_0": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 0.2,
+     "high": 5.0,
+     "range_provenance": "denom_safe"
+    },
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "N-slit intensity -> n^2 I0 at theta -> 0"
+    ],
+    "dynamic_range_decades": 6.47
+   }
+  },
+  {
+   "id": "I.30.5",
+   "name": "diffraction_angle",
+   "expr": "asin(lambd/(n*d))",
+   "out": {
+    "symbol": "theta",
+    "dim": "1"
+   },
+   "vars": {
+    "lambd": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "domain"
+    },
+    "d": {
+     "dim": "L",
+     "low": 4.0,
+     "high": 6.0,
+     "range_provenance": "domain"
+    },
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "domain"
+    }
+   },
+   "note": "",
+   "ops": [
+    "asin",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 0.73
+   }
+  },
+  {
+   "id": "I.32.5",
+   "name": "larmor_power",
+   "expr": "q**2*a**2/(6*pi*epsilon*c**3)",
+   "out": {
+    "symbol": "Pwr",
+    "dim": "M*L**2/T**3"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "a": {
+     "dim": "L/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Larmor power equals the mu0 form mu0 q^2 a^2/(6 pi c)"
+    ],
+    "dynamic_range_decades": 4.56
+   }
+  },
+  {
+   "id": "I.32.17",
+   "name": "scattered_power",
+   "expr": "(epsilon*c*Ef**2/2)*(8*pi*r**2/3)*(omega**4/(omega**2-omega_0**2)**2)",
+   "out": {
+    "symbol": "Pwr",
+    "dim": "M*L**2/T**3"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "denom_safe"
+    },
+    "omega_0": {
+     "dim": "1/T",
+     "low": 3.0,
+     "high": 5.0,
+     "range_provenance": "denom_safe"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 6,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.82
+   }
+  },
+  {
+   "id": "I.34.8",
+   "name": "cyclotron_frequency",
+   "expr": "q*v*B/p",
+   "out": {
+    "symbol": "omega",
+    "dim": "1/T"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "p": {
+     "dim": "M*L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "cyclotron: q v B / p equals g q B / 2m with p = m v, g = 2"
+    ],
+    "dynamic_range_decades": 2.41
+   }
+  },
+  {
+   "id": "I.34.1",
+   "name": "doppler_nonrel",
+   "expr": "omega_0/(1-v/c)",
+   "out": {
+    "symbol": "omega",
+    "dim": "1/T"
+   },
+   "vars": {
+    "omega_0": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "relativistic and classical Doppler agree to O(v/c)"
+    ],
+    "dynamic_range_decades": 1.09
+   }
+  },
+  {
+   "id": "I.34.14",
+   "name": "doppler_relativistic",
+   "expr": "(1+v/c)/sqrt(1-v**2/c**2)*omega_0",
+   "out": {
+    "symbol": "omega",
+    "dim": "1/T"
+   },
+   "vars": {
+    "omega_0": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "relativistic and classical Doppler agree to O(v/c)"
+    ],
+    "dynamic_range_decades": 0.97
+   }
+  },
+  {
+   "id": "I.34.27",
+   "name": "photon_energy",
+   "expr": "hbar*omega",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.34
+   }
+  },
+  {
+   "id": "I.37.4",
+   "name": "two_beam_interference",
+   "expr": "Int1+Int2+2*sqrt(Int1*Int2)*cos(delta)",
+   "out": {
+    "symbol": "Int",
+    "dim": "1"
+   },
+   "vars": {
+    "Int1": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Int2": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "delta": {
+     "dim": "1",
+     "low": 0.0,
+     "high": 6.28,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "cos",
+    "mul",
+    "sqrt"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.86
+   }
+  },
+  {
+   "id": "I.38.12",
+   "name": "bohr_radius",
+   "expr": "4*pi*epsilon*hbar**2/(m*q**2)",
+   "out": {
+    "symbol": "r",
+    "dim": "L"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Bohr radius = 5.29177e-11 m from SI constants"
+    ],
+    "dynamic_range_decades": 3.44
+   }
+  },
+  {
+   "id": "I.39.10",
+   "name": "monatomic_internal_energy",
+   "expr": "3*pr*V/2",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "pr": {
+     "dim": "M/(L*T**2)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "V": {
+     "dim": "L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "monatomic gas is gamma=5/3 case"
+    ],
+    "dynamic_range_decades": 1.34
+   }
+  },
+  {
+   "id": "I.39.11",
+   "name": "ideal_gas_energy",
+   "expr": "pr*V/(gam-1)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "gam": {
+     "dim": "1",
+     "low": 1.1,
+     "high": 1.9,
+     "range_provenance": "denom_safe"
+    },
+    "pr": {
+     "dim": "M/(L*T**2)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "V": {
+     "dim": "L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "monatomic gas is gamma=5/3 case"
+    ],
+    "dynamic_range_decades": 2.13
+   }
+  },
+  {
+   "id": "I.39.22",
+   "name": "ideal_gas_law",
+   "expr": "n*kb*T/V",
+   "out": {
+    "symbol": "pr",
+    "dim": "M/(L*T**2)"
+   },
+   "vars": {
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "V": {
+     "dim": "L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.41
+   }
+  },
+  {
+   "id": "I.40.1",
+   "name": "barometric_formula",
+   "expr": "n_0*exp(-m*g_acc*x/(kb*T))",
+   "out": {
+    "symbol": "n",
+    "dim": "1"
+   },
+   "vars": {
+    "n_0": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "conditioning"
+    },
+    "g_acc": {
+     "dim": "L/T**2",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "conditioning"
+    },
+    "x": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "conditioning"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "conditioning"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "conditioning"
+    }
+   },
+   "note": "AIF generic ranges give exp(-125)..exp(-0.25); narrowed for conditioning",
+   "ops": [
+    "div",
+    "exp",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 6,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "barometric density equals n_0 at x = 0"
+    ],
+    "dynamic_range_decades": 2.65
+   }
+  },
+  {
+   "id": "I.41.16",
+   "name": "planck_law",
+   "expr": "hbar*omega**3/(pi**2*c**2*(exp(hbar*omega/(kb*T))-1))",
+   "out": {
+    "symbol": "L_rad",
+    "dim": "M/T**2"
+   },
+   "vars": {
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "exp",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Planck law -> Rayleigh-Jeans (omega^2 kT / pi^2 c^2)"
+    ],
+    "dynamic_range_decades": 7.31
+   }
+  },
+  {
+   "id": "I.43.16",
+   "name": "drift_velocity",
+   "expr": "mu_drift*q*Volt/d",
+   "out": {
+    "symbol": "v",
+    "dim": "L/T"
+   },
+   "vars": {
+    "mu_drift": {
+     "dim": "T/M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Volt": {
+     "dim": "M*L**2/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "AIF 'mobility' is defined by v = mu*F, hence dim T/M",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Einstein relation and drift velocity share the same mobility convention (v = mob*F): D/(kb T) == v d/(q Volt)"
+    ],
+    "dynamic_range_decades": 2.41
+   }
+  },
+  {
+   "id": "I.43.31",
+   "name": "einstein_relation",
+   "expr": "mob*kb*T",
+   "out": {
+    "symbol": "D_diff",
+    "dim": "L**2/T"
+   },
+   "vars": {
+    "mob": {
+     "dim": "T/M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Einstein relation and drift velocity share the same mobility convention (v = mob*F): D/(kb T) == v d/(q Volt)"
+    ],
+    "dynamic_range_decades": 1.71
+   }
+  },
+  {
+   "id": "I.43.43",
+   "name": "thermal_conductivity",
+   "expr": "kb*v/(A*(gam-1))",
+   "out": {
+    "symbol": "kappa",
+    "dim": "M*L/(T**3*Th)"
+   },
+   "vars": {
+    "gam": {
+     "dim": "1",
+     "low": 1.1,
+     "high": 1.9,
+     "range_provenance": "denom_safe"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "A": {
+     "dim": "L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.56
+   }
+  },
+  {
+   "id": "I.44.4",
+   "name": "isothermal_work",
+   "expr": "n*kb*T*log(V2/V1)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "V1": {
+     "dim": "L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "V2": {
+     "dim": "L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "log",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "isothermal work vanishes for V2 = V1"
+    ],
+    "dynamic_range_decades": 4.5
+   }
+  },
+  {
+   "id": "I.47.23",
+   "name": "speed_of_sound",
+   "expr": "sqrt(gam*pr/rho)",
+   "out": {
+    "symbol": "c",
+    "dim": "L/T"
+   },
+   "vars": {
+    "gam": {
+     "dim": "1",
+     "low": 1.1,
+     "high": 1.9,
+     "range_provenance": "aif_generic"
+    },
+    "pr": {
+     "dim": "M/(L*T**2)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "rho": {
+     "dim": "M/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "speed of sound in air (1.4, 101325 Pa, 1.225) = 340 m/s"
+    ],
+    "dynamic_range_decades": 0.78
+   }
+  },
+  {
+   "id": "I.48.2",
+   "name": "relativistic_energy",
+   "expr": "m*c**2/sqrt(1-v**2/c**2)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "relativistic energy -> m c^2 as v->0"
+    ],
+    "dynamic_range_decades": 1.64
+   }
+  },
+  {
+   "id": "I.50.26",
+   "name": "anharmonic_oscillation",
+   "expr": "x1*(cos(omega*t)+alpha*cos(omega*t)**2)",
+   "out": {
+    "symbol": "x",
+    "dim": "L"
+   },
+   "vars": {
+    "x1": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "t": {
+     "dim": "T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "alpha": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "cos",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.69
+   }
+  },
+  {
+   "id": "II.2.42",
+   "name": "heat_conduction",
+   "expr": "kappa*(T2-T1)*A/d",
+   "out": {
+    "symbol": "Pwr",
+    "dim": "M*L**2/T**3"
+   },
+   "vars": {
+    "kappa": {
+     "dim": "M*L/(T**3*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T1": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T2": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "A": {
+     "dim": "L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.59
+   }
+  },
+  {
+   "id": "II.3.24",
+   "name": "flux_from_point_source",
+   "expr": "Pwr/(4*pi*r**2)",
+   "out": {
+    "symbol": "FE",
+    "dim": "M/T**3"
+   },
+   "vars": {
+    "Pwr": {
+     "dim": "M*L**2/T**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "flux integrated over the sphere returns the power"
+    ],
+    "dynamic_range_decades": 2.04
+   }
+  },
+  {
+   "id": "II.4.32",
+   "name": "coulomb_potential",
+   "expr": "q/(4*pi*epsilon*r)",
+   "out": {
+    "symbol": "Volt",
+    "dim": "M*L**2/(T**3*I)"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "dipole potential = superposition of +q,-q separated by s (r>>s)"
+    ],
+    "dynamic_range_decades": 1.9
+   }
+  },
+  {
+   "id": "II.6.11",
+   "name": "dipole_potential",
+   "expr": "p_d*cos(theta)/(4*pi*epsilon*r**2)",
+   "out": {
+    "symbol": "Volt",
+    "dim": "M*L**2/(T**3*I)"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "p_d": {
+     "dim": "I*T*L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "angle"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "cos",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "dipole potential = superposition of +q,-q separated by s (r>>s)"
+    ],
+    "dynamic_range_decades": 4.56
+   }
+  },
+  {
+   "id": "II.6.15a",
+   "name": "dipole_field_cartesian",
+   "expr": "3*p_d*z*sqrt(x**2+y**2)/(4*pi*epsilon*r**5)",
+   "out": {
+    "symbol": "Ef",
+    "dim": "M*L/(T**3*I)"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "p_d": {
+     "dim": "I*T*L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "x": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "y": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "z": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 6,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Cartesian and polar dipole transverse field agree"
+    ],
+    "dynamic_range_decades": 3.94
+   }
+  },
+  {
+   "id": "II.6.15b",
+   "name": "dipole_field_polar",
+   "expr": "3*p_d*cos(theta)*sin(theta)/(4*pi*epsilon*r**3)",
+   "out": {
+    "symbol": "Ef",
+    "dim": "M*L/(T**3*I)"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "p_d": {
+     "dim": "I*T*L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "angle"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "cos",
+    "div",
+    "mul",
+    "pow",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Cartesian and polar dipole transverse field agree"
+    ],
+    "dynamic_range_decades": 4.98
+   }
+  },
+  {
+   "id": "II.8.7",
+   "name": "uniform_sphere_energy",
+   "expr": "3*q**2/(20*pi*epsilon*d)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "3/5 * q^2/(4 pi eps d)",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "sphere energy equals (3/5) q^2/(4 pi eps d)"
+    ],
+    "dynamic_range_decades": 2.55
+   }
+  },
+  {
+   "id": "II.8.31",
+   "name": "field_energy_density",
+   "expr": "epsilon*Ef**2/2",
+   "out": {
+    "symbol": "E_den",
+    "dim": "M/(L*T**2)"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.01
+   }
+  },
+  {
+   "id": "II.10.9",
+   "name": "field_in_dielectric",
+   "expr": "sigma_den/(epsilon*(1+chi))",
+   "out": {
+    "symbol": "Ef",
+    "dim": "M*L/(T**3*I)"
+   },
+   "vars": {
+    "sigma_den": {
+     "dim": "I*T/L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "chi": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.72
+   }
+  },
+  {
+   "id": "II.11.3",
+   "name": "driven_oscillator_amplitude",
+   "expr": "q*Ef/(m*(omega_0**2-omega**2))",
+   "out": {
+    "symbol": "x",
+    "dim": "L"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega_0": {
+     "dim": "1/T",
+     "low": 3.0,
+     "high": 5.0,
+     "range_provenance": "denom_safe"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "denom_safe"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.18
+   }
+  },
+  {
+   "id": "II.11.17",
+   "name": "boltzmann_dipole_density",
+   "expr": "n_0*(1+p_d*Ef*cos(theta)/(kb*T))",
+   "out": {
+    "symbol": "n",
+    "dim": "1/L**3"
+   },
+   "vars": {
+    "n_0": {
+     "dim": "1/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "angle"
+    },
+    "p_d": {
+     "dim": "I*T*L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "cos",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 6,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.66
+   }
+  },
+  {
+   "id": "II.11.20",
+   "name": "langevin_polarization",
+   "expr": "n_rho*p_d**2*Ef/(3*kb*T)",
+   "out": {
+    "symbol": "Pol",
+    "dim": "I*T/L**2"
+   },
+   "vars": {
+    "n_rho": {
+     "dim": "1/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "p_d": {
+     "dim": "I*T*L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 3.39
+   }
+  },
+  {
+   "id": "II.11.27",
+   "name": "clausius_mossotti_pol",
+   "expr": "n*alpha/(1-n*alpha/3)*epsilon*Ef",
+   "out": {
+    "symbol": "Pol",
+    "dim": "I*T/L**2"
+   },
+   "vars": {
+    "n": {
+     "dim": "1/L**3",
+     "low": 0.0,
+     "high": 1.0,
+     "range_provenance": "denom_safe"
+    },
+    "alpha": {
+     "dim": "L**3",
+     "low": 0.0,
+     "high": 1.0,
+     "range_provenance": "denom_safe"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Clausius-Mossotti: P = (eps_r - 1) eps E"
+    ],
+    "dynamic_range_decades": 4.88
+   }
+  },
+  {
+   "id": "II.11.28",
+   "name": "clausius_mossotti_eps",
+   "expr": "1+n*alpha/(1-n*alpha/3)",
+   "out": {
+    "symbol": "theta",
+    "dim": "1"
+   },
+   "vars": {
+    "n": {
+     "dim": "1/L**3",
+     "low": 0.0,
+     "high": 1.0,
+     "range_provenance": "denom_safe"
+    },
+    "alpha": {
+     "dim": "L**3",
+     "low": 0.0,
+     "high": 1.0,
+     "range_provenance": "denom_safe"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Clausius-Mossotti: P = (eps_r - 1) eps E"
+    ],
+    "dynamic_range_decades": 0.38
+   }
+  },
+  {
+   "id": "II.13.17",
+   "name": "field_of_wire",
+   "expr": "2*Curr/(4*pi*epsilon*c**2*r)",
+   "out": {
+    "symbol": "B",
+    "dim": "M/(T**2*I)"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Curr": {
+     "dim": "I",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "B field of a wire = mu0 I / (2 pi r)"
+    ],
+    "dynamic_range_decades": 3.07
+   }
+  },
+  {
+   "id": "II.13.23",
+   "name": "charge_density_boost",
+   "expr": "rho_c_0/sqrt(1-v**2/c**2)",
+   "out": {
+    "symbol": "rho_c",
+    "dim": "I*T/L**3"
+   },
+   "vars": {
+    "rho_c_0": {
+     "dim": "I*T/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 0.8
+   }
+  },
+  {
+   "id": "II.13.34",
+   "name": "current_density_boost",
+   "expr": "rho_c_0*v/sqrt(1-v**2/c**2)",
+   "out": {
+    "symbol": "j",
+    "dim": "I/L**2"
+   },
+   "vars": {
+    "rho_c_0": {
+     "dim": "I*T/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.06
+   }
+  },
+  {
+   "id": "II.15.4",
+   "name": "magnetic_dipole_energy",
+   "expr": "-mom*B*cos(theta)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "cos",
+    "mul"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.49
+   }
+  },
+  {
+   "id": "II.15.5",
+   "name": "electric_dipole_energy",
+   "expr": "-p_d*Ef*cos(theta)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "p_d": {
+     "dim": "I*T*L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "cos",
+    "mul"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.49
+   }
+  },
+  {
+   "id": "II.21.32",
+   "name": "lienard_wiechert_potential",
+   "expr": "q/(4*pi*epsilon*r*(1-v/c))",
+   "out": {
+    "symbol": "Volt",
+    "dim": "M*L**2/(T**3*I)"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "vlt_c"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 3.0,
+     "high": 10.0,
+     "range_provenance": "vlt_c"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.0
+   }
+  },
+  {
+   "id": "II.24.17",
+   "name": "waveguide_wavenumber",
+   "expr": "sqrt(omega**2/c**2-pi**2/d**2)",
+   "out": {
+    "symbol": "k",
+    "dim": "1/L"
+   },
+   "vars": {
+    "omega": {
+     "dim": "1/T",
+     "low": 4.0,
+     "high": 6.0,
+     "range_provenance": "domain"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "domain"
+    },
+    "d": {
+     "dim": "L",
+     "low": 2.0,
+     "high": 4.0,
+     "range_provenance": "domain"
+    }
+   },
+   "note": "ranges force omega/c >= 2 > pi/d <= 1.57 so the sqrt is real",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 0.59
+   }
+  },
+  {
+   "id": "II.27.16",
+   "name": "poynting_flux",
+   "expr": "epsilon*c*Ef**2",
+   "out": {
+    "symbol": "FE",
+    "dim": "M/T**3"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Poynting flux = c * energy density"
+    ],
+    "dynamic_range_decades": 2.39
+   }
+  },
+  {
+   "id": "II.27.18",
+   "name": "em_energy_density",
+   "expr": "epsilon*Ef**2",
+   "out": {
+    "symbol": "E_den",
+    "dim": "M/(L*T**2)"
+   },
+   "vars": {
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Poynting flux = c * energy density"
+    ],
+    "dynamic_range_decades": 2.01
+   }
+  },
+  {
+   "id": "II.34.2a",
+   "name": "orbiting_current",
+   "expr": "q*v/(2*pi*r)",
+   "out": {
+    "symbol": "Curr",
+    "dim": "I"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.97
+   }
+  },
+  {
+   "id": "II.34.2",
+   "name": "orbital_magnetic_moment",
+   "expr": "q*v*r/2",
+   "out": {
+    "symbol": "mom",
+    "dim": "I*L**2"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "v": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "r": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.71
+   }
+  },
+  {
+   "id": "II.34.11",
+   "name": "larmor_frequency",
+   "expr": "g_*q*B/(2*m)",
+   "out": {
+    "symbol": "omega",
+    "dim": "1/T"
+   },
+   "vars": {
+    "g_": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "cyclotron: q v B / p equals g q B / 2m with p = m v, g = 2"
+    ],
+    "dynamic_range_decades": 2.41
+   }
+  },
+  {
+   "id": "II.34.29a",
+   "name": "bohr_magneton",
+   "expr": "q*h/(4*pi*m)",
+   "out": {
+    "symbol": "mom",
+    "dim": "I*L**2"
+   },
+   "vars": {
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "h": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "Bohr magneton = 9.274e-24 J/T"
+    ],
+    "dynamic_range_decades": 1.97
+   }
+  },
+  {
+   "id": "II.34.29b",
+   "name": "zeeman_energy",
+   "expr": "g_*mom*B*Jz/hbar",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "g_": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Jz": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.73
+   }
+  },
+  {
+   "id": "II.35.18",
+   "name": "two_level_population",
+   "expr": "n_0/(exp(mom*B/(kb*T))+exp(-mom*B/(kb*T)))",
+   "out": {
+    "symbol": "n",
+    "dim": "1/L**3"
+   },
+   "vars": {
+    "n_0": {
+     "dim": "1/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 3.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "exp",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.62
+   }
+  },
+  {
+   "id": "II.35.21",
+   "name": "brillouin_magnetization",
+   "expr": "n_rho*mom*tanh(mom*B/(kb*T))",
+   "out": {
+    "symbol": "M",
+    "dim": "I/L"
+   },
+   "vars": {
+    "n_rho": {
+     "dim": "1/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "tanh"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "magnetization saturates at n_rho * mu"
+    ],
+    "dynamic_range_decades": 2.32
+   }
+  },
+  {
+   "id": "II.36.38",
+   "name": "weiss_field",
+   "expr": "mom*H/(kb*T)+mom*alpha*M/(epsilon*c**2*kb*T)",
+   "out": {
+    "symbol": "f",
+    "dim": "1"
+   },
+   "vars": {
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "H": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "alpha": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "c": {
+     "dim": "L/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "M": {
+     "dim": "I/L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 8,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.39
+   }
+  },
+  {
+   "id": "II.37.1",
+   "name": "moment_in_medium",
+   "expr": "mom*(1+chi)*B",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "chi": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.57
+   }
+  },
+  {
+   "id": "II.38.3",
+   "name": "hookes_law_bar",
+   "expr": "Y*A*x/d",
+   "out": {
+    "symbol": "F",
+    "dim": "M*L/T**2"
+   },
+   "vars": {
+    "Y": {
+     "dim": "M/(L*T**2)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "A": {
+     "dim": "L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "x": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.39
+   }
+  },
+  {
+   "id": "II.38.14",
+   "name": "shear_modulus",
+   "expr": "Y/(2*(1+sigma))",
+   "out": {
+    "symbol": "mu_S",
+    "dim": "M/(L*T**2)"
+   },
+   "vars": {
+    "Y": {
+     "dim": "M/(L*T**2)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "sigma": {
+     "dim": "1",
+     "low": 0.1,
+     "high": 0.4,
+     "range_provenance": "unit_interval"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 0.79
+   }
+  },
+  {
+   "id": "III.4.32",
+   "name": "bose_occupation",
+   "expr": "1/(exp(hbar*omega/(kb*T))-1)",
+   "out": {
+    "symbol": "n",
+    "dim": "1"
+   },
+   "vars": {
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "exp",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "E = n_bose * hbar * omega"
+    ],
+    "dynamic_range_decades": 7.93
+   }
+  },
+  {
+   "id": "III.4.33",
+   "name": "planck_oscillator_energy",
+   "expr": "hbar*omega/(exp(hbar*omega/(kb*T))-1)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "exp",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "E = n_bose * hbar * omega",
+     "Planck oscillator -> kT in the classical limit"
+    ],
+    "dynamic_range_decades": 7.02
+   }
+  },
+  {
+   "id": "III.7.38",
+   "name": "spin_precession",
+   "expr": "2*mom*B/hbar",
+   "out": {
+    "symbol": "omega",
+    "dim": "1/T"
+   },
+   "vars": {
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "B": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "electron spin precession = 1.7608e11 rad/s/T"
+    ],
+    "dynamic_range_decades": 1.97
+   }
+  },
+  {
+   "id": "III.8.54",
+   "name": "two_state_probability",
+   "expr": "sin(En*t/hbar)**2",
+   "out": {
+    "symbol": "prob",
+    "dim": "1"
+   },
+   "vars": {
+    "En": {
+     "dim": "M*L**2/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "t": {
+     "dim": "T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 5.68
+   }
+  },
+  {
+   "id": "III.9.52",
+   "name": "transition_probability",
+   "expr": "(p_d*Ef*t/hbar)*sin((omega-omega_0)*t/2)**2/((omega-omega_0)*t/2)**2",
+   "out": {
+    "symbol": "prob",
+    "dim": "1"
+   },
+   "vars": {
+    "p_d": {
+     "dim": "I*T*L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Ef": {
+     "dim": "M*L/(T**3*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "t": {
+     "dim": "T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "omega": {
+     "dim": "1/T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "denom_safe"
+    },
+    "omega_0": {
+     "dim": "1/T",
+     "low": 3.0,
+     "high": 5.0,
+     "range_provenance": "denom_safe"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "div",
+    "mul",
+    "pow",
+    "sin"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 6,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "transition probability -> p E t/hbar on resonance"
+    ],
+    "dynamic_range_decades": 7.05
+   }
+  },
+  {
+   "id": "III.10.19",
+   "name": "zeeman_splitting_3d",
+   "expr": "mom*sqrt(Bx**2+By**2+Bz**2)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "mom": {
+     "dim": "I*L**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Bx": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "By": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "Bz": {
+     "dim": "M/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "mul",
+    "pow",
+    "sqrt"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.16
+   }
+  },
+  {
+   "id": "III.12.43",
+   "name": "quantized_angular_momentum",
+   "expr": "n*hbar",
+   "out": {
+    "symbol": "L",
+    "dim": "M*L**2/T"
+   },
+   "vars": {
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 2,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.34
+   }
+  },
+  {
+   "id": "III.13.18",
+   "name": "band_velocity",
+   "expr": "2*En*d**2*k/hbar",
+   "out": {
+    "symbol": "v",
+    "dim": "L/T"
+   },
+   "vars": {
+    "En": {
+     "dim": "M*L**2/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "k": {
+     "dim": "1/L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 3.0
+   }
+  },
+  {
+   "id": "III.14.14",
+   "name": "diode_equation",
+   "expr": "Curr_0*(exp(q*Volt/(kb*T))-1)",
+   "out": {
+    "symbol": "Curr",
+    "dim": "I"
+   },
+   "vars": {
+    "Curr_0": {
+     "dim": "I",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    },
+    "Volt": {
+     "dim": "M*L**2/(T**3*I)",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    },
+    "kb": {
+     "dim": "M*L**2/(T**2*Th)",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    },
+    "T": {
+     "dim": "Th",
+     "low": 1.0,
+     "high": 2.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "exponent narrowed to <=4 for conditioning",
+   "ops": [
+    "add",
+    "div",
+    "exp",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "diode current is 0 at zero bias"
+    ],
+    "dynamic_range_decades": 2.25
+   }
+  },
+  {
+   "id": "III.15.12",
+   "name": "tight_binding_band",
+   "expr": "2*U*(1-cos(k*d))",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "U": {
+     "dim": "M*L**2/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "k": {
+     "dim": "1/L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "cos",
+    "mul"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "tight-binding curvature at k->0 gives m* = hbar^2/(2 U d^2)"
+    ],
+    "dynamic_range_decades": 6.24
+   }
+  },
+  {
+   "id": "III.15.14",
+   "name": "effective_mass",
+   "expr": "hbar**2/(2*En*d**2)",
+   "out": {
+    "symbol": "m",
+    "dim": "M"
+   },
+   "vars": {
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "En": {
+     "dim": "M*L**2/T**2",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "tight-binding curvature at k->0 gives m* = hbar^2/(2 U d^2)"
+    ],
+    "dynamic_range_decades": 3.15
+   }
+  },
+  {
+   "id": "III.15.27",
+   "name": "brillouin_wavevector",
+   "expr": "2*pi*alpha/(n*d)",
+   "out": {
+    "symbol": "k",
+    "dim": "1/L"
+   },
+   "vars": {
+    "alpha": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "d": {
+     "dim": "L",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 1.9
+   }
+  },
+  {
+   "id": "III.17.37",
+   "name": "angular_distribution",
+   "expr": "beta_*(1+alpha*cos(theta))",
+   "out": {
+    "symbol": "f",
+    "dim": "1"
+   },
+   "vars": {
+    "beta_": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "alpha": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "theta": {
+     "dim": "1",
+     "low": 0.0,
+     "high": 6.28,
+     "range_provenance": "angle"
+    }
+   },
+   "note": "",
+   "ops": [
+    "add",
+    "cos",
+    "mul"
+   ],
+   "trig_blocked": true,
+   "eml_representable": false,
+   "n_vars": 3,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 4.58
+   }
+  },
+  {
+   "id": "III.19.51",
+   "name": "hydrogen_levels",
+   "expr": "-m*q**4/(2*(4*pi*epsilon)**2*hbar**2*n**2)",
+   "out": {
+    "symbol": "En",
+    "dim": "M*L**2/T**2"
+   },
+   "vars": {
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "hbar": {
+     "dim": "M*L**2/T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "n": {
+     "dim": "1",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "epsilon": {
+     "dim": "I**2*T**4/(M*L**3)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul",
+    "pow"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 5,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [
+     "hydrogen ground state = -13.6057 eV"
+    ],
+    "dynamic_range_decades": 6.24
+   }
+  },
+  {
+   "id": "III.21.20",
+   "name": "london_current",
+   "expr": "-rho_c_0*q*A_vec/m",
+   "out": {
+    "symbol": "j",
+    "dim": "I/L**2"
+   },
+   "vars": {
+    "rho_c_0": {
+     "dim": "I*T/L**3",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "q": {
+     "dim": "I*T",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "A_vec": {
+     "dim": "M*L/(T**2*I)",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    },
+    "m": {
+     "dim": "M",
+     "low": 1.0,
+     "high": 5.0,
+     "range_provenance": "aif_generic"
+    }
+   },
+   "note": "",
+   "ops": [
+    "div",
+    "mul"
+   ],
+   "trig_blocked": false,
+   "eml_representable": true,
+   "n_vars": 4,
+   "verification": {
+    "structure_and_dimensions": true,
+    "sampler_finite": true,
+    "independent_physics_checks": [],
+    "dynamic_range_decades": 2.41
+   }
+  }
+ ],
+ "verification_summary": {
+  "method": "structural (declared == used symbols) + dimensional homogeneity in SI base dimensions + sampler finiteness + hand-written physics limiting cases / cross-equation identities / known SI numerical values",
+  "kept": 100,
+  "dropped": 0,
+  "dropped_ids": [],
+  "physics_checks_run": 41,
+  "physics_checks_failed": 0,
+  "equations_with_an_independent_physics_check": 54,
+  "caveat": "dimensional analysis cannot detect a wrong dimensionless prefactor; the 46 equations without a physics check rest on structure+dimensions only"
+ }
+}

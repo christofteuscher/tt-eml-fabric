@@ -1,0 +1,223 @@
+{
+  "reg/diabetes": {
+    "method": "mlp",
+    "hidden": [
+      73
+    ],
+    "act": "tanh",
+    "lr": 0.003,
+    "val": 0.716077288388454,
+    "train": 0.6670772293683055,
+    "test": 0.7121330964918973,
+    "test_best": 0.7089589247618371,
+    "params": 877,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "reg/wine_proline": {
+    "method": "mlp",
+    "hidden": [
+      71
+    ],
+    "act": "relu",
+    "lr": 0.003,
+    "val": 0.4992818348375841,
+    "train": 0.29861814370004475,
+    "test": 0.7520775125905639,
+    "test_best": 0.7169227029025145,
+    "params": 995,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "bias/prod3": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.011001112194227423,
+    "train": 0.010973148187290099,
+    "test": 0.011137879329938944,
+    "test_best": 0.006003337797153351,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "bias/powlaw": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.010165285323861932,
+    "train": 0.012945568884938558,
+    "test": 0.01249345756229406,
+    "test_best": 0.010121711629290072,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "bias/expratio": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.01464425231595065,
+    "train": 0.013433914906591958,
+    "test": 0.013467912542846884,
+    "test_best": 0.013043577480700038,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "bias/osc_sum": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.0864162588686666,
+    "train": 0.050780614045311714,
+    "test": 0.06095441274521353,
+    "test_best": 0.06019713608658376,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "bias/osc_prod": {
+    "method": "mlp",
+    "hidden": [
+      85
+    ],
+    "act": "relu",
+    "lr": 0.003,
+    "val": 1.00281330948474,
+    "train": 0.9661964121923231,
+    "test": 1.0254224455065724,
+    "test_best": 1.0155163944234753,
+    "params": 426,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "bias/diffexp": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.009927035673093722,
+    "train": 0.006403312533878877,
+    "test": 0.006356030973479258,
+    "test_best": 0.0061333188140029,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "mix/0.0": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.013714620355268867,
+    "train": 0.011074684771373597,
+    "test": 0.011593501841065241,
+    "test_best": 0.0066981686192188455,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "mix/0.2": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.05646474576483094,
+    "train": 0.03022396011235686,
+    "test": 0.03108068304736058,
+    "test_best": 0.02896231071285963,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "mix/0.4": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.046824302414004475,
+    "train": 0.046064425987168894,
+    "test": 0.05074686243664401,
+    "test_best": 0.04330594534113714,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "mix/0.6": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.05129471943077872,
+    "train": 0.0506801607492188,
+    "test": 0.05911860043662703,
+    "test_best": 0.05127150750406447,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "mix/0.8": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.07862759414958304,
+    "train": 0.042538160696580285,
+    "test": 0.0555426354265647,
+    "test_best": 0.05147546798466528,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  },
+  "mix/1.0": {
+    "method": "mlp",
+    "hidden": [
+      18,
+      18
+    ],
+    "act": "tanh",
+    "lr": 0.03,
+    "val": 0.08513793489087139,
+    "train": 0.05219871350761261,
+    "test": 0.06603775101082936,
+    "test_best": 0.054465617110562,
+    "params": 433,
+    "cells": null,
+    "selection": "held-out val"
+  }
+}

@@ -1,0 +1,66 @@
+* Two questions this block cannot be laid out without answering:
+*  1. Does the vg it produces actually reproduce the cell output current
+*     through a gamma MDAC leg?  (a wrong diode = a silently wrong weight)
+*  2. Can the W=24 L=8 pedestals shrink at constant W/L, as the OTA tail
+*     did?  Here the source faces a SWINGING node, so its ro is a
+*     linearity term -- the OTA-tail argument does NOT transfer for free.
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include chainglue.inc
+
+.param wp=24 lp=8
+.subckt glue_p vdd VSUB pbias vcasc nout nu_next vg wp=24 lp=8
+XPU nu_next pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W='wp' L='lp'
+XPO nout    pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W='wp' L='lp'
+XGDG nout nout VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 W=16 L=2
+XGML vg   nout VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 W=16 L=2
+XID nid vg    vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=2
+XIC vg  vcasc nid vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+.ends
+
+VDD vdd 0 3.3
+VSS VSUB 0 0
+VC  vcasc 0 0.85
+* pbias: the real tree's W/L=2 diode leg
+IB pb 0 2u
+XPB pb pb vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+
+* cell output modelled as a current sink over the chain's real range
+.param iout=2u
+IOUT nout 0 'iout'
+* the next cell's input node, swept to expose pedestal ro
+VNU nu_next 0 1.2
+XG vdd VSUB pb vcasc nout nu_next vg glue_p wp='wp' lp='lp'
+
+* one gamma-MDAC unit leg on vg, cascoded exactly as mdac_digit does,
+* so we read the current the MDAC would actually deliver
+XL s0 vg  vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=2
+XK n0 vcasc s0 vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+VRD n0 0 0.9
+
+.control
+set filetype=ascii
+* --- 1. does vg reproduce the output current across the real range? ---
+echo > glue_track.txt
+* unrolled: alterparam takes a literal, not an expression over a control
+* variable ("Formula() error")
+foreach ii 0.5u 1.2u 1.9u 2.6u 3.3u 4.0u
+  alterparam iout = $ii
+  reset
+  op
+  echo $ii $&i(VRD) $&v(vg) >> glue_track.txt
+end
+* --- 2. pedestal ro: sweep the node the pedestal drives ---
+alterparam iout = 2u
+alterparam wp = 24
+alterparam lp = 8
+reset
+dc VNU 0.4 2.2 0.05
+wrdata glue_ped_L8.csv i(VNU)
+alterparam wp = 6
+alterparam lp = 2
+reset
+dc VNU 0.4 2.2 0.05
+wrdata glue_ped_L2.csv i(VNU)
+echo GLUE_DONE
+.endc
+.end

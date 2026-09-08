@@ -1,0 +1,34 @@
+* EML Stage-B: MDAC unit current-mirror mismatch (nfet_g5v0d10v5, 3.3V rail)
+* 1:1 NMOS mirror; sigma(Iout/Iin) across MC samples, vs device size and
+* branch current. Sets the MDAC unit-device size for a given weight-error
+* budget (fabric_sim run 3 assumed 2% gain sigma).
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+
+.param wval=1 lval=2 iin=1u
+
+IIN vdd g  {iin}
+VDD vdd 0  3.3
+XM1 g g 0 0 sky130_fd_pr__nfet_g5v0d10v5 W={wval} L={lval}
+XM2 d g 0 0 sky130_fd_pr__nfet_g5v0d10v5 W={wval} L={lval}
+VD  vd 0 1.65
+VMEAS vd d 0
+
+.control
+set filetype=ascii
+echo > mirror_mc.txt
+foreach w 1 2 4 8
+  alterparam wval = $w
+  foreach ii 100n 1u 10u
+    alterparam iin = $ii
+    let idx = 0
+    dowhile idx < 80
+      reset
+      op
+      echo $w $ii $&i(VMEAS) >> mirror_mc.txt
+      let idx = idx + 1
+    end
+  end
+end
+echo MC_DONE
+.endc
+.end

@@ -1,0 +1,42 @@
+* Can CST shrink from 1.0 pF to 0.87 pF?
+* CST is the startup KICK for the PTAT loop -- it injects charge during the
+* rail ramp to push the dVBE loop out of its zero-current state.  It has no
+* static role (ptat_bias.inc: "charge only during ramp; no static error"),
+* so the question is purely whether the kick still lands.
+* 0.87 pF is what fits the met4-free pocket over the resistor grid, which
+* would let the cap stack instead of adding 22.4 um to the block width.
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include ptatcore.inc
+.param cval=1p
+.subckt core_p vdd VSUB pbias nd12 nd055 vcasc cval=1p
+XMPP1 nb  pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+XMPP2 pbias pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+XQP1 nb nb VSUB VSUB sky130_fd_pr__npn_05v5_W1p00L1p00
+XQP2 pbias nb ne2 VSUB sky130_fd_pr__npn_05v5_W1p00L2p00
+RPTAT ne2 VSUB 30k
+XSL1 nsl1 nsl1 pbias vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL2 nsl2 nsl2 nsl1 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL3 nsl3 nsl3 nsl2 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL4 nd12 nd12 nsl3 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+RD1 vdd nd12 210k
+RD2A nd12 vcasc 35k
+RD2B vcasc nd055 30k
+RD3 nd055 VSUB 55k
+CST vdd nb 'cval'
+.ends
+VDD vdd 0 PWL(0 0 200u 3.3 2m 3.3)
+VSS VSUB 0 0
+XC vdd VSUB pbias nd12 nd055 vcasc core_p cval='cval'
+.control
+set filetype=ascii
+foreach cc 1p 0.87p 0.5p
+  alterparam cval = $cc
+  reset
+  tran 1u 1.2m
+  * pbias well below vdd means the loop started; stuck = pbias ~ vdd
+  meas tran vfin FIND v(pbias) AT=1.1m
+  echo $cc $&vfin >> cst_start.txt
+end
+echo CST_DONE
+.endc
+.end

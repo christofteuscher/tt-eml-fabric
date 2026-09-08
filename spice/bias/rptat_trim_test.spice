@@ -1,0 +1,41 @@
+* Does the trim actually cover the process spread, and is it monotonic?
+* Sweeps all 8 codes in the real PTAT loop and reports the resulting unit
+* current -- the number the rest of the chip is referenced to.
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include rptat_trim.inc
+.param a=0 b=0 c=0
+VDD vdd 0 3.3
+VSS VSUB 0 0
+VT0 t0 0 'a*3.3'
+VT1 t1 0 'b*3.3'
+VT2 t2 0 'c*3.3'
+XMPP1 nb  pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+XMPP2 pbias pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+XQP1 nb nb VSUB VSUB sky130_fd_pr__npn_05v5_W1p00L1p00
+XQP2 pbias nb ne2 VSUB sky130_fd_pr__npn_05v5_W1p00L2p00
+XR ne2 VSUB t0 t1 t2 rptat_trim
+XSL1 nsl1 nsl1 pbias vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL2 nsl2 nsl2 nsl1 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL3 nsl3 nsl3 nsl2 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL4 nd12 nd12 nsl3 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+RD1 vdd nd12 210k
+XMON nmon pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+VM nmon 0 1.0
+.control
+set filetype=ascii
+echo > rptat_trim.txt
+foreach cc 0 1
+ foreach bb 0 1
+  foreach aa 0 1
+    alterparam a = $aa
+    alterparam b = $bb
+    alterparam c = $cc
+    reset
+    op
+    echo $cc$bb$aa $&i(VM) $&v(ne2) >> rptat_trim.txt
+  end
+ end
+end
+echo TRIM_DONE
+.endc
+.end

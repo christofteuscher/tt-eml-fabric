@@ -1,0 +1,5 @@
+* Extracted by KLayout with SKY130 LVS runset on : 24/07/2026 08:20
+
+.SUBCKT lvs_test D G S VSS
+M$1 S G D VSS sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4 PS=9.2 PD=9.2
+.ENDS lvs_test

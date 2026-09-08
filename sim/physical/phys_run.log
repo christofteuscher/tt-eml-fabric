@@ -1,0 +1,29 @@
+bol  |F|=15460   ood=0.104 dec= 288.20 asym=  0.00 dom=1.000 live=0.464 contr=0.088 sin=3.41e-01  0.1s
+dio  |F|=5292    ood=0.854 dec= 201.96 asym=  3.87 dom=1.000 live=0.013 contr=0.000 sin=1.01e+00  0.1s
+nrn  |F|=5       ood=0.000 dec=   1.33 asym=  0.00 dom=0.249 live=1.000 contr=0.250 sin=1.01e+00  0.1s
+nsp  |F|=95039   ood=0.000 dec=   3.40 asym=  0.00 dom=1.000 live=1.000 contr=1.000 sin=4.91e-01  0.4s
+jjs  |F|=12092   ood=0.000 dec=   1.80 asym=  0.00 dom=1.000 live=1.000 contr=1.000 sin=0.00e+00  0.5s
+squ  |F|=400000  ood=0.000 dec=   2.25 asym=  1.08 dom=1.000 live=0.927 contr=1.000 sin=1.11e-16  3.0s
+rsj  |F|=400000  ood=0.000 dec=   1.90 asym=  0.21 dom=1.000 live=0.993 contr=1.000 sin=1.11e-16  4.9s
+ejs  |F|=96102   ood=0.549 dec= 128.55 asym= 30.09 dom=1.000 live=0.246 contr=0.000 sin=3.34e-16  5.3s
+njs  |F|=178     ood=0.923 dec=   2.76 asym=  0.26 dom=0.499 live=1.000 contr=0.250 sin=0.00e+00  5.3s
+mmk  |F|=78508   ood=0.000 dec=   1.26 asym=  0.00 dom=1.000 live=1.000 contr=0.696 sin=8.01e-01  5.6s
+hl2  |F|=258393  ood=0.001 dec=  13.95 asym=  0.00 dom=1.000 live=0.479 contr=0.459 sin=6.00e-01  6.4s
+par  |F|=172     ood=0.000 dec=   1.35 asym=  0.00 dom=1.000 live=0.991 contr=1.000 sin=9.82e-01  6.4s
+tun  |F|=400000  ood=0.000 dec=   6.49 asym=  0.88 dom=1.000 live=0.706 contr=0.866 sin=4.11e-01  8.4s
+mas  |F|=11      ood=0.692 dec=  11.42 asym=  0.34 dom=1.000 live=0.500 contr=0.031 sin=1.01e+00  8.4s
+fmi  |F|=34581   ood=0.000 dec=   0.32 asym=  0.00 dom=1.000 live=1.000 contr=1.000 sin=6.80e-01  8.6s
+dfz  |F|=400000  ood=0.000 dec=   4.89 asym=  0.82 dom=1.000 live=0.799 contr=0.651 sin=5.13e-01  11.4s
+gsn  |F|=400000  ood=0.000 dec=  37.51 asym=  4.54 dom=1.000 live=0.201 contr=0.950 sin=3.47e-01  13.5s
+spn  |F|=12092   ood=0.000 dec=   0.03 asym=  0.00 dom=1.000 live=0.987 contr=1.000 sin=1.01e+00  13.6s
+lmw  |F|=400000  ood=0.000 dec=   2.47 asym=  1.06 dom=1.000 live=0.766 contr=1.000 sin=1.58e-01  54.7s
+lmj  |F|=400000  ood=0.000 dec=   2.67 asym=  0.13 dom=1.000 live=0.995 contr=0.467 sin=6.77e-02  98.3s
+eml  |F|=43889   ood=0.760 dec=  19.79 asym=  7.01 dom=0.500 live=0.134 contr=0.006 sin=4.38e-01  98.5s
+sag  |F|=385340  ood=0.231 dec= 145.87 asym= 22.35 dom=1.000 live=0.693 contr=0.000 sin=6.56e-01  100.4s
+sna  |F|=385340  ood=0.231 dec= 146.24 asym=  1.79 dom=1.000 live=0.649 contr=0.000 sin=2.78e-17  102.1s
+lse  |F|=152     ood=0.000 dec=   0.64 asym=  0.00 dom=1.000 live=0.990 contr=1.000 sin=1.01e+00  102.1s
+wrote phys_search.json
+
+EXPRESSIVENESS vs CONDITIONING over 33 operators:
+  corr(live, log10|F|)   = -0.158
+  corr(contr, log10|F|)  = +0.182  (n=24, physical set only)

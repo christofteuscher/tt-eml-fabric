@@ -1,0 +1,387 @@
+{
+  "args": {
+    "quick": true,
+    "seeds": 2,
+    "iters": 800,
+    "depth": 3,
+    "outdir": "results"
+  },
+  "sweep": [
+    {
+      "train_rmse": 0.8167078896028656,
+      "noisy_rmse": 0.8167078896028656,
+      "extrap_rmse": 10.66576421923839,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "ideal",
+      "seed": 0
+    },
+    {
+      "train_rmse": 2.432051657509813,
+      "noisy_rmse": 2.432051657509813,
+      "extrap_rmse": 16.43945300678991,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "ideal",
+      "seed": 1
+    },
+    {
+      "train_rmse": 1.8018102770923392,
+      "noisy_rmse": 1.8044262406723122,
+      "extrap_rmse": 14.307185774494227,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "noise-1e-3",
+      "seed": 0
+    },
+    {
+      "train_rmse": 2.4319002584100264,
+      "noisy_rmse": 2.431993923283134,
+      "extrap_rmse": 16.437952126616377,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "noise-1e-3",
+      "seed": 1
+    },
+    {
+      "train_rmse": 2.321497212374023,
+      "noisy_rmse": 2.321497212374023,
+      "extrap_rmse": 16.064266820643002,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "mm-5%",
+      "seed": 0,
+      "transfer_rmse": 7.12144432729507
+    },
+    {
+      "train_rmse": 23.031166684659024,
+      "noisy_rmse": 23.031166684659024,
+      "extrap_rmse": 51.47383577303927,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "mm-5%",
+      "seed": 1,
+      "transfer_rmse": 3.6991808881573065
+    },
+    {
+      "train_rmse": 23.031166684659024,
+      "noisy_rmse": 23.031166684659024,
+      "extrap_rmse": 51.47383577391593,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "sat-3",
+      "seed": 0
+    },
+    {
+      "train_rmse": 23.031166684659024,
+      "noisy_rmse": 23.031166684659024,
+      "extrap_rmse": 51.47383577621017,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "sat-3",
+      "seed": 1
+    },
+    {
+      "train_rmse": 1063.6643893401501,
+      "noisy_rmse": 1063.6643893401501,
+      "extrap_rmse": 1069.4320122058775,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "bits-6",
+      "seed": 0
+    },
+    {
+      "train_rmse": 340.84867245664555,
+      "noisy_rmse": 340.84867245664555,
+      "extrap_rmse": 339.20422351026696,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "config": "bits-6",
+      "seed": 1
+    },
+    {
+      "train_rmse": 2.057572205405416,
+      "noisy_rmse": 2.057572205405416,
+      "extrap_rmse": 14.540343929141844,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "ideal",
+      "seed": 0
+    },
+    {
+      "train_rmse": 2.1133400090828465,
+      "noisy_rmse": 2.1133400090828465,
+      "extrap_rmse": 14.682643447192406,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "ideal",
+      "seed": 1
+    },
+    {
+      "train_rmse": 0.537319831600221,
+      "noisy_rmse": 0.5382631447952045,
+      "extrap_rmse": 8.578926350139868,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "noise-1e-3",
+      "seed": 0
+    },
+    {
+      "train_rmse": 20.536328937767077,
+      "noisy_rmse": 20.53641677343639,
+      "extrap_rmse": 45.92006999140977,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "noise-1e-3",
+      "seed": 1
+    },
+    {
+      "train_rmse": 1.4846412957429649,
+      "noisy_rmse": 1.4846412957429649,
+      "extrap_rmse": 12.021617793814537,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "mm-5%",
+      "seed": 0,
+      "transfer_rmse": 4.636292300381766
+    },
+    {
+      "train_rmse": 20.536328936417007,
+      "noisy_rmse": 20.536328936417007,
+      "extrap_rmse": 45.92009938293168,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "mm-5%",
+      "seed": 1,
+      "transfer_rmse": 3.1599982042525703
+    },
+    {
+      "train_rmse": 20.536328936417007,
+      "noisy_rmse": 20.536328936417007,
+      "extrap_rmse": 45.92009938506901,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "sat-3",
+      "seed": 0
+    },
+    {
+      "train_rmse": 20.536328936417007,
+      "noisy_rmse": 20.536328936417007,
+      "extrap_rmse": 45.92009938896108,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "sat-3",
+      "seed": 1
+    },
+    {
+      "train_rmse": 1062.9791657244948,
+      "noisy_rmse": 1062.9791657244948,
+      "extrap_rmse": 1069.511719214206,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "bits-6",
+      "seed": 0
+    },
+    {
+      "train_rmse": 341.3223016585822,
+      "noisy_rmse": 341.3223016585822,
+      "extrap_rmse": 338.0565174461956,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "config": "bits-6",
+      "seed": 1
+    }
+  ],
+  "depth_sweep": [
+    {
+      "train_rmse": 2.8147110066052217,
+      "noisy_rmse": 2.8147110066052217,
+      "extrap_rmse": 17.656572188473817,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "depth": 2,
+      "seed": 0
+    },
+    {
+      "train_rmse": 1.3416899903762374,
+      "noisy_rmse": 1.3416899903762374,
+      "extrap_rmse": 10.313300151173308,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "depth": 2,
+      "seed": 1
+    },
+    {
+      "train_rmse": 0.8167078896028656,
+      "noisy_rmse": 0.8167078896028656,
+      "extrap_rmse": 10.66576421923839,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "depth": 3,
+      "seed": 0
+    },
+    {
+      "train_rmse": 2.432051657509813,
+      "noisy_rmse": 2.432051657509813,
+      "extrap_rmse": 16.43945300678991,
+      "unit": "K",
+      "target": "thermistor_beta",
+      "depth": 3,
+      "seed": 1
+    },
+    {
+      "train_rmse": 2.4509473199809793,
+      "noisy_rmse": 2.4509473199809793,
+      "extrap_rmse": 15.774232440650964,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "depth": 2,
+      "seed": 0
+    },
+    {
+      "train_rmse": 1.5251606088974878,
+      "noisy_rmse": 1.5251606088974878,
+      "extrap_rmse": 11.725872277253247,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "depth": 2,
+      "seed": 1
+    },
+    {
+      "train_rmse": 2.057572205405416,
+      "noisy_rmse": 2.057572205405416,
+      "extrap_rmse": 14.540343929141844,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "depth": 3,
+      "seed": 0
+    },
+    {
+      "train_rmse": 2.1133400090828465,
+      "noisy_rmse": 2.1133400090828465,
+      "extrap_rmse": 14.682643447192406,
+      "unit": "K",
+      "target": "thermistor_sh",
+      "depth": 3,
+      "seed": 1
+    }
+  ],
+  "drift": [
+    {
+      "target": "thermistor_beta",
+      "delta": -0.06,
+      "seed": 0,
+      "rmse": 19.596878173501597,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_beta",
+      "delta": -0.06,
+      "seed": 1,
+      "rmse": 20.64941962487671,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_beta",
+      "delta": -0.03,
+      "seed": 0,
+      "rmse": 9.830795007149419,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_beta",
+      "delta": -0.03,
+      "seed": 1,
+      "rmse": 10.551767854757726,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_beta",
+      "delta": 0.03,
+      "seed": 0,
+      "rmse": 9.86835884256875,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_beta",
+      "delta": 0.03,
+      "seed": 1,
+      "rmse": 10.577561481369784,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_beta",
+      "delta": 0.06,
+      "seed": 0,
+      "rmse": 19.6938099073269,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_beta",
+      "delta": 0.06,
+      "seed": 1,
+      "rmse": 20.754806074801483,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": -0.06,
+      "seed": 0,
+      "rmse": 21.394246902022513,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": -0.06,
+      "seed": 1,
+      "rmse": 20.914806859323743,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": -0.03,
+      "seed": 0,
+      "rmse": 10.833983706540103,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": -0.03,
+      "seed": 1,
+      "rmse": 10.629619318154187,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": 0.03,
+      "seed": 0,
+      "rmse": 10.81292144461769,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": 0.03,
+      "seed": 1,
+      "rmse": 10.653206253684262,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": 0.06,
+      "seed": 0,
+      "rmse": 21.308553663887324,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "delta": 0.06,
+      "seed": 1,
+      "rmse": 21.010919726486954,
+      "unit": "K"
+    }
+  ],
+  "readback": {
+    "thermistor_beta": "0.0692925*(0.370485*x - 2.43011*log(0.590402*x + 0.802819) + 2.96583 + 8.56607*exp(-0.150477*x))**1.13125*exp(-0.27447*x - 0.532403*(0.926852*x + 1.06243)**1.2137*exp(-0.760943*x - 1.3853*exp(-1.15687*x))) - 0.123077*log(-0.673756*x - 2.65185*exp(-0.773671*x + 0.230905*exp(-0.0529462*x))/(1.39418 - 1.14971*x)**0.151808 + 1.0304*log(0.0901214*x + 0.511191*log(1.62613 - 0.949707*x) + 1.63957 - 1.26497*exp(-0.047316*x)) + 2.07337) - 0.899842",
+    "thermistor_sh": "0.0423092*(0.0749882*x - 2.50372*log(0.538021*x + 0.884233) + 2.90319 + 8.97059*exp(-0.166268*x))**1.14821*exp(-0.371669*x - 0.387346*(0.240102*x + 0.566048)**1.77569*exp(-0.331339*x - 3.97989*exp(0.0551317*x))) - 0.124711*log(-0.798663*x - 2.59556*exp(-0.71341*x + 0.380494*exp(-0.00200826*x))/(1.14334 - 1.52552*x)**0.256186 + 1.01512*log(-0.0065809*x - 1.27808*exp(0.0187485*x) + 0.530362*log(1.56121 - 1.10402*x) + 1.63704) + 2.03729) - 0.836338"
+  }
+}

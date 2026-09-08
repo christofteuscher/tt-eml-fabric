@@ -1,0 +1,68 @@
+* CELL-LEVEL ACCURACY: the fabric cell against ideal exp(u) - ln(v).
+*
+* The first bench of its kind here -- char/ previously had only device-level
+* (npn_gummel, nfet_subvt, mirror_mc) and OTA-level (ota_shrink_*) sweeps, so
+* nothing measured what the CELL actually computes.  Results in
+* ../EMLCELL_ANALYSIS.md.
+*
+* Method: VOUT holds `out` at 0.9 V, so i(VOUT) is the cell output current.
+* u enters as IUIN = -u*IUNIT (the TIA inverts).  v is fixed at 1 here, so
+* the ln term is zero and this exercises the EXP path only -- the ln path
+* and two of its three servos are barely stimulated.  Extending this to the
+* 2-D (u,v) surface is the largest remaining gap in the characterisation.
+*
+* Baseline result (tt, 27 C, v=1): +1.55% .. +5.07%, rms 3.85%.
+*
+* Run: cd char && ngspice -b eml_accuracy.spice
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _v2d_buf.inc
+.control
+set noaskquit
+alter @IUIN[dc] = 0
+alter @IV[dc] = 1.25e-07
+op
+echo PT 0.2500
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 1.767766952966369e-07
+op
+echo PT 0.3536
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 2.5e-07
+op
+echo PT 0.5000
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 3.535533905932738e-07
+op
+echo PT 0.7071
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 5e-07
+op
+echo PT 1.0000
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 7.071067811865476e-07
+op
+echo PT 1.4142
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 1e-06
+op
+echo PT 2.0000
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 1.4142135623730952e-06
+op
+echo PT 2.8284
+let io=i(VOUT)/0.5u
+print io
+alter @IV[dc] = 2e-06
+op
+echo PT 4.0000
+let io=i(VOUT)/0.5u
+print io
+.endc
+.end

@@ -1,0 +1,42 @@
+* LVS reference generated from ../cell/v3/eml_cell_v3b.inc
+.subckt emlcell_b nu nv out vdd vrefb ve pbias VSS
+MLR1 nb0 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8u W=4u
+QQR nb0 nb0 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+RU_0 vb2 RU_s1 VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+RU_1 RU_s1 RU_s2 VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+RU_2 RU_s2 RU_s3 VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+RU_3 RU_s3 nu VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+CFU vb2 nu sky130_fd_pr__model__cap_mim C=1e-12 A=4.999696e-10 P=8.944e-05
+XOT nu nb0 vb2 vdd pbias ota2b
+QQ2 nc2 vb2 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+MMPM1 nc2 nc2 vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=2u W=8u
+MMPM2 mno nc2 vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=2u W=8u
+MLPA nv pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8u W=8u
+QQA nv oa ve 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+XOA nv vrefb oa vdd ve pbias ota1vb
+CFA nv oa sky130_fd_pr__model__cap_mim C=2e-12 A=1.00014063e-09 P=0.0001265
+RSA_0 nv RSA_s1 VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+RSA_1 RSA_s1 RSA_s2 VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+RSA_2 RSA_s2 RSA_s3 VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+RSA_3 RSA_s3 vrefb VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+MLPB nvb pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8u W=8u
+MLVR nvb pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8u W=4u
+QQB nvb ob ve 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+XOB nvb vrefb ob vdd ve pbias ota1vb
+CFB nvb ob sky130_fd_pr__model__cap_mim C=2e-12 A=1.00014063e-09 P=0.0001265
+RSB_0 nvb RSB_s1 VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+RSB_1 RSB_s1 RSB_s2 VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+RSB_2 RSB_s2 RSB_s3 VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+RSB_3 RSB_s3 vrefb VSS sky130_fd_pr__res_high_po_0p35 L=27.36u W=0.35u
+RLN_0 oa RLN_s1 VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+RLN_1 RLN_s1 RLN_s2 VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+RLN_2 RLN_s2 RLN_s3 VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+RLN_3 RLN_s3 nsv VSS sky130_fd_pr__res_high_po_0p35 L=14.72u W=0.35u
+MLO2 nsv pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8u W=16u
+XON nsv ob gpass vdd pbias ota1b
+CGP gpass 0 sky130_fd_pr__model__cap_mim C=1e-12 A=4.999696e-10 P=8.944e-05
+MMNP nsv gpass ndl 0 sky130_fd_pr__nfet_03v3_nvt L=0.5u W=4u
+MMNM1 ndl ndl 0 0 sky130_fd_pr__nfet_g5v0d10v5 L=2u W=32u
+MMNM2 mno ndl 0 0 sky130_fd_pr__nfet_g5v0d10v5 L=2u W=32u
+MLO3 mno pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8u W=16u
+.ends

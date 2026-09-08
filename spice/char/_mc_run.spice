@@ -1,0 +1,180 @@
+* EML Stage-B: shipped d2 weight MDAC, ALL 16 CODES -- monotonicity/DNL/INL.
+*
+* WHY THIS RE-RUN.  mdac_weight.inc quotes "all 64 codes ... monotonic YES,
+* DNL -0.96 LSB", and mdac_weight_d2.inc claimed "Monotonicity is unaffected
+* (each digit is still a 3-leg thermometer, still all-unit-device)".  BOTH
+* were measured on the THERMOMETER digit, where three legs ride three
+* independent lines and a code step only ever ADDS a leg.  The silicon is
+* not that circuit any more: gen_mdac2.py ties switch 2's gate to switch 1's
+* line, so a digit reads t0*1 + t1*2 and the 1->2 step turns leg 0 OFF while
+* legs 1+2 turn ON.  That is a major carry, and major carries are exactly
+* where a binary DAC loses monotonicity.  The old numbers therefore say
+* nothing about what is being fabricated -- hence this bench.
+*
+* 16 codes, not 64: the shipped weight is the TWO-digit variant.  value =
+* (a + b/4) units with a,b in 0..3, so LSB = 1/4 unit and FS = 3.75.
+*
+* DUT is mdac/mdac_weight_d2.inc -- the SIMULATION source, X-cards.  The
+* lvsref/*.spice files use M-cards for LVS and will not bind against
+* sky130's ngspice models (which are .subckt), so they cannot be simulated
+* directly.  The .inc was made binary in the same commit as this bench, and
+* the corresponding LVS reference (mdac_digit.spice) LVS-MATCHES the shipped
+* mdac2_alpha_d2.gds, so the topology here is the taped-out one.
+*
+* Schematic level, no parasitics -- this re-states the claim the report
+* already makes, on the correct topology.  Post-layout is a separate run.
+*
+* Run: ngspice -b char/mdac_d2_codes.spice
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+.include ../mdac/mdac_weight_d2.inc
+
+.param iref=0.5u
+.param vc=0.85
+
+VDD   vdd   0 3.3
+VCASC vcasc 0 {vc}
+
+* reference leg: a diode-connected unit device off iref sets vg, exactly as
+* the global pbias tree does for a real alpha weight.
+* IREF SINKS from vg to ground.  Written vdd->vg it PUSHES into the same
+* node the diode-connected XPD already sources into, so nothing sets the
+* mirror gate and every leg delivered picoamps.
+IREF vg 0 {iref}
+XPD  vg  vg vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=2
+* the shared /4 divider supplies the b digit's gate
+XDIV4 vg vg4 vcasc vdd 0 mdac_div
+
+* code bits, driven at the 3.3 V the level-shifted config lines deliver
+VA0 a0 0 0
+VA1 a1 0 0
+VB0 b0 0 0
+VB1 b1 0 0
+* sign steering: direct path adds
+VSGN  sgn  0 3.3
+VSGNB sgnb 0 0
+
+* hold the outputs at a mid-rail compliance point, not at a rail
+VOP vop 0 0.9
+VON von 0 0.9
+VMP vop iout_p 0
+VMN von iout_n 0
+
+XW vg vg4 iout_p iout_n vcasc vdd 0 a0 a1 b0 b1 sgn sgnb mdac_alpha_d2
+
+.control
+set noaskquit
+set rndseed=40
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+echo "CODE 0 ideal 0.0"
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+echo "CODE 1 ideal 0.25"
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+echo "CODE 2 ideal 0.5"
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+echo "CODE 3 ideal 0.75"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+echo "CODE 4 ideal 1.0"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+echo "CODE 5 ideal 1.25"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+echo "CODE 6 ideal 1.5"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+echo "CODE 7 ideal 1.75"
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+echo "CODE 8 ideal 2.0"
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+echo "CODE 9 ideal 2.25"
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+echo "CODE 10 ideal 2.5"
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+echo "CODE 11 ideal 2.75"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+echo "CODE 12 ideal 3.0"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+echo "CODE 13 ideal 3.25"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+echo "CODE 14 ideal 3.5"
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+echo "CODE 15 ideal 3.75"
+print -i(VMP)
+.endc
+.end

@@ -1,0 +1,81 @@
+**************************************************************************
+*** SUPERSEDED: every "mlp" line below is WRONG -- do not cite it.
+*** The MLP grid winner was selected on TRAIN NRMSE, which picks the
+*** most overfitting member of the grid and understates the baseline;
+*** the fabric win it produced was spurious.  Corrected MLP column
+*** (held-out-validation selection): ml_mlp_val.json / log_mlpfix.txt.
+*** The fabric and poly lines below are unaffected.
+***
+***   task                MLP test NRMSE:  stale  ->  corrected
+***   bias/prod3                 0.0111  ->  0.0111
+***   bias/powlaw                0.0122  ->  0.0125
+***   bias/expratio              0.0135  ->  0.0135
+***   bias/osc_sum               0.0610  ->  0.0610
+***   bias/osc_prod              1.2556  ->  1.0254
+***   bias/diffexp               0.0064  ->  0.0064
+***   mix/0.0                    0.0116  ->  0.0116
+***   mix/0.2                    0.0311  ->  0.0311
+***   mix/0.4                    0.0507  ->  0.0507
+***   mix/0.6                    0.0591  ->  0.0591
+***   mix/0.8                    0.0555  ->  0.0555
+***   mix/1.0                    0.0660  ->  0.0660
+*** Marked 2026-08-19.
+**************************************************************************
+
+=== prod3: y = x1*x2*x3 ===
+fabric ideal     P=  425 train 0.1657 test 0.1618 (best 0.1612) [12s]
+fabric pedestal  P=  425 train 0.2196 test 0.2077 (best 0.1395) [12s]
+mlp    [18, 18]  tanh lr=0.03 P=  433 train 0.0110 test 0.0111
+poly1     P=    4 train 0.2741 test 0.2671
+poly2     P=   10 train 0.0394 test 0.0431
+poly3     P=   20 train 0.0000 test 0.0000
+
+=== powlaw: y = x1^1.7 * x2^-0.9 * x3^0.4 ===
+fabric ideal     P=  425 train 0.0899 test 0.0901 (best 0.0763) [11s]
+fabric pedestal  P=  425 train 0.0788 test 0.0767 (best 0.0701) [11s]
+mlp    [18, 18]  tanh lr=0.01 P=  433 train 0.0129 test 0.0122
+poly1     P=    4 train 0.2912 test 0.2877
+poly2     P=   10 train 0.0711 test 0.0727
+poly3     P=   20 train 0.0182 test 0.0187
+
+=== expratio: y = exp(x1/x2)/x3 ===
+fabric ideal     P=  425 train 0.1390 test 0.1340 (best 0.1211) [12s]
+fabric pedestal  P=  425 train 0.1498 test 0.1499 (best 0.1091) [12s]
+mlp    [18, 18]  tanh lr=0.03 P=  433 train 0.0134 test 0.0135
+poly1     P=    4 train 0.5654 test 0.4728
+poly2     P=   10 train 0.2995 test 0.2408
+poly3     P=   20 train 0.1462 test 0.1259
+
+=== osc_sum: y = sin(4x1)+sin(4x2)+sin(4x3) ===
+fabric ideal     P=  425 train 0.6554 test 0.7135 (best 0.6856) [12s]
+fabric pedestal  P=  425 train 0.8189 test 0.9170 (best 0.7355) [12s]
+mlp    [18, 18]  tanh lr=0.03 P=  433 train 0.0508 test 0.0610
+poly1     P=    4 train 0.9933 test 1.0647
+poly2     P=   10 train 0.5454 test 0.5758
+poly3     P=   20 train 0.5215 test 0.5661
+
+=== osc_prod: y = sin(2*pi*x1*x2) ===
+fabric ideal     P=  425 train 0.9898 test 1.0104 (best 1.0046) [12s]
+fabric pedestal  P=  425 train 0.9961 test 1.0071 (best 1.0070) [12s]
+mlp    [18, 18]  tanh lr=0.03 P=  433 train 0.7571 test 1.2556
+poly1     P=    4 train 0.9990 test 1.0099
+poly2     P=   10 train 0.9987 test 1.0096
+poly3     P=   20 train 0.9975 test 1.0086
+
+=== diffexp: y = exp(x1)-exp(x2) ===
+fabric ideal     P=  425 train 0.1426 test 0.1336 (best 0.1111) [11s]
+fabric pedestal  P=  425 train 0.0997 test 0.0960 (best 0.0444) [11s]
+mlp    [18, 18]  tanh lr=0.03 P=  433 train 0.0064 test 0.0064
+poly1     P=    4 train 0.2615 test 0.2359
+poly2     P=   10 train 0.0407 test 0.0398
+poly3     P=   20 train 0.0051 test 0.0049
+
+=== crossover: y_t = (1-t) z[x1x2x3] + t z[sin4x1+sin4x2+sin4x3] ===
+t=0.0 fabric 0.1492 / ped 0.1840 | mlp 0.0116 | poly3 0.0000 | ratio fab/mlp 12.87
+t=0.2 fabric 0.2790 / ped 0.3518 | mlp 0.0311 | poly3 0.1409 | ratio fab/mlp 8.98
+t=0.4 fabric 0.6622 / ped 0.4163 | mlp 0.0507 | poly3 0.3306 | ratio fab/mlp 13.05
+t=0.6 fabric 0.6548 / ped 0.6276 | mlp 0.0591 | poly3 0.4959 | ratio fab/mlp 11.08
+t=0.8 fabric 0.8033 / ped 0.8626 | mlp 0.0555 | poly3 0.5634 | ratio fab/mlp 14.46
+t=1.0 fabric 0.6955 / ped 0.9041 | mlp 0.0660 | poly3 0.5661 | ratio fab/mlp 10.53
+
+Saved /Users/cteusche/data/projects/eml/code/fabric_sim/ml/results/ml_bias.json (638s)

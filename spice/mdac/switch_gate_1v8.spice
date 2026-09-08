@@ -1,0 +1,50 @@
+* Can a 1.8 V gate drive the MDAC digit/sign switches?
+*
+* This decides the digital domain, which is a 7-10 kum2 question: with
+* 3.3 V gates the config chain must be hvl cells (11.7 kum2) or hd cells
+* plus 117 level shifters at 97.3 um2 each.  With 1.8 V gates the chain
+* is plain hd cells (4.7 kum2) and ~4 shifters for the scan inputs.
+*
+* The switch is a DC-programmed NMOS pass device (W=4 L=0.5 g5v0) between
+* the cascode output and the summing node.  Its source rides the LOWER of
+* the two nodes, so Vgs = Vgate - V(dest).  The question is the maximum
+* destination voltage at which the leg still delivers its full current.
+*
+* Replicates one digit leg exactly as in mdac_weight.inc: cascoded
+* reference diode -> gate line -> source device -> cascode -> switch.
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+VDD vdd 0 3.3
+VCASC vcasc 0 0.85
+
+* reference: cascoded PMOS diode producing vg at iu (mdac_div XPD/XPCC)
+XPD vg vg vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=2
+XPCC nsk vcasc vg vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+ISNK nsk 0 0.5u
+
+* one thermometer leg: source + cascode + switch
+XL s0 vg vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=2
+XK n0 vcasc s0 vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+XS nout tg n0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=0.5
+VG tg 0 3.3
+VOUT nout 0 0.5
+
+* side question: where do the currents LAND?  iout_n drives the W=8 L=2
+* mirror diode (nmir) -- its Vgs is the destination voltage on that path.
+IMD vdd nmd 0.5u
+XMD nmd nmd 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=8 L=2
+
+.control
+set filetype=ascii
+foreach g 3.3 1.8
+  alter VG $g
+  foreach i 0.5u 3.4u
+    alter ISNK $i
+    alter IMD $i
+    dc VOUT 0.05 1.9 0.025
+    wrdata swgate_{$g}_{$i}.csv i(VOUT) v(nmd)
+  end
+end
+echo SWGATE_DONE
+.endc
+.end

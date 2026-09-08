@@ -1,0 +1,46 @@
+[    28s] thermistor_beta  ideal      train med    0.834 best    0.179 K  extrap med   21.343 K
+[    57s] thermistor_beta  noise-1e-3 train med    0.478 best    0.274 K  extrap med   35.641 K
+[    85s] thermistor_beta  noise-3e-3 train med    0.311 best    0.083 K  extrap med   22.757 K
+[   113s] thermistor_beta  noise-1e-2 train med    0.790 best    0.247 K  extrap med   22.814 K
+[   141s] thermistor_beta  mm-1%      train med    0.755 best    0.218 K  extrap med   15.811 K  transfer med    1.621 K
+[   168s] thermistor_beta  mm-5%      train med    2.080 best    0.363 K  extrap med   17.894 K  transfer med    5.035 K
+[   195s] thermistor_beta  mm-10%     train med    1.251 best    0.262 K  extrap med   19.068 K  transfer med    9.376 K
+[   222s] thermistor_beta  sat-30     train med    4.566 best    2.423 K  extrap med   41.009 K
+[   249s] thermistor_beta  sat-10     train med   15.841 best    1.011 K  extrap med   54.573 K
+[   276s] thermistor_beta  sat-3      train med   10.631 best    0.347 K  extrap med   51.210 K
+[   304s] thermistor_beta  bits-8     train med    2.251 best    1.460 K  extrap med   26.230 K
+[   331s] thermistor_beta  bits-6     train med    4.003 best    2.548 K  extrap med   41.737 K
+[   358s] thermistor_beta  bits-4     train med    7.065 best    4.291 K  extrap med   21.692 K
+[   364s] thermistor_beta  depth-1    train med    2.769 best    1.982 K  extrap med   70.930 K
+[   377s] thermistor_beta  depth-2    train med    2.283 best    0.842 K  extrap med   23.599 K
+[   404s] thermistor_beta  depth-3    train med    0.834 best    0.179 K  extrap med   21.343 K
+[   460s] thermistor_beta  depth-4    train med    1.184 best    0.416 K  extrap med   16.060 K
+[   460s] thermistor_beta  drift -0.06 median rmse   13.617 K
+[   460s] thermistor_beta  drift -0.03 median rmse    7.091 K
+[   460s] thermistor_beta  drift +0.03 median rmse    7.220 K
+[   461s] thermistor_beta  drift +0.06 median rmse   13.541 K
+readback thermistor_beta (best seed 5): 0.704456*(1.32376*x + 0.011252*exp(1.03333*x) - 0.0085202*log(1.27193 - 1.33592*x) + 2.96164)**0.212285*exp(-0.129045*x - 0.228895*(1.18832 - 0.637275*x)**1.57837*exp(-1.04899*x - 6.02937*exp(1.20402*x))) - 0.328555*log(0.138232*x + 0.0416004*(1.71547 - 1.16296*x)**0.00223541*exp(0.230446*x - 0.00164106*exp(-0.52139*x)) - 0.134194*log(0.207799*x + 0.899242*exp(1.25054*x) - 0.860961*log(0.444557*x + 0.0805972) + 3.57749) + 0.210204) + 1.46242
+[   488s] thermistor_sh    ideal      train med    0.721 best    0.234 K  extrap med   59.962 K
+[   516s] thermistor_sh    noise-1e-3 train med    0.386 best    0.216 K  extrap med   29.069 K
+[   545s] thermistor_sh    noise-3e-3 train med    0.386 best    0.149 K  extrap med   16.030 K
+[   573s] thermistor_sh    noise-1e-2 train med    0.766 best    0.142 K  extrap med   57.491 K
+[   600s] thermistor_sh    mm-1%      train med    0.396 best    0.195 K  extrap med   20.965 K  transfer med    1.290 K
+[   627s] thermistor_sh    mm-5%      train med    2.110 best    0.368 K  extrap med  121.361 K  transfer med    4.598 K
+[   655s] thermistor_sh    mm-10%     train med    1.607 best    0.409 K  extrap med   31.483 K  transfer med   10.217 K
+[   682s] thermistor_sh    sat-30     train med    4.681 best    2.845 K  extrap med  111.544 K
+[   709s] thermistor_sh    sat-10     train med    8.065 best    0.737 K  extrap med   47.108 K
+[   737s] thermistor_sh    sat-3      train med   10.165 best    0.888 K  extrap med   81.380 K
+[   764s] thermistor_sh    bits-8     train med    1.538 best    0.565 K  extrap med   15.661 K
+[   792s] thermistor_sh    bits-6     train med    2.938 best    2.090 K  extrap med   28.799 K
+[   819s] thermistor_sh    bits-4     train med    8.341 best    4.311 K  extrap med   21.450 K
+[   825s] thermistor_sh    depth-1    train med    2.764 best    2.140 K  extrap med   84.074 K
+[   838s] thermistor_sh    depth-2    train med    1.400 best    0.346 K  extrap med   22.606 K
+[   865s] thermistor_sh    depth-3    train med    0.721 best    0.234 K  extrap med   59.962 K
+[   922s] thermistor_sh    depth-4    train med    1.520 best    0.291 K  extrap med   59.429 K
+[   922s] thermistor_sh    drift -0.06 median rmse   12.570 K
+[   922s] thermistor_sh    drift -0.03 median rmse    6.420 K
+[   922s] thermistor_sh    drift +0.03 median rmse    6.598 K
+[   922s] thermistor_sh    drift +0.06 median rmse   13.264 K
+readback thermistor_sh (best seed 5): 0.706909*(1.40179*x + 0.0110596*exp(1.11766*x) - 0.00801653*log(1.27437 - 1.45593*x) + 3.08389)**0.240007*exp(-0.136897*x - 0.258443*(1.20492 - 0.636053*x)**1.56833*exp(-1.05424*x - 5.89823*exp(1.2055*x))) - 0.333717*log(0.112152*x + 0.0310717*(1.5581 - 1.30126*x)**0.00380642*exp(0.298213*x - 0.00268458*exp(-0.541999*x)) - 0.107327*log(0.0968813*x + 0.754531*exp(1.36007*x) - 0.795554*log(0.437391*x + 0.0221283) + 3.62544) + 0.185739) + 1.39708
+
+Saved results/thermistor_benchmark_full_d3.json  (922s total)

@@ -1,0 +1,14 @@
+eml   |F|=43889    ood(last)=0.760 dec=19.79 asym=7.01 dom=0.500  0.2s
+sha   |F|=400000   ood(last)=0.319 dec=189.40 asym=13.01 dom=1.000  1.4s
+eas   |F|=123298   ood(last)=0.349 dec=199.66 asym=33.34 dom=1.000  1.8s
+eat   |F|=94562    ood(last)=0.399 dec=246.48 asym=68.02 dom=1.000  2.1s
+sag   |F|=400000   ood(last)=0.230 dec=145.87 asym=22.28 dom=1.000  3.7s
+emx   |F|=13338    ood(last)=0.635 dec= 6.15 asym=13.91 dom=1.000  3.8s
+emu   |F|=1830     ood(last)=0.937 dec=165.71 asym=12.51 dom=1.000  3.8s
+tln   |F|=61856    ood(last)=0.539 dec= 2.36 asym=0.37 dom=0.500  4.0s
+lse   |F|=152      ood(last)=0.000 dec= 0.64 asym=0.00 dom=1.000  4.0s
+sna   |F|=400000   ood(last)=0.230 dec=146.24 asym=1.79 dom=1.000  5.5s
+snl   |F|=3296     ood(last)=0.781 dec= 2.14 asym=0.24 dom=0.500  5.5s
+rcp   |F|=1118     ood(last)=0.537 dec= 2.86 asym=0.16 dom=1.000  5.6s
+sqd   |F|=44963    ood(last)=0.614 dec= 6.97 asym=0.86 dom=1.000  5.7s
+wrote /Users/cteusche/data/projects/eml/code/fabric_sim/operators/op_search.json

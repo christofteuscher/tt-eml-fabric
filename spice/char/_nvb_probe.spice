@@ -1,0 +1,70 @@
+* CELL ACCURACY ON THE LAYOUT-MATCHED NETLIST (not the schematic).
+*
+* eml_accuracy.spice measures ../cell/v2d_core.inc -- the SCHEMATIC cell.
+* This runs the same method against emlcell_b_sim.inc, which is
+* lvsref/emlcell_b_flat.spice with M/Q/R primitive cards rewritten as
+* X-cards (sky130's ngspice devices are .subckt, so the LVS card forms do
+* not bind).  Nothing else is changed: that netlist LVS-MATCHES the shipped
+* emlcell_b layout, so this is the topology and device sizing on the die.
+*
+* WHY NOT MAGIC'S EXTRACTION.  emlcell_b_flat_rc.spice cannot be used: all
+* 20 of its poly-resistor cards come out with BOTH TERMINALS ON THE SAME
+* NODE (e.g. "X23 nv nv VSUB ... w=0.175 l=0.355" for a device that is
+* 0.35 x 14.72 um).  Magic's fixed-width res_high_po_0p35 recognition needs
+* a uniform-width poly strip and emlcell_b's resistors have WIDER CONTACT
+* PADS at the ends, so it falls back to a generic model and cannot pair the
+* terminals.  The layout is fine -- poly measures 0.350 at 2%, 50% and 98%
+* of the strip, DRC is 0 and LVS MATCHes -- but that netlist would simulate
+* every 100k resistor as a short.  The reference carries them correctly:
+*   RU_0  vb2 nu    VSUB  res_high_po_0p35   L=58.88u W=0.35u
+*   RSA_0 nv  vrefb VSUB  res_xhigh_po_0p35  L=17.5u  W=0.35u
+* SO THIS IS SCHEMATIC-LEVEL SIZING WITH LAYOUT-VERIFIED TOPOLOGY, NOT a
+* parasitic-annotated run.  Metal R/C are NOT included.
+*
+* Method follows eml_accuracy.spice so the numbers are comparable: VOUT
+* holds `out` at 0.9 V so i(VOUT) is the output current, u enters as a
+* current into nu, and v is held at 1 unit -- which means the ln term is
+* zero and this exercises the EXP path only, the same blind spot the
+* schematic bench has.
+*
+* Run: cd char && ngspice -b eml_layout_accuracy.spice
+.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include emlcell_b_sim.inc
+
+.param iunit=0.5u
+
+VDD  vdd   0 3.3
+VRB  vrefb 0 1.2
+VE   ve    0 0.55
+VOUT out   0 0.9
+
+* HARNESS: FEWER EXTERNAL SOURCES THAN THE SCHEMATIC BENCH, NOT MORE.
+* cell/v2d_core.inc drives IR1 into nb0, IOFF2 into nsv and IOFF3 into out
+* from IDEAL current sources.  Copying that here was wrong: the LAYOUT cell
+* generates those legs INTERNALLY off pbias -- gen_topnets.py notes
+* "emlcell_b carries its OWN pedestal on nv (XLPA W=8 L=8)".  Injecting them
+* a second time DOUBLED the output (io(0) 1.084 -> 2.125) while the
+* schematic reference gives 1.048.  A second tell: v2d_core also drives
+* IVR into the ln reference leg nvb, and nvb is not a pin even in the
+* 12-port reference -- because on silicon it is generated inside.
+* So the external drive is: supplies, the two references, u and v.
+*
+* pbias mirror geometry must match the cell's own load (XLR1 L=8 W=4);
+* at W=8 L=2 the mirrored current is 8x off and the output collapses.
+IPB  pbias 0 {iunit}
+XPB  pbias pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=4
+
+* v = 1 unit (ln term zero); u swept by the control block
+IVIN 0 nv {iunit}
+IUIN 0 nu 0
+
+XDUT nu nv out vdd vrefb ve pbias 0 emlcell_b
+
+.control
+set noaskquit
+alter @IUIN[dc] = 0
+alter @IVIN[dc] = 0.5u
+op
+print v(xdut.nvb) v(nv) v(xdut.ob) v(xdut.oa) v(xdut.nsv)
+.endc
+.end

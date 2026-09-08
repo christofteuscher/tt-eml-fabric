@@ -1,0 +1,273 @@
+{
+  "seeds": 3,
+  "iters": 4000,
+  "pdk": {
+    "mismatch_gain_std": 0.03,
+    "mismatch_offset_std": 0.005,
+    "noise_std": 0.003,
+    "sat": 30.0,
+    "weight_bits": 8
+  },
+  "rows": [
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 3,
+      "seed": 0,
+      "train_rmse": 5.337292077577853,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 3,
+      "seed": 1,
+      "train_rmse": 7.0903990446612415,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 3,
+      "seed": 2,
+      "train_rmse": 1.0533667747892508,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 4,
+      "seed": 0,
+      "train_rmse": 6.879537904529574,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 4,
+      "seed": 1,
+      "train_rmse": 2.9640369075100046,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 4,
+      "seed": 2,
+      "train_rmse": 5.452492965520076,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 6,
+      "seed": 0,
+      "train_rmse": 4.111534579040664,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 6,
+      "seed": 1,
+      "train_rmse": 2.7779092718114127,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 6,
+      "seed": 2,
+      "train_rmse": 1.7750462758385197,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 8,
+      "seed": 0,
+      "train_rmse": 6.1944199194469745,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 8,
+      "seed": 1,
+      "train_rmse": 6.61681403920581,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 8,
+      "seed": 2,
+      "train_rmse": 6.236708678377745,
+      "unit": "K"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 3,
+      "seed": 0,
+      "train_rmse": 0.3478668015945588,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 3,
+      "seed": 1,
+      "train_rmse": 0.5360560831931114,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 3,
+      "seed": 2,
+      "train_rmse": 0.3471399952216624,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 4,
+      "seed": 0,
+      "train_rmse": 0.3721318807559401,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 4,
+      "seed": 1,
+      "train_rmse": 0.36566646076744663,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 4,
+      "seed": 2,
+      "train_rmse": 0.2941806390064239,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 6,
+      "seed": 0,
+      "train_rmse": 0.11325942676847076,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 6,
+      "seed": 1,
+      "train_rmse": 0.6355534592887194,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 6,
+      "seed": 2,
+      "train_rmse": 0.35363609581418887,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 8,
+      "seed": 0,
+      "train_rmse": 0.41272837215837904,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 8,
+      "seed": 1,
+      "train_rmse": 0.4512741552267729,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "init": "standard",
+      "cfg": "pdk",
+      "depth": 8,
+      "seed": 2,
+      "train_rmse": 0.39528561677266316,
+      "unit": "au"
+    }
+  ],
+  "legacy": [
+    {
+      "target": "thermistor_sh",
+      "depth": 3,
+      "seed": 0,
+      "train_rmse": 2.7476888113378486,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "depth": 3,
+      "seed": 1,
+      "train_rmse": 15.355828988473675,
+      "unit": "K"
+    },
+    {
+      "target": "thermistor_sh",
+      "depth": 3,
+      "seed": 2,
+      "train_rmse": 8.103423350276577,
+      "unit": "K"
+    },
+    {
+      "target": "osc_k3",
+      "depth": 3,
+      "seed": 0,
+      "train_rmse": 0.422390759173909,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "depth": 3,
+      "seed": 1,
+      "train_rmse": 0.4097065034258645,
+      "unit": "au"
+    },
+    {
+      "target": "osc_k3",
+      "depth": 3,
+      "seed": 2,
+      "train_rmse": 0.2975993377812864,
+      "unit": "au"
+    }
+  ]
+}

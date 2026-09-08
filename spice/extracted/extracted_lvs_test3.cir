@@ -1,0 +1,6 @@
+* Extracted by KLayout with SKY130 LVS runset on : 24/07/2026 12:52
+
+.SUBCKT lvs_test3 B C E VSS
+Q$1 C B E VSS sky130_fd_pr__npn_05v5_W1p00L1p00 AE=1 PE=4 AB=11.6964 PB=13.68
++ AC=11.6964 PC=13.68 NE=1
+.ENDS lvs_test3
