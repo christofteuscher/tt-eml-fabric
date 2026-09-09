@@ -1,7 +1,7 @@
 * EML cell v2a: log amps now REAL (5T OTA + transdiode at VREFB=1.2V
 * single-supply); exp path and output copies still behavioral glue.
 * Conformity target: match v1b (exp -0.2..-4%, ln <=0.11 units).
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .param iunit=0.5u
 .param nvt=26.9m

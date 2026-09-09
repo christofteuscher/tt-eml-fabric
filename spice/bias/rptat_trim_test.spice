@@ -1,7 +1,7 @@
 * Does the trim actually cover the process spread, and is it monotonic?
 * Sweeps all 8 codes in the real PTAT loop and reports the resulting unit
 * current -- the number the rest of the chip is referenced to.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include rptat_trim.inc
 .param a=0 b=0 c=0
 VDD vdd 0 3.3

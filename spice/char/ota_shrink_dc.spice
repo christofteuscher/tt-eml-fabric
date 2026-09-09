@@ -10,7 +10,7 @@
 * Swept nominally (tt) over the range the chain actually uses: the cell
 * v-input sits at 1.17-1.25 V and the log-amp node at 0.78 V
 * (toplevel/chain_full.csv), so 0.6-2.0 V covers it with margin.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .param wt=32 lt=8
 

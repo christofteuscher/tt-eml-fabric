@@ -1,6 +1,6 @@
 * DECISIVE: base and collector SEPARATED (as in the cell), collector
 * currents forced in exact ratio, bases driven by IDEAL servos.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 VE   ve   0 0.55
 VREF vref 0 1.20
 VDDA vdda 0 3.3

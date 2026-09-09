@@ -17,12 +17,14 @@ import subprocess
 import math
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CHAR = "/Users/cteusche/data/projects/eml/code/silicon/char"
+CHAR = os.environ.get("EML_CHAR_DIR", os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    "silicon", "char"))
 SCR = "/private/tmp/claude-501/-Users-cteusche-data-projects-eml-code/ba189052-393c-4db9-9e17-5af5ba61feed/scratchpad/bias"
 os.makedirs(SCR, exist_ok=True)
 
 DECK = r"""* settling vs bias current -- die context, tt/27C
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include {char}/emlcell_b_sim12.inc
 .param iunit={iu}
 VDD  vdd   0 3.3

@@ -57,7 +57,7 @@
 * schematic bench has.
 *
 * Run: cd char && ngspice -b eml_layout_accuracy.spice
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include emlcell_b_sim12_seg.inc
 
 .param iunit=0.5u

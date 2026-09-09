@@ -34,7 +34,7 @@
 * Full rail both ways at every corner, so the 12:1 ratio is enough.
 *
 * Run: ngspice -b char/lvshift.spice
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .param vddh_v=3.3 vddl_v=1.8
 

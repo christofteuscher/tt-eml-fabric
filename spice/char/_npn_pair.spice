@@ -1,6 +1,6 @@
 * Does the sky130 NPN actually deliver VT*ln(ratio)?
 * Two transdiodes sharing an emitter node, forced collector currents.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 VE ve 0 0.55
 VCA ca 0 1.6
 VCB cb 0 1.6

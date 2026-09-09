@@ -1,6 +1,6 @@
 * EML Stage-B: NPN temperature sweep -20..85C
 * Gummel sweep at each temp -> dVBE/dT at fixed IC, slope(T)
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 XQ1 c b 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00
 VC  c 0 1.5

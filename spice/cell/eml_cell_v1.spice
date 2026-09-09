@@ -6,7 +6,7 @@
 * Value convention: 1 EML unit = I_UNIT = 1 uA. Input currents iu, iv
 * in units; output current in units at node "out" (held at 0 V).
 * Ideal target: I_out/I_UNIT = exp(iu) - ln(iv).
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .param iunit=1u
 .param nvt=26.9m      ; n*VT at 27C, n=1.04

@@ -4,7 +4,7 @@
 *  2. Can the W=24 L=8 pedestals shrink at constant W/L, as the OTA tail
 *     did?  Here the source faces a SWINGING node, so its ro is a
 *     linearity term -- the OTA-tail argument does NOT transfer for free.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include chainglue.inc
 
 .param wp=24 lp=8

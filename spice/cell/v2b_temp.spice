@@ -1,6 +1,6 @@
 * Whole-cell temperature baseline (uncompensated, ideal biases fixed).
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
-.include /Users/cteusche/data/projects/eml/code/silicon/cell/v2b_core.inc
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include v2b_core.inc
 .control
 set filetype=ascii
 echo > v2b_temp.txt

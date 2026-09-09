@@ -15,21 +15,25 @@ or a quantity extracted from that layout.
 | `toplevel/` | the assembled two-cell chain |
 | `extracted/` | post-layout netlists with parasitic R and coupling C, extracted in Magic after flattening. `emlcell_b_flat_rc.spice` is the single cell; `chainglue_flat_rc.spice` the two-cell assembly |
 
-## Paths
+## Running these decks
 
-The decks are committed **exactly as they were run**, so the `.lib` and
-`.include` lines still carry absolute paths from the machine that ran them.
-They are left unmodified on purpose: these are the artifacts the paper's numbers
-came from, not a cleaned-up reissue. To run them elsewhere, repath first:
+The decks need the sky130A PDK. Point `PDK_ROOT` at the directory that
+*contains* `sky130A` (a ciel or volare install puts it in `~/.ciel`, which is
+the default if the variable is unset):
 
 ```sh
-# from this directory. set PDK_ROOT to wherever your sky130A lives.
-export PDK_ROOT=${PDK_ROOT:-$HOME/.ciel}
-grep -rl '/Users/cteusche' . | while read f; do
-  sed -i '' "s|/Users/cteusche/.ciel|$PDK_ROOT|g;
-             s|/Users/cteusche/data/projects/eml/code/silicon|$(pwd)|g" "$f"
-done
+export PDK_ROOT=$HOME/.ciel
+cd char && ngspice -b eml_layout_accuracy.spice
 ```
+
+That is the whole setup. Every `.lib` line reads `$PDK_ROOT/sky130A/...`, which
+ngspice expands, and every internal `.include` is relative to the deck that
+contains it, which ngspice resolves against the deck's own directory rather than
+your working directory. Decks therefore run from anywhere and on any machine
+with a PDK.
+
+Note that ngspice expands `$PDK_ROOT` but **not** `${PDK_ROOT}` — the braced
+form silently fails to resolve. If you edit these decks, keep the bare form.
 
 Simulated with ngspice and the sky130A model library. Two schematic bases exist
 and must never be mixed within one quantity: the **segmented**-resistor netlist

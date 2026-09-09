@@ -2,7 +2,7 @@
 * 1:1 NMOS mirror; sigma(Iout/Iin) across MC samples, vs device size and
 * branch current. Sets the MDAC unit-device size for a given weight-error
 * budget (fabric_sim run 3 assumed 2% gain sigma).
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
 
 .param wval=1 lval=2 iin=1u
 

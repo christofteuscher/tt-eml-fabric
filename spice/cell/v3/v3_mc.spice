@@ -1,5 +1,5 @@
 * v3 whole-cell Monte Carlo (tt_mm), 60 samples x 3 op points.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
 VDD vdd 0 3.3
 VRB vrefb 0 1.2
 VE  ve 0 0.55
@@ -7,7 +7,7 @@ IUIN 0 nu 0
 IVIN 0 nv 0.5u
 XCELL nu nv out vdd vrefb ve emlcell
 VOUT out 0 0.9
-.include /Users/cteusche/data/projects/eml/code/silicon/cell/v3/eml_cell_v3.inc
+.include eml_cell_v3.inc
 .control
 set filetype=ascii
 echo > v3_mc.txt

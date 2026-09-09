@@ -25,7 +25,7 @@
 * already makes, on the correct topology.  Post-layout is a separate run.
 *
 * Run: ngspice -b char/mdac_d2_codes.spice
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
 .include ../mdac/mdac_weight_d2.inc
 
 .param iref=0.5u

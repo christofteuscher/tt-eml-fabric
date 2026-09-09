@@ -14,7 +14,7 @@
 * Baseline result (tt, 27 C, v=1): +1.55% .. +5.07%, rms 3.85%.
 *
 * Run: cd char && ngspice -b eml_accuracy.spice
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include _v2d_gm.inc
 .control
 set noaskquit

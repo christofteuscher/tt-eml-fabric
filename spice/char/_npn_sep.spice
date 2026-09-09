@@ -1,7 +1,7 @@
 * SAME pair, but base and collector SEPARATED as they are in the cell:
 * collector current forced, base driven by a source.  The standalone test
 * that gave 1.043x had them tied (diode), so the forced current was Ic+Ib.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 VE ve 0 0.55
 VBA ba 0 1.25
 VBB bb 0 1.25

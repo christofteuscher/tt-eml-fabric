@@ -10,7 +10,7 @@
 *   XMS W48 L8 (baseline)   W24 L4   W12 L2
 * Tail shrunk to W8 L2 throughout -- ota_shrink_mc/dc showed that costs
 * nothing (offset 0.97x, follower error identical to 3 digits).
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .param ws=48 ls=8
 

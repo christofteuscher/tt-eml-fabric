@@ -2,7 +2,7 @@
 * do the other seven stay biased instead of floating?
 * Channels are driven by cascoded PMOS copy legs (what a real mirror copy
 * looks like) so compliance and Ron are exercised, not idealised.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include obsmux.inc
 
 VDD vdd 0 3.3

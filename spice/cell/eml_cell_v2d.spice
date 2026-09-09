@@ -9,7 +9,7 @@
 *  - exp output copy: PMOS mirror from Q2 collector.
 * Ideal elements remaining: bias currents only (tails, IR1, IVR, offsets)
 * = the W2 bias-tree block.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .param iunit=0.5u
 .param nvt=26.9m

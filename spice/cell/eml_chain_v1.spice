@@ -8,7 +8,7 @@
 *   cell C: exp in = out_B, ln in = 1            -> out_C = T/s
 *
 * Sign convention (established empirically on cell v1): value = -i(VOUT)/IUNIT.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .param iunit=0.5u
 .param nvt=26.9m

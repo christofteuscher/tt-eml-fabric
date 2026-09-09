@@ -17,7 +17,7 @@
 *
 * Candidates (constant W/L = 4, so the bias current is unchanged):
 *   ci=0  tail W32 L8  (baseline)   ci=1  W16 L4      ci=2  W8 L2
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
 
 .param wt=32 lt=8 vcm=1.2
 

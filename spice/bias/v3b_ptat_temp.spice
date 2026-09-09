@@ -6,7 +6,7 @@
 *        -> W4 PMOS leg into NMOS mirror sinking from nu, switched.
 *   veff=6: +3 units into nv on top of pedestal2+1: W6 leg, switched.
 * Monitor: W2 leg (1 unit) into 0V source = iu(T) reference.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 VDD vdd 0 3.3
 XBIAS vdd pbias nd12 nd055 ptatbias
@@ -38,9 +38,9 @@ VCTLV ctlv 0 0
 XLV1 nv pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
 
 .model tbsw SW(Ron=100 Roff=1G Vt=1.65)
-.include /Users/cteusche/data/projects/eml/code/silicon/cell/v3/eml_cell_v3.inc
-.include /Users/cteusche/data/projects/eml/code/silicon/cell/v3/eml_cell_v3b.inc
-.include /Users/cteusche/data/projects/eml/code/silicon/bias/ptat_bias.inc
+.include ../cell/v3/eml_cell_v3.inc
+.include ../cell/v3/eml_cell_v3b.inc
+.include ptat_bias.inc
 
 .control
 set filetype=ascii

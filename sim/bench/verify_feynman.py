@@ -1,3 +1,4 @@
+import os
 """
 Independent verification of the transcribed AI Feynman equation set.
 
@@ -20,7 +21,7 @@ Plus a sampler smoke test: finite, non-constant y over the declared ranges.
 
 Run:
   arch -arm64 /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12 \
-      /Users/cteusche/data/projects/eml/code/fabric_sim/bench/verify_feynman.py
+      fabric_sim/bench/verify_feynman.py
 """
 from __future__ import annotations
 
@@ -30,7 +31,7 @@ import sys
 import numpy as np
 import sympy as sp
 
-sys.path.insert(0, "/Users/cteusche/data/projects/eml/code/fabric_sim/bench")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import feynman as F  # noqa: E402
 
 BASE = {s: sp.Symbol(s, positive=True) for s in ("M", "L", "T", "I", "Th", "N")}

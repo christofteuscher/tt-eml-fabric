@@ -1,5 +1,5 @@
 * ln-path slope of the LAYOUT ota1vb (not the ideal-buffer schematic).
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include _v2d_lay.inc
 .control
 set noaskquit

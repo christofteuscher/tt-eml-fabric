@@ -30,8 +30,8 @@ Computing, ICRC 2026 Collection).
 
 **Nothing here was fabricated.** Every quantity in the paper is a simulator
 output on a netlist that LVS-matches the submitted layout, or is extracted from
-that layout. The decks in `spice/` are committed exactly as they were run and
-carry absolute paths; see [`spice/README.md`](spice/README.md) to repath them.
+that layout. To run the decks, set `PDK_ROOT` to the directory containing
+`sky130A` and invoke ngspice; see [`spice/README.md`](spice/README.md).
 
 ## At a glance
 

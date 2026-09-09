@@ -4,7 +4,7 @@
 * contributes.  The step must be fine enough that the residual error is
 * below what the two-point readout calibration cannot absorb.
 * This sweeps R_ptat and reports the resulting core current.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .param rp=30k
 .subckt core vdd VSUB pbias rp=30k
 XMPP1 nb  pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8

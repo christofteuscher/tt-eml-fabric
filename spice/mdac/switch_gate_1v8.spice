@@ -12,7 +12,7 @@
 *
 * Replicates one digit leg exactly as in mdac_weight.inc: cascoded
 * reference diode -> gate line -> source device -> cascode -> switch.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 VDD vdd 0 3.3
 VCASC vcasc 0 0.85

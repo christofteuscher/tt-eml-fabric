@@ -1,7 +1,7 @@
 * POST-LAYOUT MDAC: the extracted netlist WITH parasitics (965 R, 180 C).
 * Magic emits `.subckt mdac_alpha` with NO port list, so the wrapper is
 * stripped and the named nets are driven directly at top level.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include _mdac_pl.inc
 .param iref=0.5u
 VDD   vdd   0 3.3

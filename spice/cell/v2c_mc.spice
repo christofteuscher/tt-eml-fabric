@@ -1,7 +1,7 @@
 * Whole-cell Monte Carlo: v2b with mismatch models (tt_mm).
 * 3 op points per sample: (u=0,v=1) offset, (u=2,v=1) exp, (u=0,v=5) ln.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
-.include /Users/cteusche/data/projects/eml/code/silicon/cell/v2c_core.inc
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+.include v2c_core.inc
 .control
 set filetype=ascii
 echo > v2c_mc.txt

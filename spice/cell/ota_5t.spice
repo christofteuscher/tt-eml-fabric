@@ -2,7 +2,7 @@
 * PMOS input (CM ~1.2V), NMOS mirror load. Ideal 4uA tail for now
 * (bias tree is a separate low-risk block).
 * Characterized as unity buffer: out tied to inn, sweep inp.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .subckt ota5t inp inn out vdd
 ITAIL vdd ntail 4u

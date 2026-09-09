@@ -1,5 +1,5 @@
 * Open-loop DC gain of ota5tv, unloaded vs loaded with a transdiode base.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include ../cell/v2d_core.inc
 VDD vdd 0 3.3
 VE  ve  0 0.55

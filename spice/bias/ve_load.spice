@@ -10,7 +10,7 @@
 * evidence rather than on the assumption that one buffer fits both.
 *
 * Run: ngspice -b ve_load.spice
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 VDD vdd 0 3.3
 
@@ -33,7 +33,7 @@ IVB 0 nvb 0.5u
 VOUTA outa 0 0.9
 VOUTB outb 0 0.9
 
-.include /Users/cteusche/data/projects/eml/code/silicon/cell/v3/eml_cell_v3b.inc
+.include ../cell/v3/eml_cell_v3b.inc
 
 .control
 set filetype=ascii

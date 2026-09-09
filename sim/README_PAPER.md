@@ -28,4 +28,8 @@ count. The old value is retained as `E_CORE_7_ONESETTLE`. The paper's headline
 per-cell overhead is unaffected, both of its terms being one device settling
 once.
 
+Set `PDK_ROOT` before anything that shells out to ngspice; `limits/bias_sweep.py`
+finds the characterisation decks relative to the repository, or from
+`EML_CHAR_DIR` if you keep them elsewhere.
+
 numpy and torch here need an arm64 interpreter on Apple silicon.

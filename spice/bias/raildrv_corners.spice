@@ -18,7 +18,7 @@
 *   over -- under all device ratings, fully recovered before use, and the
 *   usage model is power-on -> program -> settle -> measure.  No latch, no
 *   stuck rail, no startup failure at any corner.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice @CORNER@
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice @CORNER@
 .temp @TEMP@
 
 * vdd RAMPS 0 -> 3.3 over 50 us: a power-up, not an op point.
@@ -40,9 +40,9 @@ VOUTB outb 0 0.9
 * the 10 uA load step, AFTER settling, to get per-corner step response too
 ISTEP ve 0 PULSE(0 10u 250u 20n 20n 60u 500u)
 
-.include /Users/cteusche/data/projects/eml/code/silicon/bias/ptatcore.inc
-.include /Users/cteusche/data/projects/eml/code/silicon/bias/ptat_bias.inc
-.include /Users/cteusche/data/projects/eml/code/silicon/cell/v3/eml_cell_v3b.inc
+.include ptatcore.inc
+.include ptat_bias.inc
+.include ../cell/v3/eml_cell_v3b.inc
 
 .control
 set filetype=ascii

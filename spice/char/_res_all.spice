@@ -1,5 +1,5 @@
 * All four emlcell_b poly resistors, 0.5 uA forced, DC.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 VB1 b1 0 0.7
 I1 b1 a1 0.5u
 XRU a1 b1 0 sky130_fd_pr__res_high_po_0p35  L=58.88 W=0.35

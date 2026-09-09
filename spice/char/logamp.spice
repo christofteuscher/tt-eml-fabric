@@ -3,7 +3,7 @@
 * opamp output. Vout = -VBE = -(nVT)ln(Iin/Is).
 * Opamp is BEHAVIORAL (gain 2e5, +-1.6V rails) -- this deck tests the
 * transdiode's ln conformity, not opamp design.
-.lib /Users/cteusche/.ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 * log-decade sweep: Iin = 10^V(px) amperes
 VPX  px  0  0
