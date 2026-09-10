@@ -1,0 +1,55 @@
+=== baselines (NRMSE; 1.0 = predicts nothing) ===
+I.12.1    nv=2 OLS train 0.1256 test 0.1240
+I.6.2     nv=2 OLS train 0.1673 test 0.1699
+I.15.10   nv=3 OLS train 0.0758 test 0.0732
+I.44.4    nv=5 OLS train 0.5913 test 0.5601
+II.11.20  nv=5 OLS train 0.5844 test 0.3390
+I.11.19   nv=6 OLS train 0.0783 test 0.0817
+I.9.18    nv=9 OLS train 0.0947 test 0.1275
+
+=== A: assignment mode, ideal hardware ===
+target     nv hw           mode     train med train best   test med
+I.12.1      2 ideal        dense       0.0415     0.0413     0.0464 [   15s]
+I.12.1      2 ideal        soft        0.1248     0.1049     0.1259 [   32s]
+I.12.1      2 ideal        search      0.0223     0.0179     0.0246 [   63s]
+I.6.2       2 ideal        dense       0.0777     0.0705     0.0714 [   78s]
+I.6.2       2 ideal        soft        0.0969     0.0458     0.0965 [   95s]
+I.6.2       2 ideal        search      0.0404     0.0399     0.0383 [  130s]
+I.15.10     3 ideal        dense       0.0235     0.0195     0.0229 [  144s]
+I.15.10     3 ideal        soft        0.0297     0.0219     0.0309 [  161s]
+I.15.10     3 ideal        search      0.0194     0.0127     0.0186 [  200s]
+I.44.4      5 ideal        dense       0.3168     0.2662     0.3162 [  218s]
+I.44.4      5 ideal        soft        0.4689     0.3680     0.4642 [  240s]
+I.44.4      5 ideal        search      0.1624     0.0416     0.1644 [  279s]
+II.11.20    5 ideal        dense       0.2037     0.0816     0.1987 [  297s]
+II.11.20    5 ideal        soft        0.1767     0.1274     0.2559 [  314s]
+II.11.20    5 ideal        search      0.0717     0.0611     0.0948 [  346s]
+I.11.19     6 ideal        dense       0.0556     0.0406     0.0614 [  362s]
+I.11.19     6 ideal        soft        0.0726     0.0432     0.0793 [  380s]
+I.11.19     6 ideal        search      0.0143     0.0115     0.0213 [  414s]
+I.9.18      9 ideal        dense       0.1014     0.0994     0.1356 [  430s]
+I.9.18      9 ideal        soft        0.0986     0.0977     0.1346 [  448s]
+I.9.18      9 ideal        search      0.0590     0.0371     0.0738 [  483s]
+I.12.1      2 silicon+pdk  dense       0.0505     0.0421     0.0570 [  507s]
+I.12.1      2 silicon+pdk  soft        0.0526     0.0519     0.0599 [  535s]
+I.12.1      2 silicon+pdk  search      0.0201     0.0176     0.0249 [  588s]
+I.6.2       2 silicon+pdk  dense       0.0644     0.0589     0.0631 [  612s]
+I.6.2       2 silicon+pdk  soft        0.1417     0.0973     0.1486 [  641s]
+I.6.2       2 silicon+pdk  search      0.0572     0.0420     0.0546 [  696s]
+I.15.10     3 silicon+pdk  dense       0.1105     0.0550     0.1024 [  721s]
+I.15.10     3 silicon+pdk  soft        0.0763     0.0745     0.0743 [  749s]
+I.15.10     3 silicon+pdk  search      0.0393     0.0227     0.0383 [  803s]
+I.44.4      5 silicon+pdk  dense       0.4380     0.3559     0.3993 [  828s]
+I.44.4      5 silicon+pdk  soft        0.3251     0.1108     0.3105 [  855s]
+I.44.4      5 silicon+pdk  search      0.2961     0.2621     0.2940 [  908s]
+II.11.20    5 silicon+pdk  dense       0.4725     0.4522     0.3280 [  932s]
+II.11.20    5 silicon+pdk  soft        0.2034     0.1280     0.2065 [  958s]
+II.11.20    5 silicon+pdk  search      0.1826     0.1081     0.2360 [ 1009s]
+I.11.19     6 silicon+pdk  dense       0.0559     0.0363     0.0555 [ 1032s]
+I.11.19     6 silicon+pdk  soft        0.0708     0.0538     0.0720 [ 1057s]
+I.11.19     6 silicon+pdk  search      0.0494     0.0322     0.0499 [ 1106s]
+I.9.18      9 silicon+pdk  dense       0.1306     0.1303     0.1575 [ 1129s]
+I.9.18      9 silicon+pdk  soft        0.1055     0.0931     0.1366 [ 1155s]
+I.9.18      9 silicon+pdk  search      0.0954     0.0935     0.1272 [ 1204s]
+
+Saved results/multivar.json (1204s)

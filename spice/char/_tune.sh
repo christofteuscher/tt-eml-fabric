@@ -1,0 +1,19 @@
+for IB in 0.55u 0.6u 0.65u 0.7u 0.8u; do
+python3 - "$IB" <<'PY'
+import sys
+s=open('_v2d_buf.inc').read().replace('IBUF out vss 2u', 'IBUF out vss '+sys.argv[1])
+open('_v2d_t.inc','w').write(s)
+PY
+sed 's|\.\./cell/v2d_core\.inc|_v2d_t.inc|' _sch_ln.spice > _sch_t.spice
+R=$(ngspice -b _sch_t.spice 2>&1 | grep -E "^PT |^io = " | python3 -c "
+import sys,math
+d=[];v=None
+for l in sys.stdin:
+    if l.startswith('PT '): v=float(l.split()[1])
+    elif '=' in l and v is not None: d.append((v,float(l.split('=')[1]))); v=None
+if len(d)<4: print('no conv'); raise SystemExit
+n=len(d);sx=sum(math.log(a) for a,_ in d);sy=sum(b for _,b in d)
+sxy=sum(math.log(a)*b for a,b in d);sxx=sum(math.log(a)**2 for a,_ in d)
+print(f'{(n*sxy-sx*sy)/(n*sxx-sx*sx):+.4f}')")
+echo "  IBUF=$IB -> ln coefficient $R"
+done

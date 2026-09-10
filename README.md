@@ -15,6 +15,24 @@ probing anything**: two pins do not do what their names suggest at first
 glance, and one measured limitation affects how results should be
 interpreted.
 
+## Paper, simulation code and SPICE decks
+
+This repository also holds the software and circuit-level artifacts behind
+*What is a universality theorem worth once someone has to build it? The
+composability cost of an EML analog fabric* (submitted to npj Unconventional
+Computing, ICRC 2026 Collection).
+
+| directory | holds |
+|---|---|
+| [`sim/`](sim/README_PAPER.md) | the differentiable network model, the benchmark harness, the energy analysis and the derived datasets |
+| [`spice/`](spice/README.md) | the SPICE decks, the cell and chain netlists, and the post-layout extractions with parasitic R and coupling C |
+| `gds/`, `lef/`, `src/`, `openlane/` | the layout, the generators and the implementation flow, as submitted to the shuttle |
+
+**Nothing here was fabricated.** Every quantity in the paper is a simulator
+output on a netlist that LVS-matches the submitted layout, or is extracted from
+that layout. To run the decks, set `PDK_ROOT` to the directory containing
+`sky130A` and invoke ngspice; see [`spice/README.md`](spice/README.md).
+
 ## At a glance
 
 | | |

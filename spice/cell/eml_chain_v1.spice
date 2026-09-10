@@ -1,0 +1,78 @@
+* STAGE C: 3-cell beta-model thermistor chain -- the composition test.
+* T = s * eml-chain(x), s=300; cells = v1 topology (real NPNs, behavioral
+* linear glue, ideal MDAC weights as F/I sources).
+*
+*   cell A: exp off (u=-6), ln in = x            -> out_A = -ln(x)
+*   cell B: exp off, ln in = a + gB*out_A        -> out_B = -ln(s*(1/T25+lnx/B))
+*           a = s/T25 = 1.00642,  gB = -s/Bth = -0.087336  (s=300, Bth=3435)
+*   cell C: exp in = out_B, ln in = 1            -> out_C = T/s
+*
+* Sign convention (established empirically on cell v1): value = -i(VOUT)/IUNIT.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param iunit=0.5u
+.param nvt=26.9m
+
+.subckt emlcell nu nva out vdd
+* nu: exp-path summing node (value u = I(nu)/IUNIT); nva: ln-path node (v > 0)
+IR1 vdd nb0 {iunit}
+* ----------------------------------------------------------------------
+* mult=8 ON THE X-CARD(S) BELOW IS INERT -- IT IS NOT A DEVICE MULTIPLIER.
+* ngspice SILENTLY ignores `mult=` on a subcircuit call; only `m=` works.
+* Measured 2026-08-16, one sky130_fd_pr__npn_05v5_W1p00L1p00 at Vc=1.0 /
+* Vb=0.75, .op, collector current vs the un-annotated card:
+*     mult=8 -> ratio 1.000000   (ignored, and with NO warning printed)
+*     m=8    -> ratio 8.000000   (honoured)
+* So every number ever produced in this tree was computed with 1x
+* transdiodes, not 8x.
+*
+* DO NOT "FIX" THIS TO m=8.  The LAYOUT is 1x per transdiode too:
+* char/emlcell_b_sim12.inc -- the netlist that LVS-matches the shipped
+* layout/emlcell2.gds -- carries these same NPNs with no multiplier at
+* all.  Simulation and silicon therefore AGREE today, and there is no bug
+* to fix.  Changing mult= to m= here would CREATE an 8x sim/silicon
+* mismatch that does not currently exist.  The annotation records an
+* INTENT that reached neither the netlist nor the mask; if 8x is wanted,
+* change the LAYOUT first and the netlist with it.
+* ----------------------------------------------------------------------
+XQR nb0 nb0 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+RU  nu 0 {nvt/iunit}
+BU  nb2 0 V = {V(nb0) + V(nu)}
+XQ2 nc2 nb2 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+VC2 vdd nc2 0
+XQA nva 0 oa 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+EOA oa 0 VALUE = {max(min(-2e5*V(nva), 1.6), -1.6)}
+IVR 0 nvb {iunit}
+XQB nvb 0 ob 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+EOB ob 0 VALUE = {max(min(-2e5*V(nvb), 1.6), -1.6)}
+FEXP out 0 VC2 1.0
+GLN  out 0 VALUE = {iunit*(V(oa)-V(ob))/nvt}
+VOUT out 0 0
+.ends
+
+VDD vdd 0 3.3
+
+* ---- cell A ----
+IX   0 a_nva 0.5u          ; swept: x*IUNIT
+IUA  0 a_nu  {-6*iunit}    ; exp path off
+XA a_nu a_nva a_out vdd emlcell
+
+* ---- cell B ----  v_B = a + gB*out_A ; out_A = -i(v.xa.vout)/iunit
+IALB 0 b_nva {1.00642*iunit}
+FGB  0 b_nva v.xa.vout 0.087336     ; injects -gB*out_A... sign checked below
+IUB  0 b_nu  {-6*iunit}
+XB b_nu b_nva b_out vdd emlcell
+
+* ---- cell C ----  u_C = out_B
+FGC  c_nu 0 v.xb.vout 1.0
+IALC 0 c_nva {1.0*iunit}
+XC c_nu c_nva c_out vdd emlcell
+
+.control
+set filetype=ascii
+* x = R/R25 from 0.145 (85C) to 24.8 (-40C); sweep IX = x*IUNIT
+dc IX 0.0725u 12.4u 0.02u
+wrdata chain_out.csv i(v.xc.vout) i(v.xa.vout) i(v.xb.vout)
+echo CHAIN_DONE
+.endc
+.end

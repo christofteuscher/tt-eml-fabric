@@ -1,0 +1,60 @@
+* EML current-mode cell v1 (topology per ../cell_topology.md)
+* Real sky130 NPNs for exp and ln; BEHAVIORAL linear glue (I->V sense,
+* floating level shift, opamps, current copies) -- v1 tests the
+* translinear core and unit conventions, not the CMOS around it.
+*
+* Value convention: 1 EML unit = I_UNIT = 1 uA. Input currents iu, iv
+* in units; output current in units at node "out" (held at 0 V).
+* Ideal target: I_out/I_UNIT = exp(iu) - ln(iv).
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param iunit=1u
+.param nvt=26.9m      ; n*VT at 27C, n=1.04
+.param usig=0.0       ; exp-path input, units
+.param vsig=1.0       ; ln-path input, units (must be > 0)
+
+VDD vdd 0 3.3
+
+* ---- exp path: reference transdiode at I_UNIT + level-shifted pair ----
+IR1 vdd nb0 {iunit}
+XQR nb0 nb0 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00     ; sets Vref = VBE(I_UNIT)
+* input current -> sense voltage u*nVT (behavioral I->V, R_e = nVT/I_UNIT)
+IU  0 nu {usig*iunit}
+RU  nu 0 {nvt/iunit}
+* floating level shift: Vb2 = Vref + u*nVT  (real cell: buffered resistor)
+EU  nb2 nb0 nu 0 1.0
+XQ2 nc2 nb2 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+VC2 vdd nc2 0                                          ; IC2 = I_UNIT*e^u
+
+* ---- ln path: differential transdiode log amps (signal vs reference) ----
+IV  0 nva {vsig*iunit}
+XQA nva 0 oa 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+EOA oa 0 VALUE = {max(min(-2e5*V(nva), 1.6), -1.6)}
+IVR 0 nvb {iunit}
+XQB nvb 0 ob 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+EOB ob 0 VALUE = {max(min(-2e5*V(nvb), 1.6), -1.6)}
+* oa - ob = -nVT*ln(v)  ->  I_ln = I_UNIT*ln(v)
+
+* ---- output node: KCL sum of exp copy minus ln term (ideal copies) ----
+FEXP out 0 VC2 1.0                                     ; +I_UNIT*e^u
+GLN  out 0 VALUE = {iunit*(V(oa)-V(ob))/nvt}           ; -I_UNIT*ln(v)
+VOUT out 0 0                                           ; virtual gnd, meas
+
+.control
+set filetype=ascii
+* sweep u at several fixed v
+foreach v 0.2 1.0 5.0
+  alterparam vsig = $v
+  reset
+  dc IU -3u 3.4u 0.05u
+  wrdata cell_u_v{$v}.csv i(VOUT)
+  destroy all
+end
+* sweep v at u = 0
+alterparam vsig = 1.0
+reset
+dc IV 0.05u 30u 0.1u
+wrdata cell_vsweep.csv i(VOUT)
+echo CELL_DONE
+.endc
+.end

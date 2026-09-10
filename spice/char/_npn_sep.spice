@@ -1,0 +1,26 @@
+* SAME pair, but base and collector SEPARATED as they are in the cell:
+* collector current forced, base driven by a source.  The standalone test
+* that gave 1.043x had them tied (diode), so the forced current was Ic+Ib.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+VE ve 0 0.55
+VBA ba 0 1.25
+VBB bb 0 1.25
+VCA ca 0 1.6
+VCB cb 0 1.6
+FA 0 0 VCA 0
+IA ca a 0.5u
+IB cb b 0.5u
+XQA a ba ve 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+XQB b bb ve 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+.control
+set noaskquit
+* servo the bases by hand: find VBA that makes the collector node sit at 1.6
+foreach r 1 2 4 8
+  alter @IA[dc] = $r*0.5u
+  op
+  echo RATIO $r
+  print i(VBA)
+  print i(VBB)
+end
+.endc
+.end

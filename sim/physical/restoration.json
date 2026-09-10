@@ -1,0 +1,255 @@
+{
+ "langevin": {
+  "flat / Goldstone": {
+   "host": "open JJ phase, laser phase, easy-plane spin, nematic director, CDW slide",
+   "var_end": 47.47129,
+   "slope": 0.997,
+   "verdict": "MARGINAL: free diffusion, Var ~ t, value lost",
+   "free_energy_2D": 48.0
+  },
+  "harmonic / driven RC": {
+   "host": "CMOS analog node, CSTR concentration held by a maintained inflow",
+   "var_end": 0.02026,
+   "slope": 0.007,
+   "verdict": "RESTORING but the held value is not free",
+   "free_energy_2D": 48.0
+  },
+  "washboard / fluxoid": {
+   "host": "JJ in a superconducting loop; flux quantisation",
+   "var_end": 0.02041,
+   "slope": 0.013,
+   "verdict": "RESTORING but the held value is not free",
+   "free_energy_2D": 48.0
+  },
+  "double well": {
+   "host": "memristor filament, ferroelectric domain, CMOS latch, spin",
+   "var_end": 0.00249,
+   "slope": -0.021,
+   "verdict": "RESTORING but the held value is not free",
+   "free_energy_2D": 48.0
+  },
+  "tilted washboard": {
+   "host": "pinned CDW / skyrmion under drive",
+   "var_end": 0.02131,
+   "slope": -0.008,
+   "verdict": "RESTORING but the held value is not free",
+   "free_energy_2D": 48.0
+  }
+ },
+ "drift": {
+  "washboard / fluxoid": {
+   "0.37": 0.0005,
+   "0.9": -0.0,
+   "1.6": -0.0,
+   "2.6": -0.0066
+  },
+  "double well": {
+   "0.37": 0.9961,
+   "0.9": 0.9967,
+   "1.6": 0.9958,
+   "2.6": 0.9972
+  }
+ },
+ "census": [
+  {
+   "op": "bol",
+   "blurb": "exp(u-v)                Arrhenius/detailed-balance rate ratio",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 10,
+   "continuum": false
+  },
+  {
+   "op": "dio",
+   "blurb": "v*(exp(u)-1)            Shockley diode / subthreshold MOS",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 8,
+   "continuum": false
+  },
+  {
+   "op": "nrn",
+   "blurb": "ln(u/v)                 Nernst concentration cell",
+   "stable_med": 0.0,
+   "stable_max": 1,
+   "roots_tot": 2,
+   "continuum": false
+  },
+  {
+   "op": "nsp",
+   "blurb": "sp(u)-sp(v)             two-state population log-ratio (reg. Nernst)",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 5,
+   "continuum": false
+  },
+  {
+   "op": "jjs",
+   "blurb": "sin(u)+sin(v)           two junctions summing at a node",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 9,
+   "continuum": false
+  },
+  {
+   "op": "squ",
+   "blurb": "sin(u)*cos(v)           dc SQUID, flux-modulated Ic",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "rsj",
+   "blurb": "sin(u)+v                JJ shunted by a geometric inductance",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 9,
+   "continuum": false
+  },
+  {
+   "op": "ejs",
+   "blurb": "exp(u)-sin(v)           diode + JJ summing at a node (HYBRID)",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "njs",
+   "blurb": "ln(u)-sin(v)            Nernst cell + JJ (HYBRID)",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "mmk",
+   "blurb": "u/(u+v)                 Michaelis-Menten / Langmuir binding",
+   "stable_med": 0.0,
+   "stable_max": 1,
+   "roots_tot": 13,
+   "continuum": false
+  },
+  {
+   "op": "hl2",
+   "blurb": "u^2/(u^2+v^2)           Hill n=2 cooperative binding",
+   "stable_med": 0.0,
+   "stable_max": 1,
+   "roots_tot": 2,
+   "continuum": false
+  },
+  {
+   "op": "par",
+   "blurb": "uv/(u+v)                Kirchhoff parallel / saturable absorber",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 5,
+   "continuum": false
+  },
+  {
+   "op": "tun",
+   "blurb": "u*exp(-v)               tunnel gap: bias x exp(-d/lambda)",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "mas",
+   "blurb": "u*v                     bimolecular mass action  [CONTROL]",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": true
+  },
+  {
+   "op": "fmi",
+   "blurb": "1/(1+e^(v-u))           Fermi-Dirac occupancy",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 9,
+   "continuum": false
+  },
+  {
+   "op": "dfz",
+   "blurb": "erf(u*e^-v)             1-D diffusion profile (u=x, e^v=sqrt(4Dt))",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "gsn",
+   "blurb": "u*exp(-v^2)             Gaussian/diffusive kernel weight",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "spn",
+   "blurb": "tanh(u+v)               mean-field Ising magnetisation",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 9,
+   "continuum": false
+  },
+  {
+   "op": "lmw",
+   "blurb": "u - W(e^(u+v))          diode + series R settling  [Lambert W]",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "lmj",
+   "blurb": "u-W(e^(u+v))-sin(v)     diode+R+JJ at one node  [HYBRID]",
+   "stable_med": 0.0,
+   "stable_max": 1,
+   "roots_tot": 1,
+   "continuum": false
+  },
+  {
+   "op": "eml",
+   "blurb": "exp(u) - ln(v)          BASELINE (Odrzywolek)",
+   "stable_med": 0.0,
+   "stable_max": 1,
+   "roots_tot": 6,
+   "continuum": false
+  },
+  {
+   "op": "sag",
+   "blurb": "sinh(u) - gd(v)         Gudermannian bridge",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 9,
+   "continuum": false
+  },
+  {
+   "op": "sna",
+   "blurb": "sinh(u) - sin(v)        oscillatory v port",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 9,
+   "continuum": false
+  },
+  {
+   "op": "lse",
+   "blurb": "ln(e^u + e^v)           log-sum-exp (contractive)",
+   "stable_med": 0.0,
+   "stable_max": 0,
+   "roots_tot": 0,
+   "continuum": false
+  },
+  {
+   "op": "tln",
+   "blurb": "tanh(u) - ln(v)         bounded expanding port",
+   "stable_med": 1.0,
+   "stable_max": 1,
+   "roots_tot": 8,
+   "continuum": true
+  }
+ ]
+}

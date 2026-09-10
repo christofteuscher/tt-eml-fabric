@@ -1,0 +1,21 @@
+* EML Stage-B: log amp = transdiode NPN in opamp feedback
+* Iin -> virtual ground (collector); base grounded; emitter driven by
+* opamp output. Vout = -VBE = -(nVT)ln(Iin/Is).
+* Opamp is BEHAVIORAL (gain 2e5, +-1.6V rails) -- this deck tests the
+* transdiode's ln conformity, not opamp design.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+* log-decade sweep: Iin = 10^V(px) amperes
+VPX  px  0  0
+BIN  0 vinv I = {pow(10, V(px))}
+
+XQ1  vinv 0 out 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+EOP  out 0 VALUE = {max(min(-2e5*V(vinv), 1.6), -1.6)}
+
+.control
+set filetype=ascii
+dc VPX -10 -4 0.02
+wrdata logamp_vout.csv v(out) v(vinv)
+echo DONE
+.endc
+.end

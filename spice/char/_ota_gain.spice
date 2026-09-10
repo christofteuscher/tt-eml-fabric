@@ -1,0 +1,24 @@
+* Open-loop DC gain of ota5tv, unloaded vs loaded with a transdiode base.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include ../cell/v2d_core.inc
+VDD vdd 0 3.3
+VE  ve  0 0.55
+VINN inn 0 1.2
+VINP inp 0 1.2
+* A: unloaded
+XA inp inn outa vdd ve ota5tv
+* B: loaded by an NPN base, as in the cell (collector fed 0.5uA)
+XB inp inn outb vdd ve ota5tv
+IC vdd cb 0.5u
+XQ cb outb ve 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+.control
+set noaskquit
+foreach d -0.001 0 0.001
+  alter VINP dc = 1.2+$d
+  op
+  echo D $d
+  print v(outa)
+  print v(outb)
+end
+.endc
+.end

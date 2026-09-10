@@ -1,0 +1,34 @@
+* v3 temperature (uncompensated ideal biases).
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+VDD vdd 0 3.3
+VRB vrefb 0 1.2
+VE  ve 0 0.55
+IUIN 0 nu 0
+IVIN 0 nv 0.5u
+XCELL nu nv out vdd vrefb ve emlcell
+VOUT out 0 0.9
+.include eml_cell_v3.inc
+.control
+set filetype=ascii
+echo > v3_temp.txt
+foreach t -20 0 27 55 85
+  option temp = $t
+  alter IUIN = 0
+  alter IVIN = 0.5u
+  op
+  let p1 = i(vout)
+  set pp1 = $&p1
+  alter IUIN = -1u
+  op
+  let p2 = i(vout)
+  set pp2 = $&p2
+  alter IUIN = 0
+  alter IVIN = 6.5u
+  op
+  let p3 = i(vout)
+  set pp3 = $&p3
+  echo $t $pp1 $pp2 $pp3 >> v3_temp.txt
+end
+echo TEMP_DONE
+.endc
+.end

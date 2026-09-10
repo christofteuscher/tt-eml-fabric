@@ -1,0 +1,74 @@
+* OTA SHRINK: does making the CURRENT SOURCES small break the OTA?
+*
+* Gate-area breakdown of the OTAs as drawn:
+*   ota1b : tail W32L8 = 256 um2 = 64% ; input pair 2 x W32L2 = 128 = 32%
+*   ota2b : XMS W48L8 = 384 = 48% ; tail 256 = 32% ; pair 128 = 16%
+* 64-80% of every OTA is CURRENT SOURCE, not signal path.  Source mismatch
+* is a GAIN error, which the two-point readout calibration absorbs; the
+* INPUT PAIR sets offset, the term cell_topology.md calls the largest
+* mismatch contributor in the system.  So shrink the sources at constant
+* W/L (constant current) and leave the pair alone.
+*
+* The risk is not matching but OUTPUT RESISTANCE: a tail at L=8 has high
+* ro; at L=2 it is ~4x lower, costing CMRR and letting the tail current
+* droop with common mode.  That droop is a NONLINEARITY, which calibration
+* does not absorb.  This deck measures offset spread; ota_shrink_dc.spice
+* measures the droop.
+*
+* Candidates (constant W/L = 4, so the bias current is unchanged):
+*   ci=0  tail W32 L8  (baseline)   ci=1  W16 L4      ci=2  W8 L2
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+
+.param wt=32 lt=8 vcm=1.2
+
+.subckt ota1p inp inn out vdd pbias wt=32 lt=8
+XMT ntail pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W='wt' L='lt'
+XMP1 n1  inp ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=32 L=2
+XMP2 out inn ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=32 L=2
+XMN1 n1  n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+XMN2 out n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+.ends
+
+VDD vdd 0 3.3
+* pbias from a diode leg at W/L=2, the ratio the real bias tree produces.
+* IB must SINK from pb (pb -> 0).  Written as "IB vdd pb" it pushed INTO
+* the node, pb sat at 3.97 V on a 3.3 V rail, the tail PMOS had positive
+* Vgs and was OFF -- and the deck still "converged", reporting a 172 mV
+* offset sigma that is ~100x physical.
+IB  pb 0 2u
+XPB pb pb vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+
+* Unity-gain follower: inn ties to out, so (out - inp) IS the
+* input-referred offset -- the loop drives it there.
+VIN inp 0 'vcm'
+XO inp out out vdd pb ota1p wt='wt' lt='lt'
+
+.control
+set filetype=ascii
+echo > ota_shrink_mc.txt
+let ci = 0
+dowhile ci < 3
+  if ci = 0
+    alterparam wt = 32
+    alterparam lt = 8
+  end
+  if ci = 1
+    alterparam wt = 16
+    alterparam lt = 4
+  end
+  if ci = 2
+    alterparam wt = 8
+    alterparam lt = 2
+  end
+  let k = 0
+  dowhile k < 120
+    reset
+    op
+    echo $&ci $&k $&v(out) $&v(inp) >> ota_shrink_mc.txt
+    let k = k + 1
+  end
+  let ci = ci + 1
+end
+echo OTA_MC_DONE
+.endc
+.end

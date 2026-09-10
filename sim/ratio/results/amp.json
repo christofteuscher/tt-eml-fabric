@@ -1,0 +1,608 @@
+{
+  "eps": [
+    0.01,
+    0.03
+  ],
+  "rows": [
+    {
+      "system": "hill_n1",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.006588722376838168,
+      "t_div": 8.0,
+      "amp": 0.6588722376838169,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n1",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.019508671105694306,
+      "t_div": 8.0,
+      "amp": 0.6502890368564769,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n1",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.0062459790149838185,
+      "t_div": 8.0,
+      "amp": 0.6245979014983818,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n1",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.003973200090283879,
+      "t_div": 8.0,
+      "amp": 0.13244000300946263,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n2",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.005417437642944093,
+      "t_div": 8.0,
+      "amp": 0.5417437642944093,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n2",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.016037939203467834,
+      "t_div": 8.0,
+      "amp": 0.5345979734489278,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n2",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.004771290561987709,
+      "t_div": 8.0,
+      "amp": 0.4771290561987709,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n2",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.007572450373119977,
+      "t_div": 8.0,
+      "amp": 0.2524150124373326,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n4",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.0044205719644336595,
+      "t_div": 8.0,
+      "amp": 0.44205719644336594,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n4",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.013084148131488355,
+      "t_div": 8.0,
+      "amp": 0.43613827104961184,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n4",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.00503099071358701,
+      "t_div": 8.0,
+      "amp": 0.5030990713587009,
+      "T": 8.0
+    },
+    {
+      "system": "hill_n4",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.01849845423676939,
+      "t_div": 8.0,
+      "amp": 0.6166151412256463,
+      "T": 8.0
+    },
+    {
+      "system": "enzyme_cascade",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.006086443166511735,
+      "t_div": 10.0,
+      "amp": 0.6086443166511736,
+      "T": 10.0
+    },
+    {
+      "system": "enzyme_cascade",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.017989310848722163,
+      "t_div": 10.0,
+      "amp": 0.5996436949574054,
+      "T": 10.0
+    },
+    {
+      "system": "enzyme_cascade",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.007079078674901469,
+      "t_div": 10.0,
+      "amp": 0.7079078674901469,
+      "T": 10.0
+    },
+    {
+      "system": "enzyme_cascade",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.01882370841243208,
+      "t_div": 10.0,
+      "amp": 0.6274569470810694,
+      "T": 10.0
+    },
+    {
+      "system": "gene_autoreg",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.003768063707050597,
+      "t_div": 20.0,
+      "amp": 0.37680637070505973,
+      "T": 20.0
+    },
+    {
+      "system": "gene_autoreg",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.011227442468141148,
+      "t_div": 20.0,
+      "amp": 0.37424808227137163,
+      "T": 20.0
+    },
+    {
+      "system": "gene_autoreg",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.008721902258305669,
+      "t_div": 20.0,
+      "amp": 0.8721902258305668,
+      "T": 20.0
+    },
+    {
+      "system": "gene_autoreg",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.029119876342362884,
+      "t_div": 20.0,
+      "amp": 0.9706625447454295,
+      "T": 20.0
+    },
+    {
+      "system": "monod_chemostat",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.004697328217870462,
+      "t_div": 25.0,
+      "amp": 0.4697328217870462,
+      "T": 25.0
+    },
+    {
+      "system": "monod_chemostat",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.013688545710857227,
+      "t_div": 25.0,
+      "amp": 0.45628485702857424,
+      "T": 25.0
+    },
+    {
+      "system": "monod_chemostat",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.004844007081991952,
+      "t_div": 25.0,
+      "amp": 0.48440070819919523,
+      "T": 25.0
+    },
+    {
+      "system": "monod_chemostat",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.011618186763626135,
+      "t_div": 25.0,
+      "amp": 0.3872728921208712,
+      "T": 25.0
+    },
+    {
+      "system": "gompertz",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.0016868272600746735,
+      "t_div": 10.0,
+      "amp": 0.16868272600746734,
+      "T": 10.0
+    },
+    {
+      "system": "gompertz",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.004991859417209402,
+      "t_div": 10.0,
+      "amp": 0.16639531390698006,
+      "T": 10.0
+    },
+    {
+      "system": "gompertz",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.0010082008362165321,
+      "t_div": 10.0,
+      "amp": 0.1008200836216532,
+      "T": 10.0
+    },
+    {
+      "system": "gompertz",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.0013690263540483973,
+      "t_div": 10.0,
+      "amp": 0.04563421180161325,
+      "T": 10.0
+    },
+    {
+      "system": "bimolecular",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.0022577005984651083,
+      "t_div": 8.0,
+      "amp": 0.22577005984651083,
+      "T": 8.0
+    },
+    {
+      "system": "bimolecular",
+      "cls": "ratio/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.0066740101279658326,
+      "t_div": 8.0,
+      "amp": 0.22246700426552776,
+      "T": 8.0
+    },
+    {
+      "system": "bimolecular",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.003196902372372843,
+      "t_div": 8.0,
+      "amp": 0.3196902372372843,
+      "T": 8.0
+    },
+    {
+      "system": "bimolecular",
+      "cls": "ratio/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.005826653834046524,
+      "t_div": 8.0,
+      "amp": 0.19422179446821747,
+      "T": 8.0
+    },
+    {
+      "system": "gene_repressilator",
+      "cls": "ratio/osc",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.012227576593378534,
+      "t_div": 40.0,
+      "amp": 1.2227576593378533,
+      "T": 40.0
+    },
+    {
+      "system": "gene_repressilator",
+      "cls": "ratio/osc",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.03667983879847618,
+      "t_div": 40.0,
+      "amp": 1.2226612932825394,
+      "T": 40.0
+    },
+    {
+      "system": "gene_repressilator",
+      "cls": "ratio/osc",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.03309771141472773,
+      "t_div": 40.0,
+      "amp": 3.309771141472773,
+      "T": 40.0
+    },
+    {
+      "system": "gene_repressilator",
+      "cls": "ratio/osc",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.17287361943274387,
+      "t_div": 6.866666666666667,
+      "amp": 5.762453981091463,
+      "T": 40.0
+    },
+    {
+      "system": "goodwin",
+      "cls": "ratio/osc",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.0029109483941981897,
+      "t_div": 60.0,
+      "amp": 0.29109483941981895,
+      "T": 60.0
+    },
+    {
+      "system": "goodwin",
+      "cls": "ratio/osc",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.00871827801383861,
+      "t_div": 60.0,
+      "amp": 0.2906092671279537,
+      "T": 60.0
+    },
+    {
+      "system": "goodwin",
+      "cls": "ratio/osc",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.010830799746108285,
+      "t_div": 60.0,
+      "amp": 1.0830799746108284,
+      "T": 60.0
+    },
+    {
+      "system": "goodwin",
+      "cls": "ratio/osc",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.0464965919792525,
+      "t_div": 48.325,
+      "amp": 1.5498863993084169,
+      "T": 60.0
+    },
+    {
+      "system": "lotka_volterra",
+      "cls": "ratio/osc",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.016797582587444227,
+      "t_div": 20.0,
+      "amp": 1.6797582587444226,
+      "T": 20.0
+    },
+    {
+      "system": "lotka_volterra",
+      "cls": "ratio/osc",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.0487969034201014,
+      "t_div": 16.866666666666667,
+      "amp": 1.6265634473367134,
+      "T": 20.0
+    },
+    {
+      "system": "lotka_volterra",
+      "cls": "ratio/osc",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.1926025818783435,
+      "t_div": 5.716666666666667,
+      "amp": 19.26025818783435,
+      "T": 20.0
+    },
+    {
+      "system": "lotka_volterra",
+      "cls": "ratio/osc",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.2285890845220791,
+      "t_div": 3.2083333333333335,
+      "amp": 7.61963615073597,
+      "T": 20.0
+    },
+    {
+      "system": "logistic",
+      "cls": "poly/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.0018754785796995773,
+      "t_div": 10.0,
+      "amp": 0.1875478579699577,
+      "T": 10.0
+    },
+    {
+      "system": "logistic",
+      "cls": "poly/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.005549892484827302,
+      "t_div": 10.0,
+      "amp": 0.1849964161609101,
+      "T": 10.0
+    },
+    {
+      "system": "logistic",
+      "cls": "poly/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.0011141302399861155,
+      "t_div": 10.0,
+      "amp": 0.11141302399861154,
+      "T": 10.0
+    },
+    {
+      "system": "logistic",
+      "cls": "poly/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.006501209522595347,
+      "t_div": 10.0,
+      "amp": 0.21670698408651157,
+      "T": 10.0
+    },
+    {
+      "system": "duffing_damped",
+      "cls": "poly/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.02143066811120077,
+      "t_div": 20.0,
+      "amp": 2.143066811120077,
+      "T": 20.0
+    },
+    {
+      "system": "duffing_damped",
+      "cls": "poly/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.0640376194133101,
+      "t_div": 2.3,
+      "amp": 2.1345873137770033,
+      "T": 20.0
+    },
+    {
+      "system": "duffing_damped",
+      "cls": "poly/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.03081276238789355,
+      "t_div": 20.0,
+      "amp": 3.081276238789355,
+      "T": 20.0
+    },
+    {
+      "system": "duffing_damped",
+      "cls": "poly/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.028697529587858414,
+      "t_div": 20.0,
+      "amp": 0.9565843195952805,
+      "T": 20.0
+    },
+    {
+      "system": "pendulum_damped",
+      "cls": "trig/contract",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.019513671608270965,
+      "t_div": 20.0,
+      "amp": 1.9513671608270964,
+      "T": 20.0
+    },
+    {
+      "system": "pendulum_damped",
+      "cls": "trig/contract",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.05829793727209295,
+      "t_div": 20.0,
+      "amp": 1.9432645757364317,
+      "T": 20.0
+    },
+    {
+      "system": "pendulum_damped",
+      "cls": "trig/contract",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.008399457762663522,
+      "t_div": 20.0,
+      "amp": 0.8399457762663521,
+      "T": 20.0
+    },
+    {
+      "system": "pendulum_damped",
+      "cls": "trig/contract",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.031238051417245442,
+      "t_div": 20.0,
+      "amp": 1.0412683805748482,
+      "T": 20.0
+    },
+    {
+      "system": "brusselator",
+      "cls": "poly/osc",
+      "kind": "bias",
+      "eps": 0.01,
+      "traj_nrmse": 0.049988167801484254,
+      "t_div": 6.466666666666667,
+      "amp": 4.998816780148426,
+      "T": 20.0
+    },
+    {
+      "system": "brusselator",
+      "cls": "poly/osc",
+      "kind": "bias",
+      "eps": 0.03,
+      "traj_nrmse": 0.13698972659401729,
+      "t_div": 6.15,
+      "amp": 4.566324219800577,
+      "T": 20.0
+    },
+    {
+      "system": "brusselator",
+      "cls": "poly/osc",
+      "kind": "ripple",
+      "eps": 0.01,
+      "traj_nrmse": 0.12443366477594163,
+      "t_div": 6.433333333333334,
+      "amp": 12.443366477594163,
+      "T": 20.0
+    },
+    {
+      "system": "brusselator",
+      "cls": "poly/osc",
+      "kind": "ripple",
+      "eps": 0.03,
+      "traj_nrmse": 0.4884667143733336,
+      "t_div": 3.325,
+      "amp": 16.282223812444453,
+      "T": 20.0
+    }
+  ]
+}

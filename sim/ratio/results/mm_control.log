@@ -1,0 +1,10 @@
+system               cls             model        testN  otrajN    trajN  tdiv/T   ss_err   oob  par
+mm_bisub             ratio/contract  fabric_ideal_c8  0.0901  0.0875   0.0223   1.000   0.0339  0.00   85 [   67s]
+mm_bisub             ratio/contract  fabric_ideal_c18  0.0600  0.0544   0.0192   1.000   0.0245  0.00  199 [   67s]
+mm_bisub             ratio/contract  fabric_pedestal_c8  0.0419  0.0484   0.0107   1.000   0.0171  0.00   85 [   67s]
+mm_bisub             ratio/contract  fabric_pedestal_c18  0.0579  0.0639   0.0246   1.000   0.0258  0.00  199 [   67s]
+mm_bisub             ratio/contract  mlp_h21     0.0455  0.0240   0.0046   1.000   0.0054  0.00   85 [   68s]
+mm_bisub             ratio/contract  mlp_h50     0.0463  0.0151   0.0035   1.000   0.0043  0.00  201 [   68s]
+mm_bisub             ratio/contract  poly        0.1387  0.1015   0.0129   1.000   0.0056  0.00   55 [   68s]
+
+Saved results/mm_control.json (68s)

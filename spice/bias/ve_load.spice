@@ -1,0 +1,49 @@
+* What do the ve and vrefb rails actually have to DRIVE?
+*
+* UNPLACED.md and raildrv (ptat_bias.inc:94) both use ota2b for BOTH rails,
+* as though they were the same kind of load.  They are not:
+*   vrefb is high-Z -- two ota1vb `inn` gates and two bleed resistors per cell
+*   ve    is the NPN EMITTER node (QQA/QQB) and the ota1vb `vss` rail, so it
+*         sinks real DC current
+* This deck holds both rails with voltage sources across a 2-cell chain and
+* measures the current each one actually carries, so raildrv can be sized on
+* evidence rather than on the assumption that one buffer fits both.
+*
+* Run: ngspice -b ve_load.spice
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+VDD vdd 0 3.3
+
+* pbias: diode-connected PMOS fed by a 2 uA sink.  The sink must pull OUT of
+* the node -- `IB vdd pb 2u` pushes current IN, parks pb at ~3.97 V on a 3.3 V
+* rail and turns the mirror off.  That error once produced a sigma ~100x the
+* physical value in this tree.
+IB pb 0 2u
+XPB pb pb vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+
+* the two rails, held ideally so their current is readable
+VE  ve    0 0.55
+VRB vrefb 0 1.2
+
+* a 2-cell chain's worth of load
+XCELLA nua nva outa vdd vrefb ve pb emlcell_b
+XCELLB nub nvb outb vdd vrefb ve pb emlcell_b
+IVA 0 nva 0.5u
+IVB 0 nvb 0.5u
+VOUTA outa 0 0.9
+VOUTB outb 0 0.9
+
+.include ../cell/v3/eml_cell_v3b.inc
+
+.control
+set filetype=ascii
+op
+echo "--- rail currents, 2 cells (positive = flowing INTO the source, i.e. the rail sinks it) ---"
+print i(VE)
+print i(VRB)
+echo "--- rail voltages held at ---"
+print v(ve) v(vrefb)
+* how far do the rails move if the buffer has a finite output impedance?
+* 1 kohm in series is a stand-in for a weak follower.
+.endc
+.end

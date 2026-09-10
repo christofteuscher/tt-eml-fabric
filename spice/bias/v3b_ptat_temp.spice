@@ -1,0 +1,70 @@
+* Integrated test: PTAT bias + fully-biased cell across temperature.
+* Claim under test: value/iu(T) is temperature-invariant (ratiometric).
+* Points: (u=0,veff=3)->1.0, (u=2,veff=3)->7.389, (u=0,veff=6)->0.307.
+* Test inputs are themselves bias-referenced legs (as in the fabric):
+*   u=2: W8 leg (2u=4units?) no -- u=2 needs 2 units = 1 uA SUNK from nu
+*        -> W4 PMOS leg into NMOS mirror sinking from nu, switched.
+*   veff=6: +3 units into nv on top of pedestal2+1: W6 leg, switched.
+* Monitor: W2 leg (1 unit) into 0V source = iu(T) reference.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+VDD vdd 0 3.3
+XBIAS vdd pbias nd12 nd055 ptatbias
+XDRV ve nd055 vdd pbias raildrv
+* vrefb is no longer buffered (one-buffer raildrv, 2026-07-29):
+* it IS the divider tap.
+RVRB nd12 vrefb 0.001
+
+* unit monitor
+XLMON nmon pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+VMON nmon 0 1.0
+
+* cell
+XCELL nu nv out vdd vrefb ve pbias emlcell_b
+VOUT out 0 0.9
+
+* test input legs (switched by behavioral testbench switches)
+* u = +2: sink 1 uA from nu via NMOS mirror fed by W4 leg
+XLU pbias_u pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=8
+XMNU1 pbias_u pbias_u 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=32 L=2
+XMNU2 nusw pbias_u 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=32 L=2
+SU nu nusw ctlu 0 tbsw
+VCTLU ctlu 0 0
+* veff = 6: +3 units (1.5 uA) into nv: W6 leg
+XLV nvsw pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=12 L=8
+SV nv nvsw ctlv 0 tbsw
+VCTLV ctlv 0 0
+* v-input default: veff = 3 needs +1 unit beyond pedestal: W2 leg
+XLV1 nv pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+
+.model tbsw SW(Ron=100 Roff=1G Vt=1.65)
+.include ../cell/v3/eml_cell_v3.inc
+.include ../cell/v3/eml_cell_v3b.inc
+.include ptat_bias.inc
+
+.control
+set filetype=ascii
+echo > v3b_temp.txt
+foreach t -20 0 27 55 85
+  option temp = $t
+  alter VCTLU = 0
+  alter VCTLV = 0
+  op
+  let p1 = i(vout)
+  let m1 = i(vmon)
+  set pp1 = $&p1
+  set mm1 = $&m1
+  alter VCTLU = 3.3
+  op
+  let p2 = i(vout)
+  set pp2 = $&p2
+  alter VCTLU = 0
+  alter VCTLV = 3.3
+  op
+  let p3 = i(vout)
+  set pp3 = $&p3
+  echo $t $mm1 $pp1 $pp2 $pp3 >> v3b_temp.txt
+end
+echo PT_DONE
+.endc
+.end

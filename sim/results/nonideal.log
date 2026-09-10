@@ -1,0 +1,50 @@
+=== realised lambda_v (segmented slope k = 1.094 folded in) ===
+ideal                v0=1.0 1.0940   v0=1.741 0.6284
+a_pedestal           v0=1.0 0.3084   v0=1.741 0.2551
+b_atten              v0=1.0 1.0940   v0=1.741 0.6284
+c_span               v0=1.0 1.0940   v0=1.741 0.6284
+c_span_2dec          v0=1.0 0.0004   v0=1.741 0.0004
+ab_ped_atten         v0=1.0 0.0996   v0=1.741 0.0933
+abc_silicon          v0=1.0 0.0996   v0=1.741 0.0933
+abc_silicon_lumped   v0=1.0 0.0986   v0=1.741 0.0925
+abc_silicon_secant   v0=1.0 0.0652   v0=1.741 0.0624
+pdk                  v0=1.0 1.0940   v0=1.741 0.6284
+pdk_abc_silicon      v0=1.0 0.0996   v0=1.741 0.0933
+
+=== in-situ vs factory transfer, one knob at a time ===
+target       config                insitu med insitu best  transfer med  over/under dec
+thermistor_sh ideal                     0.0168      0.0052        0.0168    0.00/  6.50  [   22s]
+thermistor_sh a_pedestal                0.0955      0.0910       75.0024    0.00/  0.00  [   33s]
+thermistor_sh b_atten                   0.0269      0.0195  1000000.0000    0.00/  7.82  [   44s]
+thermistor_sh c_span                    0.0168      0.0052        0.0168    0.00/  6.50  [   58s]
+thermistor_sh c_span_2dec              21.3791     21.3791    87096.9536    2.17/  3.02  [   73s]
+thermistor_sh ab_ped_atten              0.1694      0.1051       26.2064    0.00/  0.00  [   84s]
+thermistor_sh abc_silicon               0.1694      0.1051       26.2068    0.00/  0.00  [  100s]
+thermistor_sh abc_silicon_lumped        0.1900      0.0295       26.5952    0.00/  0.00  [  117s]
+thermistor_sh abc_silicon_secant        0.1546      0.1286       25.4805    0.00/  0.00  [  132s]
+thermistor_sh pdk                       0.2927      0.0785        3.4690    0.16/  4.97  [  145s]
+thermistor_sh pdk_abc_silicon           0.2527      0.1649       27.1405    0.00/  0.00  [  162s]
+osc_k3       ideal                     0.1477      0.1217        0.1477    0.00/  7.83  [  187s]
+osc_k3       a_pedestal                0.1580      0.0932       48.0854    0.00/  0.00  [  199s]
+osc_k3       b_atten                   0.1095      0.0628  1000000.0000    0.00/ 11.51  [  212s]
+osc_k3       c_span                    0.1129      0.0821        0.1477    0.00/  7.48  [  229s]
+osc_k3       c_span_2dec               0.6677      0.6677    51506.4034    2.17/  3.02  [  246s]
+osc_k3       ab_ped_atten              0.1714      0.1461       29.9274    0.00/  0.39  [  259s]
+osc_k3       abc_silicon               0.1753      0.1461       29.9272    0.00/  0.40  [  276s]
+osc_k3       abc_silicon_lumped        0.1364      0.1007       30.3029    0.00/  0.00  [  293s]
+osc_k3       abc_silicon_secant        0.1972      0.1418       27.7174    0.00/  1.60  [  309s]
+osc_k3       pdk                       0.5528      0.4951        1.6483    0.00/ 16.56  [  321s]
+osc_k3       pdk_abc_silicon           0.3172      0.2332       29.9856    0.00/  2.44  [  339s]
+I.12.1       ideal                     0.0415      0.0413        0.0415    0.00/  7.35  [  370s]
+I.12.1       a_pedestal                0.0412      0.0345        7.6995    0.00/  0.00  [  386s]
+I.12.1       b_atten                   0.0362      0.0292  1000000.0000    0.00/  8.18  [  401s]
+I.12.1       c_span                    0.0466      0.0221        0.0415    0.00/  7.99  [  423s]
+I.12.1       c_span_2dec               1.2244      1.2244    10787.1547    2.17/  2.67  [  444s]
+I.12.1       ab_ped_atten              0.0304      0.0270        8.0767    0.00/  0.00  [  460s]
+I.12.1       abc_silicon               0.0304      0.0270        8.0767    0.00/  0.00  [  481s]
+I.12.1       abc_silicon_lumped        0.0297      0.0188        8.1549    0.00/  0.00  [  503s]
+I.12.1       abc_silicon_secant        0.0285      0.0196        8.3008    0.00/  0.00  [  524s]
+I.12.1       pdk                       0.1022      0.0805        2.0747    0.51/  7.14  [  543s]
+I.12.1       pdk_abc_silicon           0.0505      0.0421        7.4951    0.00/  0.00  [  568s]
+
+Saved results/nonideal.json (568s)

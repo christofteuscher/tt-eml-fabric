@@ -1,0 +1,201 @@
+{
+  "note": "SIMULATION ONLY: fabric substituted for the nonlinear term inside a scipy-integrated ODE. No analog integrator designed/simulated; nothing fabricated.",
+  "hw": {
+    "ideal": "AnalogConfig() ideal",
+    "pedestal": {
+      "ln_pedestal": 2.547
+    }
+  },
+  "seeds": 1,
+  "iters": 300,
+  "rows": [
+    {
+      "system": "lotka_volterra",
+      "hw": "ideal",
+      "cfg": [
+        "mesh",
+        2,
+        4,
+        3
+      ],
+      "box_lo": [
+        0.0544753552976327,
+        -0.3912813717012025
+      ],
+      "box_hi": [
+        7.798381927613342,
+        5.225695216689085
+      ],
+      "in_off": [
+        0.4455246447023673,
+        0.8912813717012025
+      ],
+      "on_traj_nrmse": 0.13016098068449267,
+      "traj": [
+        {
+          "ic": [
+            1.0,
+            1.0
+          ],
+          "t_div": 0.22,
+          "traj_nrmse": 1.8973677489312641,
+          "covered": 20.0,
+          "oob_frac": 0.7311344327836082,
+          "inv_drift": 45.62734813412942,
+          "inv_drift_ref": 1.2005371137213672e-06
+        },
+        {
+          "ic": [
+            2.0,
+            1.0
+          ],
+          "t_div": 1.8900000000000001,
+          "traj_nrmse": 1.7429704308692504,
+          "covered": 20.0,
+          "oob_frac": 0.616191904047976,
+          "inv_drift": 100.30230777351184,
+          "inv_drift_ref": 6.539065851382773e-07
+        },
+        {
+          "ic": [
+            3.0,
+            1.0
+          ],
+          "t_div": 1.12,
+          "traj_nrmse": 1.6831947024363971,
+          "covered": 20.0,
+          "oob_frac": 0.5252373813093453,
+          "inv_drift": 131.43336915282498,
+          "inv_drift_ref": 8.957601009836569e-07
+        },
+        {
+          "ic": [
+            1.5,
+            2.0
+          ],
+          "t_div": 0.55,
+          "traj_nrmse": 1.7911307112234112,
+          "covered": 20.0,
+          "oob_frac": 0.6831584207896052,
+          "inv_drift": 73.97057877003789,
+          "inv_drift_ref": 4.2394642757992846e-07
+        },
+        {
+          "ic": [
+            4.0,
+            2.0
+          ],
+          "t_div": 0.31,
+          "traj_nrmse": 1.6664825880929515,
+          "covered": 20.0,
+          "oob_frac": 0.5322338830584707,
+          "inv_drift": 115.36529169368393,
+          "inv_drift_ref": 8.56315547469787e-07
+        }
+      ],
+      "train_nrmse": 0.10283085805090351,
+      "test_nrmse": 0.09929668417867162,
+      "cells": 8,
+      "params": 85,
+      "traj_nrmse_med": 1.7429704308692504,
+      "t_div_med": 0.55,
+      "oob_med": 0.616191904047976,
+      "inv_drift_med": 100.30230777351184,
+      "inv_drift_ref_med": 8.56315547469787e-07
+    },
+    {
+      "system": "lotka_volterra",
+      "hw": "pedestal",
+      "cfg": [
+        "mesh",
+        2,
+        4,
+        3
+      ],
+      "box_lo": [
+        0.0544753552976327,
+        -0.3912813717012025
+      ],
+      "box_hi": [
+        7.798381927613342,
+        5.225695216689085
+      ],
+      "in_off": [
+        0.4455246447023673,
+        0.8912813717012025
+      ],
+      "on_traj_nrmse": 0.17293315665861553,
+      "traj": [
+        {
+          "ic": [
+            1.0,
+            1.0
+          ],
+          "t_div": 0.0,
+          "traj_nrmse": Infinity,
+          "covered": 0.0,
+          "oob_frac": 1.0,
+          "inv_drift": null,
+          "inv_drift_ref": null
+        },
+        {
+          "ic": [
+            2.0,
+            1.0
+          ],
+          "t_div": 0.2,
+          "traj_nrmse": 1.1346300391764172,
+          "covered": 0.9500000000000001,
+          "oob_frac": 0.3125,
+          "inv_drift": 41.43579003965931,
+          "inv_drift_ref": 4.398699098695966e-08
+        },
+        {
+          "ic": [
+            3.0,
+            1.0
+          ],
+          "t_div": 0.21,
+          "traj_nrmse": 0.9625870528967037,
+          "covered": 5.0,
+          "oob_frac": 0.20758483033932135,
+          "inv_drift": 47.502027791378616,
+          "inv_drift_ref": 2.416167170269244e-07
+        },
+        {
+          "ic": [
+            1.5,
+            2.0
+          ],
+          "t_div": 0.24,
+          "traj_nrmse": 1.035386100665883,
+          "covered": 1.23,
+          "oob_frac": 0.22580645161290322,
+          "inv_drift": 30.82856563037288,
+          "inv_drift_ref": 8.99606610327427e-08
+        },
+        {
+          "ic": [
+            4.0,
+            2.0
+          ],
+          "t_div": 0.97,
+          "traj_nrmse": 0.8728145956180304,
+          "covered": 4.37,
+          "oob_frac": 0.07077625570776255,
+          "inv_drift": 49.23085661628981,
+          "inv_drift_ref": 2.603969002019022e-07
+        }
+      ],
+      "train_nrmse": 0.12255227362161947,
+      "test_nrmse": 0.1181795548509659,
+      "cells": 8,
+      "params": 85,
+      "traj_nrmse_med": 0.9989865767812933,
+      "t_div_med": 0.21,
+      "oob_med": 0.22580645161290322,
+      "inv_drift_med": 44.468908915518966,
+      "inv_drift_ref_med": 1.6578868902983355e-07
+    }
+  ]
+}

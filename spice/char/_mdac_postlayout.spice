@@ -1,0 +1,122 @@
+* POST-LAYOUT MDAC: the extracted netlist WITH parasitics (965 R, 180 C).
+* Magic emits `.subckt mdac_alpha` with NO port list, so the wrapper is
+* stripped and the named nets are driven directly at top level.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _mdac_pl.inc
+.param iref=0.5u
+VDD   vdd   0 3.3
+VCASC vcasc 0 0.85
+IREF  vg 0 {iref}
+XPD   vg vg vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=2
+XDIV4 vg vg4 vcasc vdd 0 mdac_div
+VA0 a0 0 0
+VA1 a1 0 0
+VB0 b0 0 0
+VB1 b1 0 0
+VSGN  sgn  0 3.3
+VSGNB sgnb 0 0
+VOP vop 0 0.9
+VON von 0 0.9
+VMP vop iout_p 0
+VMN von iout_n 0
+.include ../mdac/mdac_weight_d2.inc
+.control
+set noaskquit
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 0.0
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+print -i(VMP)
+alter VA0 = 0.0
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 0.0
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 0.0
+alter VB1 = 3.3
+op
+print -i(VMP)
+alter VA0 = 3.3
+alter VA1 = 3.3
+alter VB0 = 3.3
+alter VB1 = 3.3
+op
+print -i(VMP)
+.endc
+.end

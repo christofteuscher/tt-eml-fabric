@@ -1,0 +1,22 @@
+* Does the BUFFERED servo loop ring or oscillate?  DC op cannot see this.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _v2d_tran.inc
+.control
+set noaskquit
+tran 200n 3m uic
+* servo internals: nva should sit pinned at vrefb; oa is the OTA output
+let io = i(VOUT)/0.5u
+meas tran nva_min  MIN v(nva)  from=0.6m to=1.4m
+meas tran nva_max  MAX v(nva)  from=0.6m to=1.4m
+meas tran oa_min   MIN v(oa)   from=0.6m to=1.4m
+meas tran oa_max   MAX v(oa)   from=0.6m to=1.4m
+meas tran io_set   AVG io      from=1.3m to=1.45m
+meas tran io_pk    MAX io      from=0.5m to=1.4m
+meas tran io_tr    MIN io      from=0.5m to=1.4m
+* late-window ripple: if the loop oscillates this stays large
+meas tran nva_lmin MIN v(nva)  from=1.40m to=1.50m
+meas tran nva_lmax MAX v(nva)  from=1.40m to=1.50m
+meas tran oa_lmin  MIN v(oa)   from=1.40m to=1.50m
+meas tran oa_lmax  MAX v(oa)   from=1.40m to=1.50m
+.endc
+.end

@@ -1,0 +1,89 @@
+* CUSTOM LEVEL SHIFTERS for cfgdig -- replacing sky130_fd_sc_hvl lsbuf*
+*
+* WHY CUSTOM: the PDK hvl shifters produce 48 unfixable Magic precheck
+* errors in row context (hint-fragment hvi.5 + their internal LV nwell
+* 0.54 um from their own MV diffusion, nsd/psd.5).  Every geometric
+* workaround was measured dead (see gen_digital.py and task notes).
+*
+* DESIGN RULE THAT KILLS THE PROBLEM STRUCTURALLY: ALL-MV DEVICES.
+* MV gates are rated 5.5 V, so they can be driven from either domain,
+* and an MV inverter POWERED AT 1.8 V handles the LV side.  With no LV
+* device there is no LV nwell, so "MV diffusion to LV nwell" cannot
+* exist in the block, and one drawn HVI rectangle covers everything.
+*
+* lv2hv (x3, scan inputs): classic cross-coupled shifter.
+*   in (1.8V) --+-- MN1 gate          MN1/MN2: strong pulldowns, VGS=1.8
+*               |-- invL -- MN2 gate  MP1/MP2: weak cross-coupled keepers (W1/L2:
+*   L=8 was the first cut and lays out 18 um long; L=2 verified at all
+*   corners and lays out 2 um)
+*   out side buffered by an inverter on vddh.
+*   RATIO IS THE WHOLE DESIGN: MN (VGS=1.62 worst) must out-pull MP
+*   (VSG=3.63 worst, but only W=1/L=8).  Checked at sf (slow-n fast-p).
+*
+* hv2lv (x1, scan out): two MV inverters powered from vddl.  The first
+*   gate sees the full 0..3.3V swing (MV rated 5.5 ✓), output 0..1.8V.
+*
+* AS-DRAWN SIZES.  MN1/MN2 are W=6 in the layout, not the W=8 this file
+* first used; re-measured at all five corners with W=6:
+*   corner   up_hi   up_lo      dn_lo   tplh      tphl
+*   tt       3.300   -1.8e-7    1.800   1.19 ns   1.11 ns
+*   ss       3.300   -2.7e-7    1.800   1.44 ns   1.34 ns
+*   ff       3.300   -7.0e-10   1.800   0.89 ns   0.92 ns
+*   sf       3.300   -2.9e-6    1.800   1.11 ns   1.20 ns   <- worst for the ratio
+*   fs       3.300   -8.9e-8    1.800   1.24 ns   1.01 ns
+* Full rail both ways at every corner, so the 12:1 ratio is enough.
+*
+* Run: ngspice -b char/lvshift.spice
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param vddh_v=3.3 vddl_v=1.8
+
+* ---- lv2hv ----------------------------------------------------------
+.subckt lv2hv in out vddh vddl vss
+* input inverter on the LV rail (MV devices)
+XIN1 inb in vddl vddl sky130_fd_pr__pfet_g5v0d10v5 W=2 L=0.5
+XIN2 inb in vss  vss  sky130_fd_pr__nfet_g5v0d10v5 W=1 L=0.5
+* cross-coupled core on the HV rail
+XMP1 n1  n2 vddh vddh sky130_fd_pr__pfet_g5v0d10v5 W=0.5 L=0.5
+XMP2 n2  n1 vddh vddh sky130_fd_pr__pfet_g5v0d10v5 W=0.5 L=0.5
+XMN1 n1  in  vss vss  sky130_fd_pr__nfet_g5v0d10v5 W=6 L=0.5
+XMN2 n2  inb vss vss  sky130_fd_pr__nfet_g5v0d10v5 W=6 L=0.5
+* output buffer on the HV rail (n2 is high when in is high)
+XB1p outb n2 vddh vddh sky130_fd_pr__pfet_g5v0d10v5 W=2 L=0.5
+XB1n outb n2 vss  vss  sky130_fd_pr__nfet_g5v0d10v5 W=1 L=0.5
+XB2p out outb vddh vddh sky130_fd_pr__pfet_g5v0d10v5 W=2 L=0.5
+XB2n out outb vss  vss  sky130_fd_pr__nfet_g5v0d10v5 W=2 L=0.5
+.ends
+
+* ---- hv2lv ----------------------------------------------------------
+.subckt hv2lv in out vddl vss
+XA1p m in vddl vddl sky130_fd_pr__pfet_g5v0d10v5 W=2 L=0.5
+XA1n m in vss  vss  sky130_fd_pr__nfet_g5v0d10v5 W=1 L=0.5
+XB1p out m vddl vddl sky130_fd_pr__pfet_g5v0d10v5 W=2 L=0.5
+XB1n out m vss  vss  sky130_fd_pr__nfet_g5v0d10v5 W=1 L=0.5
+.ends
+
+VDH vddh 0 {vddh_v}
+VDL vddl 0 {vddl_v}
+VIN inlv 0 PULSE(0 {vddl_v} 20n 2n 2n 200n 400n)
+VIH inhv 0 PULSE(0 {vddh_v} 20n 2n 2n 200n 400n)
+
+XU1 inlv up   vddh vddl 0 lv2hv
+XU2 inhv down vddl 0 hv2lv
+* loads: a scan-chain gate input each
+CU up   0 50f
+CD down 0 50f
+
+.tran 0.2n 800n
+
+.control
+set noaskquit
+run
+meas tran up_hi  MAX v(up)  from=100n to=220n
+meas tran up_lo  MIN v(up)  from=300n to=420n
+meas tran dn_hi  MAX v(down) from=300n to=420n
+meas tran dn_lo  MIN v(down) from=100n to=220n
+meas tran tplh TRIG v(inlv) VAL=0.9 RISE=1 TARG v(up) VAL=1.65 RISE=1
+meas tran tphl TRIG v(inlv) VAL=0.9 FALL=1 TARG v(up) VAL=1.65 FALL=1
+.endc
+.end

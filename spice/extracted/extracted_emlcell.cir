@@ -1,0 +1,91 @@
+* Extracted by KLayout with SKY130 LVS runset on : 25/07/2026 07:30
+
+.SUBCKT emlcell_b VSUB nb0 nu nv out pbias vdd ve
+M$1 nv pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=8 AS=4.8 AD=4.8 PS=17.2
++ PD=17.2
+M$2 out \$49 vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=8 AS=4.8 AD=4.8 PS=17.2
++ PD=17.2
+M$3 \$49 \$49 vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=8 AS=4.8 AD=4.8
++ PS=17.2 PD=17.2
+M$4 \$1 nu \$12 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$5 \$12 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$6 \$40 nv \$45 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$7 \$57 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=12 AS=7.2 AD=7.2
++ PS=26.4 PD=26.4
+M$8 \$39 \$60 \$46 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$9 \$41 \$57 \$46 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$11 \$46 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$12 \$17 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=16 AS=9.6 AD=9.6
++ PS=33.2 PD=33.2
+M$13 \$38 \$60 \$45 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$14 nb0 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$15 \$13 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=48 AS=28.8 AD=28.8
++ PS=97.2 PD=97.2
+M$16 \$45 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$17 out pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=16 AS=9.6 AD=9.6
++ PS=33.2 PD=33.2
+M$18 \$2 nb0 \$12 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$19 \$4 \$39 \$8 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$20 \$8 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$21 \$3 \$17 \$8 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$22 \$17 \$4 \$43 VSUB sky130_fd_pr__nfet_03v3_nvt L=0.5 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$23 out \$43 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$24 \$43 \$43 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$25 \$41 \$41 ve VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$26 \$39 \$41 ve VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$27 \$38 \$40 ve VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$28 \$40 \$40 ve VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$29 \$4 \$3 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$30 \$13 \$2 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=1 W=16 AS=9.6 AD=9.6
++ PS=33.2 PD=33.2
+M$31 \$3 \$3 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$32 \$2 \$1 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+M$33 \$1 \$1 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4
++ PS=9.2 PD=9.2
+Q$34 \$57 \$39 ve VSUB sky130_fd_pr__npn_05v5_W1p00L1p00 AE=1 PE=4 AB=11.6964
++ PB=13.68 AC=11.6964 PC=13.68 NE=1
+Q$35 nv \$38 ve VSUB sky130_fd_pr__npn_05v5_W1p00L1p00 AE=1 PE=4 AB=11.6964
++ PB=13.68 AC=11.6964 PC=13.68 NE=1
+Q$36 nb0 nb0 VSUB VSUB sky130_fd_pr__npn_05v5_W1p00L1p00 AE=1 PE=4 AB=11.6964
++ PB=13.68 AC=11.6964 PC=13.68 NE=1
+Q$37 \$49 \$13 VSUB VSUB sky130_fd_pr__npn_05v5_W1p00L1p00 AE=1 PE=4 AB=11.6964
++ PB=13.68 AC=11.6964 PC=13.68 NE=1
+R$42 \$13 nu VSUB sky130_fd_pr__res_high_po_0p35 R=53799.4971429 L=58.88 W=0.35
++ A=20.608 P=120.56
+R$43 \$17 \$38 VSUB sky130_fd_pr__res_high_po_0p35 R=53799.4971429 L=58.88
++ W=0.35 A=20.608 P=120.56
+R$46 \$60 nv VSUB sky130_fd_pr__res_xhigh_po_0p35 R=100000 L=17.5 W=0.35
++ A=6.125 P=35.7
+R$47 \$60 \$57 VSUB sky130_fd_pr__res_xhigh_po_0p35 R=100000 L=17.5 W=0.35
++ A=6.125 P=35.7
+C$48 \$13 nu sky130_fd_pr__model__cap_mim C=9.999392e-13 A=499.9696 P=89.44
+C$49 \$2 \$13 sky130_fd_pr__model__cap_mim C=2.00028125e-12 A=1000.140625
++ P=126.5
+C$50 \$4 VSUB sky130_fd_pr__model__cap_mim C=9.999392e-13 A=499.9696 P=89.44
+C$51 nv \$38 sky130_fd_pr__model__cap_mim C=2.00028125e-12 A=1000.140625 P=126.5
+C$52 \$57 \$39 sky130_fd_pr__model__cap_mim C=2.00028125e-12 A=1000.140625
++ P=126.5
+.ENDS emlcell_b

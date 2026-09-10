@@ -1,0 +1,984 @@
+{
+  "iters": 150,
+  "seeds": 1,
+  "res": {
+    "diabetes": [
+      {
+        "depth": 2,
+        "width": 16,
+        "cells": 32,
+        "params": 849,
+        "ideal": {
+          "hw": "ideal",
+          "train": 1.2433812771119528,
+          "test": 1.281427009801413,
+          "test_best": 1.281427009801413,
+          "params": 849,
+          "cells": 32,
+          "secs": 0.7,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 16,
+              "train": 1.2433812771119528,
+              "test": 1.281427009801413,
+              "params": 849,
+              "cells": 32,
+              "secs": 0.7
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.7998096313087811,
+          "test": 0.8286916521419302,
+          "test_best": 0.8286916521419302,
+          "params": 849,
+          "cells": 32,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 16,
+              "train": 0.7998096313087811,
+              "test": 0.8286916521419302,
+              "params": 849,
+              "cells": 32,
+              "secs": 0.2
+            }
+          ]
+        }
+      },
+      {
+        "depth": 4,
+        "width": 8,
+        "cells": 32,
+        "params": 873,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.9536916643384021,
+          "test": 0.9466204462068837,
+          "test_best": 0.9466204462068837,
+          "params": 873,
+          "cells": 32,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.9536916643384021,
+              "test": 0.9466204462068837,
+              "params": 873,
+              "cells": 32,
+              "secs": 0.3
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.7398885386199585,
+          "test": 0.7278144258092651,
+          "test_best": 0.7278144258092651,
+          "params": 873,
+          "cells": 32,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7398885386199585,
+              "test": 0.7278144258092651,
+              "params": 873,
+              "cells": 32,
+              "secs": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "depth": 8,
+        "width": 4,
+        "cells": 32,
+        "params": 885,
+        "ideal": {
+          "hw": "ideal",
+          "train": 1.5368617486451412,
+          "test": 1.5889514561455937,
+          "test_best": 1.5889514561455937,
+          "params": 885,
+          "cells": 32,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 4,
+              "train": 1.5368617486451412,
+              "test": 1.5889514561455937,
+              "params": 885,
+              "cells": 32,
+              "secs": 0.4
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.7434383845911479,
+          "test": 0.7500552750824215,
+          "test_best": 0.7500552750824215,
+          "params": 885,
+          "cells": 32,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 4,
+              "train": 0.7434383845911479,
+              "test": 0.7500552750824215,
+              "params": 885,
+              "cells": 32,
+              "secs": 0.4
+            }
+          ]
+        }
+      },
+      {
+        "depth": 2,
+        "width": 8,
+        "cells": 16,
+        "params": 425,
+        "ideal": {
+          "hw": "ideal",
+          "train": 1.2586372235148247,
+          "test": 1.2079602354514765,
+          "test_best": 1.2079602354514765,
+          "params": 425,
+          "cells": 16,
+          "secs": 0.1,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 8,
+              "train": 1.2586372235148247,
+              "test": 1.2079602354514765,
+              "params": 425,
+              "cells": 16,
+              "secs": 0.1
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.7539972655862491,
+          "test": 0.7324737351322355,
+          "test_best": 0.7324737351322355,
+          "params": 425,
+          "cells": 16,
+          "secs": 0.1,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 8,
+              "train": 0.7539972655862491,
+              "test": 0.7324737351322355,
+              "params": 425,
+              "cells": 16,
+              "secs": 0.1
+            }
+          ]
+        }
+      },
+      {
+        "depth": 4,
+        "width": 4,
+        "cells": 16,
+        "params": 437,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.8444031012314864,
+          "test": 0.8777299616986205,
+          "test_best": 0.8777299616986205,
+          "params": 437,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 4,
+              "train": 0.8444031012314864,
+              "test": 0.8777299616986205,
+              "params": 437,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.7186431844275993,
+          "test": 0.731670406899918,
+          "test_best": 0.731670406899918,
+          "params": 437,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 4,
+              "train": 0.7186431844275993,
+              "test": 0.731670406899918,
+              "params": 437,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        }
+      },
+      {
+        "depth": 8,
+        "width": 2,
+        "cells": 16,
+        "params": 443,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.712863660856506,
+          "test": 0.7188405453035875,
+          "test_best": 0.7188405453035875,
+          "params": 443,
+          "cells": 16,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 2,
+              "train": 0.712863660856506,
+              "test": 0.7188405453035875,
+              "params": 443,
+              "cells": 16,
+              "secs": 0.4
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.7639312302948248,
+          "test": 0.7562791860577419,
+          "test_best": 0.7562791860577419,
+          "params": 443,
+          "cells": 16,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 2,
+              "train": 0.7639312302948248,
+              "test": 0.7562791860577419,
+              "params": 443,
+              "cells": 16,
+              "secs": 0.4
+            }
+          ]
+        }
+      }
+    ],
+    "powlaw": [
+      {
+        "depth": 2,
+        "width": 16,
+        "cells": 32,
+        "params": 401,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.31103274576483897,
+          "test": 0.31845239619422194,
+          "test_best": 0.31845239619422194,
+          "params": 401,
+          "cells": 32,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 16,
+              "train": 0.31103274576483897,
+              "test": 0.31845239619422194,
+              "params": 401,
+              "cells": 32,
+              "secs": 0.2
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.48254244438701654,
+          "test": 0.4933369870646492,
+          "test_best": 0.4933369870646492,
+          "params": 401,
+          "cells": 32,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 16,
+              "train": 0.48254244438701654,
+              "test": 0.4933369870646492,
+              "params": 401,
+              "cells": 32,
+              "secs": 0.2
+            }
+          ]
+        }
+      },
+      {
+        "depth": 4,
+        "width": 8,
+        "cells": 32,
+        "params": 425,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.35817363234826255,
+          "test": 0.3483362924589869,
+          "test_best": 0.3483362924589869,
+          "params": 425,
+          "cells": 32,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.35817363234826255,
+              "test": 0.3483362924589869,
+              "params": 425,
+              "cells": 32,
+              "secs": 0.3
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.27781498836914625,
+          "test": 0.2722392934908608,
+          "test_best": 0.2722392934908608,
+          "params": 425,
+          "cells": 32,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.27781498836914625,
+              "test": 0.2722392934908608,
+              "params": 425,
+              "cells": 32,
+              "secs": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "depth": 8,
+        "width": 4,
+        "cells": 32,
+        "params": 437,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.33062836224326414,
+          "test": 0.3243584682563662,
+          "test_best": 0.3243584682563662,
+          "params": 437,
+          "cells": 32,
+          "secs": 0.5,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 4,
+              "train": 0.33062836224326414,
+              "test": 0.3243584682563662,
+              "params": 437,
+              "cells": 32,
+              "secs": 0.5
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.38722812397388984,
+          "test": 0.3937854951601034,
+          "test_best": 0.3937854951601034,
+          "params": 437,
+          "cells": 32,
+          "secs": 0.5,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 4,
+              "train": 0.38722812397388984,
+              "test": 0.3937854951601034,
+              "params": 437,
+              "cells": 32,
+              "secs": 0.5
+            }
+          ]
+        }
+      },
+      {
+        "depth": 2,
+        "width": 8,
+        "cells": 16,
+        "params": 201,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.2892046195797566,
+          "test": 0.2895057717955999,
+          "test_best": 0.2895057717955999,
+          "params": 201,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 8,
+              "train": 0.2892046195797566,
+              "test": 0.2895057717955999,
+              "params": 201,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.31919808681781564,
+          "test": 0.316188461622669,
+          "test_best": 0.316188461622669,
+          "params": 201,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 8,
+              "train": 0.31919808681781564,
+              "test": 0.316188461622669,
+              "params": 201,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        }
+      },
+      {
+        "depth": 4,
+        "width": 4,
+        "cells": 16,
+        "params": 213,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.293783389710536,
+          "test": 0.2903008531296403,
+          "test_best": 0.2903008531296403,
+          "params": 213,
+          "cells": 16,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 4,
+              "train": 0.293783389710536,
+              "test": 0.2903008531296403,
+              "params": 213,
+              "cells": 16,
+              "secs": 0.3
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.3023563754992243,
+          "test": 0.304436979461654,
+          "test_best": 0.304436979461654,
+          "params": 213,
+          "cells": 16,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 4,
+              "train": 0.3023563754992243,
+              "test": 0.304436979461654,
+              "params": 213,
+              "cells": 16,
+              "secs": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "depth": 8,
+        "width": 2,
+        "cells": 16,
+        "params": 219,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.3033824610445056,
+          "test": 0.29932853484306393,
+          "test_best": 0.29932853484306393,
+          "params": 219,
+          "cells": 16,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 2,
+              "train": 0.3033824610445056,
+              "test": 0.29932853484306393,
+              "params": 219,
+              "cells": 16,
+              "secs": 0.4
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.790854347751625,
+          "test": 0.7818833316818686,
+          "test_best": 0.7818833316818686,
+          "params": 219,
+          "cells": 16,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 2,
+              "train": 0.790854347751625,
+              "test": 0.7818833316818686,
+              "params": 219,
+              "cells": 16,
+              "secs": 0.4
+            }
+          ]
+        }
+      }
+    ],
+    "osc_sum": [
+      {
+        "depth": 2,
+        "width": 16,
+        "cells": 32,
+        "params": 401,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.7715113389477938,
+          "test": 0.864206757269048,
+          "test_best": 0.864206757269048,
+          "params": 401,
+          "cells": 32,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 16,
+              "train": 0.7715113389477938,
+              "test": 0.864206757269048,
+              "params": 401,
+              "cells": 32,
+              "secs": 0.2
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 1.5509979590577276,
+          "test": 1.4271488010832731,
+          "test_best": 1.4271488010832731,
+          "params": 401,
+          "cells": 32,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 16,
+              "train": 1.5509979590577276,
+              "test": 1.4271488010832731,
+              "params": 401,
+              "cells": 32,
+              "secs": 0.2
+            }
+          ]
+        }
+      },
+      {
+        "depth": 4,
+        "width": 8,
+        "cells": 32,
+        "params": 425,
+        "ideal": {
+          "hw": "ideal",
+          "train": 1.2332077155730932,
+          "test": 1.2689252682205459,
+          "test_best": 1.2689252682205459,
+          "params": 425,
+          "cells": 32,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 1.2332077155730932,
+              "test": 1.2689252682205459,
+              "params": 425,
+              "cells": 32,
+              "secs": 0.3
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.9420669641948245,
+          "test": 1.0156712208242804,
+          "test_best": 1.0156712208242804,
+          "params": 425,
+          "cells": 32,
+          "secs": 0.3,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.9420669641948245,
+              "test": 1.0156712208242804,
+              "params": 425,
+              "cells": 32,
+              "secs": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "depth": 8,
+        "width": 4,
+        "cells": 32,
+        "params": 437,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.9754053088439024,
+          "test": 1.0500725829996134,
+          "test_best": 1.0500725829996134,
+          "params": 437,
+          "cells": 32,
+          "secs": 0.5,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 4,
+              "train": 0.9754053088439024,
+              "test": 1.0500725829996134,
+              "params": 437,
+              "cells": 32,
+              "secs": 0.5
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 1.0093562384283665,
+          "test": 1.0863896032463543,
+          "test_best": 1.0863896032463543,
+          "params": 437,
+          "cells": 32,
+          "secs": 0.5,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 4,
+              "train": 1.0093562384283665,
+              "test": 1.0863896032463543,
+              "params": 437,
+              "cells": 32,
+              "secs": 0.5
+            }
+          ]
+        }
+      },
+      {
+        "depth": 2,
+        "width": 8,
+        "cells": 16,
+        "params": 201,
+        "ideal": {
+          "hw": "ideal",
+          "train": 1.422493366806426,
+          "test": 1.4386830555705379,
+          "test_best": 1.4386830555705379,
+          "params": 201,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 8,
+              "train": 1.422493366806426,
+              "test": 1.4386830555705379,
+              "params": 201,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.7671390295217999,
+          "test": 0.844745637744236,
+          "test_best": 0.844745637744236,
+          "params": 201,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 2,
+              "width": 8,
+              "train": 0.7671390295217999,
+              "test": 0.844745637744236,
+              "params": 201,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        }
+      },
+      {
+        "depth": 4,
+        "width": 4,
+        "cells": 16,
+        "params": 213,
+        "ideal": {
+          "hw": "ideal",
+          "train": 1.0621089779367512,
+          "test": 1.1435499104908908,
+          "test_best": 1.1435499104908908,
+          "params": 213,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 4,
+              "train": 1.0621089779367512,
+              "test": 1.1435499104908908,
+              "params": 213,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.9910526813652313,
+          "test": 1.071028964928524,
+          "test_best": 1.071028964928524,
+          "params": 213,
+          "cells": 16,
+          "secs": 0.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 4,
+              "train": 0.9910526813652313,
+              "test": 1.071028964928524,
+              "params": 213,
+              "cells": 16,
+              "secs": 0.2
+            }
+          ]
+        }
+      },
+      {
+        "depth": 8,
+        "width": 2,
+        "cells": 16,
+        "params": 219,
+        "ideal": {
+          "hw": "ideal",
+          "train": 0.9934196965403118,
+          "test": 1.066821750741284,
+          "test_best": 1.066821750741284,
+          "params": 219,
+          "cells": 16,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 2,
+              "train": 0.9934196965403118,
+              "test": 1.066821750741284,
+              "params": 219,
+              "cells": 16,
+              "secs": 0.4
+            }
+          ]
+        },
+        "pedestal": {
+          "hw": "pedestal",
+          "train": 0.9944111456857675,
+          "test": 1.0691706089793982,
+          "test_best": 1.0691706089793982,
+          "params": 219,
+          "cells": 16,
+          "secs": 0.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 8,
+              "width": 2,
+              "train": 0.9944111456857675,
+              "test": 1.0691706089793982,
+              "params": 219,
+              "cells": 16,
+              "secs": 0.4
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

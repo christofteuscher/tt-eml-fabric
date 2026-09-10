@@ -1,0 +1,16 @@
+* ln-path slope of the LAYOUT ota1vb (not the ideal-buffer schematic).
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _v2d_lay2.inc
+.control
+set noaskquit
+alter @IUIN[dc] = 0
+let vv = 0.25
+dowhile vv <= 4.001
+  alter @IV[dc] = 0.5u*vv
+  op
+  let io = i(VOUT)/0.5u
+  print vv io
+  let vv = vv * 1.4142136
+end
+.endc
+.end

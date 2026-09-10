@@ -1,0 +1,55 @@
+* OTA SHRINK part 2: the risk that actually matters -- OUTPUT RESISTANCE.
+*
+* Offset is insensitive to tail size (ota_shrink_mc.spice: 16x smaller
+* tail moves sigma by 1.0x, because tail mismatch is common to both legs).
+* What a short tail DOES cost is ro, and therefore:
+*   - tail current droop with common-mode input  -> NONLINEARITY, which
+*     the two-point readout calibration does NOT absorb
+*   - follower gain error across the input range
+*
+* Swept nominally (tt) over the range the chain actually uses: the cell
+* v-input sits at 1.17-1.25 V and the log-amp node at 0.78 V
+* (toplevel/chain_full.csv), so 0.6-2.0 V covers it with margin.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param wt=32 lt=8
+
+.subckt ota1p inp inn out vdd pbias wt=32 lt=8
+XMT ntail pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W='wt' L='lt'
+XMP1 n1  inp ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=32 L=2
+XMP2 out inn ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=32 L=2
+XMN1 n1  n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+XMN2 out n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+.ends
+
+VDD vdd 0 3.3
+IB  pb 0 2u
+XPB pb pb vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+
+VIN inp 0 1.2
+XO inp out out vdd pb ota1p wt='wt' lt='lt'
+
+* tail current read through a 0 V sense source in the tail leg
+.control
+set filetype=ascii
+echo > ota_shrink_dc.txt
+alterparam wt = 32
+alterparam lt = 8
+reset
+dc VIN 0.6 2.0 0.05
+wrdata ota_dc_0.csv v(out) v(XO.ntail)
+
+alterparam wt = 16
+alterparam lt = 4
+reset
+dc VIN 0.6 2.0 0.05
+wrdata ota_dc_1.csv v(out) v(XO.ntail)
+
+alterparam wt = 8
+alterparam lt = 2
+reset
+dc VIN 0.6 2.0 0.05
+wrdata ota_dc_2.csv v(out) v(XO.ntail)
+echo OTA_DC_DONE
+.endc
+.end

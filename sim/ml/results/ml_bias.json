@@ -1,0 +1,1944 @@
+{
+  "iters": 2000,
+  "seeds": 3,
+  "res": {
+    "suite": {
+      "prod3": {
+        "expr": "x1*x2*x3",
+        "fabric": [
+          {
+            "hw": "ideal",
+            "train": 0.16569449219978033,
+            "test": 0.1617975148909788,
+            "test_best": 0.1611514572474709,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.8,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.16519849506276904,
+                "test": 0.1617975148909788,
+                "params": 425,
+                "cells": 32,
+                "secs": 4.3
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.1757636754201919,
+                "test": 0.1611514572474709,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.16569449219978033,
+                "test": 0.16343689400134323,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.8
+              }
+            ]
+          },
+          {
+            "hw": "pedestal",
+            "train": 0.21962776560396954,
+            "test": 0.20773303658815503,
+            "test_best": 0.13953679189845214,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.5,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.1410885694741507,
+                "test": 0.13953679189845214,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.8
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.276537634233662,
+                "test": 0.27956080414852424,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.21962776560396954,
+                "test": 0.20773303658815503,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.8
+              }
+            ]
+          }
+        ],
+        "mlp": [
+          {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "params": 433,
+            "cells": null,
+            "train_SUPERSEDED": 0.010973148187290099,
+            "test_SUPERSEDED": 0.011137879329938944,
+            "test_best_SUPERSEDED": 0.006003337797153351,
+            "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+            "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+            "superseded_by": "ml_mlp_val.json['bias/prod3']",
+            "corrected": {
+              "method": "mlp",
+              "hidden": [
+                18,
+                18
+              ],
+              "act": "tanh",
+              "lr": 0.03,
+              "val": 0.011001112194227423,
+              "train": 0.010973148187290099,
+              "test": 0.011137879329938944,
+              "test_best": 0.006003337797153351,
+              "params": 433,
+              "cells": null,
+              "selection": "held-out val"
+            }
+          }
+        ],
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.27405494788932394,
+            "test": 0.2671102220387422,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.039417477495752896,
+            "test": 0.04309350563722858,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 1.4273893203872719e-08,
+            "test": 1.3463690006601594e-08,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "powlaw": {
+        "expr": "x1^1.7 * x2^-0.9 * x3^0.4",
+        "fabric": [
+          {
+            "hw": "ideal",
+            "train": 0.08985611971292254,
+            "test": 0.09009507800050663,
+            "test_best": 0.07633160249493387,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.100000000000001,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.08985611971292254,
+                "test": 0.09009507800050663,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.07618760570672035,
+                "test": 0.07633160249493387,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.09568230522291009,
+                "test": 0.09165822056497601,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              }
+            ]
+          },
+          {
+            "hw": "pedestal",
+            "train": 0.07878082428494024,
+            "test": 0.07674640329805597,
+            "test_best": 0.07012953604609032,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.2,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.07878082428494024,
+                "test": 0.07674640329805597,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.8
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.0696327330460186,
+                "test": 0.07012953604609032,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.278708759983361,
+                "test": 0.27470013231667256,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              }
+            ]
+          }
+        ],
+        "mlp": [
+          {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.01,
+            "params": 433,
+            "cells": null,
+            "train_SUPERSEDED": 0.012855417517932516,
+            "test_SUPERSEDED": 0.01223079873582499,
+            "test_best_SUPERSEDED": 0.012004620293950663,
+            "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+            "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+            "superseded_by": "ml_mlp_val.json['bias/powlaw']",
+            "corrected": {
+              "method": "mlp",
+              "hidden": [
+                18,
+                18
+              ],
+              "act": "tanh",
+              "lr": 0.03,
+              "val": 0.010165285323861932,
+              "train": 0.012945568884938558,
+              "test": 0.01249345756229406,
+              "test_best": 0.010121711629290072,
+              "params": 433,
+              "cells": null,
+              "selection": "held-out val"
+            }
+          }
+        ],
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.2911762276085967,
+            "test": 0.28773211276775323,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.07111051139107717,
+            "test": 0.07269994747255877,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.018241003747682803,
+            "test": 0.01874901095581057,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "expratio": {
+        "expr": "exp(x1/x2)/x3",
+        "fabric": [
+          {
+            "hw": "ideal",
+            "train": 0.13899886302203288,
+            "test": 0.13404197725139258,
+            "test_best": 0.12112387821068993,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.6,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.12112617466773222,
+                "test": 0.12112387821068993,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.8
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.13899886302203288,
+                "test": 0.13404197725139258,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.4006693670770861,
+                "test": 0.3807287650714356,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              }
+            ]
+          },
+          {
+            "hw": "pedestal",
+            "train": 0.14983698472238366,
+            "test": 0.14993876799932482,
+            "test_best": 0.10912307673208373,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.8,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.1084198863695658,
+                "test": 0.10912307673208373,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.20614819977075405,
+                "test": 0.20062332332092833,
+                "params": 425,
+                "cells": 32,
+                "secs": 4.0
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.14983698472238366,
+                "test": 0.14993876799932482,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              }
+            ]
+          }
+        ],
+        "mlp": [
+          {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "params": 433,
+            "cells": null,
+            "train_SUPERSEDED": 0.013433914906591958,
+            "test_SUPERSEDED": 0.013467912542846884,
+            "test_best_SUPERSEDED": 0.013043577480700038,
+            "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+            "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+            "superseded_by": "ml_mlp_val.json['bias/expratio']",
+            "corrected": {
+              "method": "mlp",
+              "hidden": [
+                18,
+                18
+              ],
+              "act": "tanh",
+              "lr": 0.03,
+              "val": 0.01464425231595065,
+              "train": 0.013433914906591958,
+              "test": 0.013467912542846884,
+              "test_best": 0.013043577480700038,
+              "params": 433,
+              "cells": null,
+              "selection": "held-out val"
+            }
+          }
+        ],
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.5653791105474336,
+            "test": 0.47277069220907997,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.2995359319117033,
+            "test": 0.24075032028409868,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.14621734622843452,
+            "test": 0.12590338580760282,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "osc_sum": {
+        "expr": "sin(4x1)+sin(4x2)+sin(4x3)",
+        "fabric": [
+          {
+            "hw": "ideal",
+            "train": 0.6553579359658646,
+            "test": 0.7135064604584039,
+            "test_best": 0.6855806701536427,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.9,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.6405972780851629,
+                "test": 0.7135064604584039,
+                "params": 425,
+                "cells": 32,
+                "secs": 4.0
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.9945290144029809,
+                "test": 1.0801296572850598,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.6553579359658646,
+                "test": 0.6855806701536427,
+                "params": 425,
+                "cells": 32,
+                "secs": 4.0
+              }
+            ]
+          },
+          {
+            "hw": "pedestal",
+            "train": 0.8189379857681016,
+            "test": 0.9170436281175706,
+            "test_best": 0.7354607104330041,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.7,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.8189379857681016,
+                "test": 0.9170436281175706,
+                "params": 425,
+                "cells": 32,
+                "secs": 4.0
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.6896104564479942,
+                "test": 0.7354607104330041,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.8
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.9382449506032633,
+                "test": 1.0222380704830423,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              }
+            ]
+          }
+        ],
+        "mlp": [
+          {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "params": 433,
+            "cells": null,
+            "train_SUPERSEDED": 0.050780614045311714,
+            "test_SUPERSEDED": 0.06095441274521353,
+            "test_best_SUPERSEDED": 0.06019713608658376,
+            "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+            "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+            "superseded_by": "ml_mlp_val.json['bias/osc_sum']",
+            "corrected": {
+              "method": "mlp",
+              "hidden": [
+                18,
+                18
+              ],
+              "act": "tanh",
+              "lr": 0.03,
+              "val": 0.0864162588686666,
+              "train": 0.050780614045311714,
+              "test": 0.06095441274521353,
+              "test_best": 0.06019713608658376,
+              "params": 433,
+              "cells": null,
+              "selection": "held-out val"
+            }
+          }
+        ],
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.9932618009733709,
+            "test": 1.064686579252499,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.545375893422131,
+            "test": 0.5758424859435679,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.5214886711638282,
+            "test": 0.5660900431269968,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "osc_prod": {
+        "expr": "sin(2*pi*x1*x2)",
+        "fabric": [
+          {
+            "hw": "ideal",
+            "train": 0.9898099176197831,
+            "test": 1.010447184912884,
+            "test_best": 1.0045910445414123,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.7,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.9923425422708423,
+                "test": 1.010447184912884,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.9898099176197831,
+                "test": 1.0045910445414123,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.9719742075876675,
+                "test": 1.0123241496306226,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              }
+            ]
+          },
+          {
+            "hw": "pedestal",
+            "train": 0.996114602884998,
+            "test": 1.0071452579737104,
+            "test_best": 1.0069621214289906,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.6,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.9966830646324749,
+                "test": 1.0069621214289906,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.9922881415872812,
+                "test": 1.0077354919860708,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.996114602884998,
+                "test": 1.0071452579737104,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.8
+              }
+            ]
+          }
+        ],
+        "mlp": [
+          {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "params": 433,
+            "cells": null,
+            "train_SUPERSEDED": 0.7571048964685357,
+            "test_SUPERSEDED": 1.25561527611033,
+            "test_best_SUPERSEDED": 1.2413526514878666,
+            "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+            "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+            "superseded_by": "ml_mlp_val.json['bias/osc_prod']",
+            "corrected": {
+              "method": "mlp",
+              "hidden": [
+                85
+              ],
+              "act": "relu",
+              "lr": 0.003,
+              "val": 1.00281330948474,
+              "train": 0.9661964121923231,
+              "test": 1.0254224455065724,
+              "test_best": 1.0155163944234753,
+              "params": 426,
+              "cells": null,
+              "selection": "held-out val"
+            }
+          }
+        ],
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.9990063334108754,
+            "test": 1.0098774971899795,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.9987460139341194,
+            "test": 1.0096368657699968,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.9975211762574282,
+            "test": 1.0085863957617556,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "diffexp": {
+        "expr": "exp(x1)-exp(x2)",
+        "fabric": [
+          {
+            "hw": "ideal",
+            "train": 0.14259742871286718,
+            "test": 0.13359727038683322,
+            "test_best": 0.1111266629116468,
+            "params": 425,
+            "cells": 32,
+            "secs": 11.3,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.11425165398567125,
+                "test": 0.1111266629116468,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.9
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.25239345807142216,
+                "test": 0.24334508047831385,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              },
+              {
+                "method": "fabric",
+                "hw": "ideal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.14259742871286718,
+                "test": 0.13359727038683322,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              }
+            ]
+          },
+          {
+            "hw": "pedestal",
+            "train": 0.09967296525024424,
+            "test": 0.0960084495219333,
+            "test_best": 0.044390813142520025,
+            "params": 425,
+            "cells": 32,
+            "secs": 10.9,
+            "rows": [
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 0,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.09967296525024424,
+                "test": 0.0960084495219333,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.6
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 1,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.1876576931613106,
+                "test": 0.17337700916848656,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.7
+              },
+              {
+                "method": "fabric",
+                "hw": "pedestal",
+                "seed": 2,
+                "topology": "mesh",
+                "depth": 4,
+                "width": 8,
+                "train": 0.045874475167101296,
+                "test": 0.044390813142520025,
+                "params": 425,
+                "cells": 32,
+                "secs": 3.6
+              }
+            ]
+          }
+        ],
+        "mlp": [
+          {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "params": 433,
+            "cells": null,
+            "train_SUPERSEDED": 0.006403312533878877,
+            "test_SUPERSEDED": 0.006356030973479258,
+            "test_best_SUPERSEDED": 0.0061333188140029,
+            "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+            "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+            "superseded_by": "ml_mlp_val.json['bias/diffexp']",
+            "corrected": {
+              "method": "mlp",
+              "hidden": [
+                18,
+                18
+              ],
+              "act": "tanh",
+              "lr": 0.03,
+              "val": 0.009927035673093722,
+              "train": 0.006403312533878877,
+              "test": 0.006356030973479258,
+              "test_best": 0.0061333188140029,
+              "params": 433,
+              "cells": null,
+              "selection": "held-out val"
+            }
+          }
+        ],
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.2614956685009666,
+            "test": 0.23594731495703228,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.0407371711845788,
+            "test": 0.039830452338299925,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.005098959139616057,
+            "test": 0.004901713149841462,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      }
+    },
+    "crossover": {
+      "0.0": {
+        "fabric_ideal": {
+          "hw": "ideal",
+          "train": 0.15117049275805142,
+          "test": 0.14919136479785775,
+          "test_best": 0.11189377130912607,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.6,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.15117049275805142,
+              "test": 0.14919136479785775,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.15642340110523592,
+              "test": 0.16335561997117823,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.11217694055430745,
+              "test": 0.11189377130912607,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            }
+          ]
+        },
+        "fabric_pedestal": {
+          "hw": "pedestal",
+          "train": 0.17740196949070666,
+          "test": 0.18395295534735326,
+          "test_best": 0.16287151289336368,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.8,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.16053492901101302,
+              "test": 0.16287151289336368,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.17740196949070666,
+              "test": 0.18395295534735326,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.21431221080490673,
+              "test": 0.20111436482658948,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.7
+            }
+          ]
+        },
+        "mlp": {
+          "method": "mlp",
+          "hidden": [
+            18,
+            18
+          ],
+          "act": "tanh",
+          "lr": 0.03,
+          "params": 433,
+          "cells": null,
+          "train_SUPERSEDED": 0.011074684771373597,
+          "test_SUPERSEDED": 0.011593501841065241,
+          "test_best_SUPERSEDED": 0.0066981686192188455,
+          "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+          "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+          "superseded_by": "ml_mlp_val.json['mix/0.0']",
+          "corrected": {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "val": 0.013714620355268867,
+            "train": 0.011074684771373597,
+            "test": 0.011593501841065241,
+            "test_best": 0.0066981686192188455,
+            "params": 433,
+            "cells": null,
+            "selection": "held-out val"
+          }
+        },
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.27405494788932394,
+            "test": 0.26711022203874224,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.039417477495752876,
+            "test": 0.04309350563722896,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 1.4273905797278413e-08,
+            "test": 1.3463699329136533e-08,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "0.2": {
+        "fabric_ideal": {
+          "hw": "ideal",
+          "train": 0.24708720487838978,
+          "test": 0.2789777377391515,
+          "test_best": 0.23325084217243802,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.8,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.24708720487838978,
+              "test": 0.2789777377391515,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.5368543178540052,
+              "test": 0.5364374642848663,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.20987281649793224,
+              "test": 0.23325084217243802,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            }
+          ]
+        },
+        "fabric_pedestal": {
+          "hw": "pedestal",
+          "train": 0.33026336309262033,
+          "test": 0.3517594584914489,
+          "test_best": 0.3128172343218651,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.7,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.3333191660657107,
+              "test": 0.36482964231625925,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.7
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.30500272430790226,
+              "test": 0.3128172343218651,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.33026336309262033,
+              "test": 0.3517594584914489,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            }
+          ]
+        },
+        "mlp": {
+          "method": "mlp",
+          "hidden": [
+            18,
+            18
+          ],
+          "act": "tanh",
+          "lr": 0.03,
+          "params": 433,
+          "cells": null,
+          "train_SUPERSEDED": 0.03022396011235686,
+          "test_SUPERSEDED": 0.03108068304736058,
+          "test_best_SUPERSEDED": 0.02896231071285963,
+          "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+          "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+          "superseded_by": "ml_mlp_val.json['mix/0.2']",
+          "corrected": {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "val": 0.05646474576483094,
+            "train": 0.03022396011235686,
+            "test": 0.03108068304736058,
+            "test_best": 0.02896231071285963,
+            "params": 433,
+            "cells": null,
+            "selection": "held-out val"
+          }
+        },
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.35396610780125076,
+            "test": 0.37844375546390374,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.14308899299375047,
+            "test": 0.15208020465348235,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.12976212639155266,
+            "test": 0.1408613016879494,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "0.4": {
+        "fabric_ideal": {
+          "hw": "ideal",
+          "train": 0.6124220674906585,
+          "test": 0.6622023486096305,
+          "test_best": 0.38201401622027464,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.7,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7423509263077759,
+              "test": 0.8087173661664024,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.7
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.3562098976303473,
+              "test": 0.38201401622027464,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.6124220674906585,
+              "test": 0.6622023486096305,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            }
+          ]
+        },
+        "fabric_pedestal": {
+          "hw": "pedestal",
+          "train": 0.37363835722244926,
+          "test": 0.4162556114507872,
+          "test_best": 0.40525865403905353,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.6,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.3537005231534945,
+              "test": 0.43422139908774404,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.38846496395249397,
+              "test": 0.4162556114507872,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.37363835722244926,
+              "test": 0.40525865403905353,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            }
+          ]
+        },
+        "mlp": {
+          "method": "mlp",
+          "hidden": [
+            18,
+            18
+          ],
+          "act": "tanh",
+          "lr": 0.03,
+          "params": 433,
+          "cells": null,
+          "train_SUPERSEDED": 0.046064425987168894,
+          "test_SUPERSEDED": 0.05074686243664401,
+          "test_best_SUPERSEDED": 0.04330594534113714,
+          "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+          "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+          "superseded_by": "ml_mlp_val.json['mix/0.4']",
+          "corrected": {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "val": 0.046824302414004475,
+            "train": 0.046064425987168894,
+            "test": 0.05074686243664401,
+            "test_best": 0.04330594534113714,
+            "params": 433,
+            "cells": null,
+            "selection": "held-out val"
+          }
+        },
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.6107491993486998,
+            "test": 0.6689250543444781,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.32203446278045056,
+            "test": 0.3403965849437521,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.30456662565938375,
+            "test": 0.3306161980921723,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "0.6": {
+        "fabric_ideal": {
+          "hw": "ideal",
+          "train": 0.5825014922052899,
+          "test": 0.6548370602944901,
+          "test_best": 0.562138465816418,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.6,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.9061727059354683,
+              "test": 0.9665347426000308,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.5078080480755839,
+              "test": 0.562138465816418,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.4
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.5825014922052899,
+              "test": 0.6548370602944901,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            }
+          ]
+        },
+        "fabric_pedestal": {
+          "hw": "pedestal",
+          "train": 0.5825345962119979,
+          "test": 0.6276381198285322,
+          "test_best": 0.61954383064334,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.8,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.5825345962119979,
+              "test": 0.6276381198285322,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.572380614181689,
+              "test": 0.61954383064334,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7743740293707887,
+              "test": 0.8329523995087348,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            }
+          ]
+        },
+        "mlp": {
+          "method": "mlp",
+          "hidden": [
+            18,
+            18
+          ],
+          "act": "tanh",
+          "lr": 0.03,
+          "params": 433,
+          "cells": null,
+          "train_SUPERSEDED": 0.0506801607492188,
+          "test_SUPERSEDED": 0.05911860043662703,
+          "test_best_SUPERSEDED": 0.05127150750406447,
+          "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+          "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+          "superseded_by": "ml_mlp_val.json['mix/0.6']",
+          "corrected": {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "val": 0.05129471943077872,
+            "train": 0.0506801607492188,
+            "test": 0.05911860043662703,
+            "test_best": 0.05127150750406447,
+            "params": 433,
+            "cells": null,
+            "selection": "held-out val"
+          }
+        },
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.8726746288677989,
+            "test": 0.9509537239585463,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.4794358569036171,
+            "test": 0.5064162990426635,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.45684813992285306,
+            "test": 0.4959215998103168,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "0.8": {
+        "fabric_ideal": {
+          "hw": "ideal",
+          "train": 0.7401145146547675,
+          "test": 0.8033343555252821,
+          "test_best": 0.7324087336029723,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.8,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7401145146547675,
+              "test": 0.8033343555252821,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 1.11594378531581,
+              "test": 1.16737868730395,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.6465770481438484,
+              "test": 0.7324087336029723,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.7
+            }
+          ]
+        },
+        "fabric_pedestal": {
+          "hw": "pedestal",
+          "train": 0.7909183574728376,
+          "test": 0.8626000412679067,
+          "test_best": 0.8477864215134897,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.7,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7730641768057148,
+              "test": 0.8626000412679067,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.7909183574728376,
+              "test": 0.8477864215134897,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.9463710211762856,
+              "test": 1.0342687707154,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.6
+            }
+          ]
+        },
+        "mlp": {
+          "method": "mlp",
+          "hidden": [
+            18,
+            18
+          ],
+          "act": "tanh",
+          "lr": 0.03,
+          "params": 433,
+          "cells": null,
+          "train_SUPERSEDED": 0.042538160696580285,
+          "test_SUPERSEDED": 0.0555426354265647,
+          "test_best_SUPERSEDED": 0.05147546798466528,
+          "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+          "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+          "superseded_by": "ml_mlp_val.json['mix/0.8']",
+          "corrected": {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "val": 0.07862759414958304,
+            "train": 0.042538160696580285,
+            "test": 0.0555426354265647,
+            "test_best": 0.05147546798466528,
+            "params": 433,
+            "cells": null,
+            "selection": "held-out val"
+          }
+        },
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.9860388348560323,
+            "test": 1.0673706109524475,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.5433752990309405,
+            "test": 0.5738032595755611,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.5190391758110855,
+            "test": 0.563431305806037,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      },
+      "1.0": {
+        "fabric_ideal": {
+          "hw": "ideal",
+          "train": 0.6061181190110334,
+          "test": 0.6955495442211159,
+          "test_best": 0.6330648761298465,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.2,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.597796480243386,
+              "test": 0.6955495442211159,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.4
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.9611520982338935,
+              "test": 1.0351929722000708,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.4
+            },
+            {
+              "method": "fabric",
+              "hw": "ideal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.6061181190110334,
+              "test": 0.6330648761298465,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.4
+            }
+          ]
+        },
+        "fabric_pedestal": {
+          "hw": "pedestal",
+          "train": 0.8164626676885461,
+          "test": 0.904140639095002,
+          "test_best": 0.7182407631200962,
+          "params": 425,
+          "cells": 32,
+          "secs": 10.4,
+          "rows": [
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 0,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.8164626676885461,
+              "test": 0.904140639095002,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.4
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 1,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.6804016137358024,
+              "test": 0.7182407631200962,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            },
+            {
+              "method": "fabric",
+              "hw": "pedestal",
+              "seed": 2,
+              "topology": "mesh",
+              "depth": 4,
+              "width": 8,
+              "train": 0.8712204947761968,
+              "test": 0.9485840009354614,
+              "params": 425,
+              "cells": 32,
+              "secs": 3.5
+            }
+          ]
+        },
+        "mlp": {
+          "method": "mlp",
+          "hidden": [
+            18,
+            18
+          ],
+          "act": "tanh",
+          "lr": 0.03,
+          "params": 433,
+          "cells": null,
+          "train_SUPERSEDED": 0.05219871350761261,
+          "test_SUPERSEDED": 0.06603775101082936,
+          "test_best_SUPERSEDED": 0.054465617110562,
+          "selection": "train NRMSE (SUPERSEDED -- do not cite)",
+          "superseded_reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+          "superseded_by": "ml_mlp_val.json['mix/1.0']",
+          "corrected": {
+            "method": "mlp",
+            "hidden": [
+              18,
+              18
+            ],
+            "act": "tanh",
+            "lr": 0.03,
+            "val": 0.08513793489087139,
+            "train": 0.05219871350761261,
+            "test": 0.06603775101082936,
+            "test_best": 0.054465617110562,
+            "params": 433,
+            "cells": null,
+            "selection": "held-out val"
+          }
+        },
+        "poly": [
+          {
+            "method": "poly1",
+            "train": 0.9932618009733707,
+            "test": 1.0646865792524989,
+            "params": 4,
+            "cells": null
+          },
+          {
+            "method": "poly2",
+            "train": 0.5453758934221307,
+            "test": 0.575842485943567,
+            "params": 10,
+            "cells": null
+          },
+          {
+            "method": "poly3",
+            "train": 0.5214886711638264,
+            "test": 0.5660900431269936,
+            "params": 20,
+            "cells": null
+          }
+        ]
+      }
+    }
+  },
+  "SUPERSEDED_MLP_BASELINE": {
+    "status": "SUPERSEDED -- the `mlp` records in this file must not be cited",
+    "reason": "Grid winner was selected on TRAIN NRMSE, which picks the most overfitting member of the grid and understates the MLP baseline; the resulting fabric win was spurious. Corrected protocol: held-out validation slice of the training split (ml_common.run_mlp_val, ml/run_mlp_fix.py).",
+    "corrected_results": "ml/results/ml_mlp_val.json",
+    "worked_example": "reg/diabetes MLP test NRMSE 1.0866 (train-selected) -> 0.7121 (validation-selected); the fabric's 0.7134 goes from a 1.5x win to a ~tie/slight loss",
+    "what_was_done": "every mlp record keeps its original numbers under train_SUPERSEDED / test_SUPERSEDED / test_best_SUPERSEDED (nothing deleted) and carries a `corrected` sub-record copied from ml_mlp_val.json. There is deliberately no plain `test` key left, so the stale value cannot be read by accident.",
+    "marked_on": "2026-08-19",
+    "fabric_and_poly_columns": "unaffected -- only the MLP column was rerun"
+  }
+}

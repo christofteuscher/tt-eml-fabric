@@ -1,0 +1,76 @@
+* EML cell v2a: log amps now REAL (5T OTA + transdiode at VREFB=1.2V
+* single-supply); exp path and output copies still behavioral glue.
+* Conformity target: match v1b (exp -0.2..-4%, ln <=0.11 units).
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.param iunit=0.5u
+.param nvt=26.9m
+.param usig=0.0
+.param vsig=1.0
+
+.subckt ota5t inp inn out vdd
+ITAIL vdd ntail 4u
+XMP1 n1  inp ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+XMP2 out inn ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+XMN1 n1  n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+XMN2 out n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+.ends
+
+VDD vdd 0 3.3
+VRB vrefb 0 1.2
+
+* ---- exp path (unchanged v1b) ----
+IR1 vdd nb0 {iunit}
+* ----------------------------------------------------------------------
+* mult=8 ON THE X-CARD(S) BELOW IS INERT -- IT IS NOT A DEVICE MULTIPLIER.
+* ngspice SILENTLY ignores `mult=` on a subcircuit call; only `m=` works.
+* Measured 2026-08-16, one sky130_fd_pr__npn_05v5_W1p00L1p00 at Vc=1.0 /
+* Vb=0.75, .op, collector current vs the un-annotated card:
+*     mult=8 -> ratio 1.000000   (ignored, and with NO warning printed)
+*     m=8    -> ratio 8.000000   (honoured)
+* So every number ever produced in this tree was computed with 1x
+* transdiodes, not 8x.
+*
+* DO NOT "FIX" THIS TO m=8.  The LAYOUT is 1x per transdiode too:
+* char/emlcell_b_sim12.inc -- the netlist that LVS-matches the shipped
+* layout/emlcell2.gds -- carries these same NPNs with no multiplier at
+* all.  Simulation and silicon therefore AGREE today, and there is no bug
+* to fix.  Changing mult= to m= here would CREATE an 8x sim/silicon
+* mismatch that does not currently exist.  The annotation records an
+* INTENT that reached neither the netlist nor the mask; if 8x is wanted,
+* change the LAYOUT first and the netlist with it.
+* ----------------------------------------------------------------------
+XQR nb0 nb0 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+IU  0 nu {usig*iunit}
+RU  nu 0 {nvt/iunit}
+BU  nb2 0 V = {V(nb0) + V(nu)}
+XQ2 nc2 nb2 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+VC2 vdd nc2 0
+
+* ---- ln path: REAL log amps, base-driven transdiode (emitter gnd) ----
+* OTA drives the BASE; the BJT collector sinks the input current itself;
+* OTA only supplies IB < 1 uA. V_ln = VBE (0.55-0.85V, mid OTA range).
+IV  0 nva {vsig*iunit}
+XQA nva oa 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+XOA vrefb nva oa vdd ota5t
+IVR 0 nvb {iunit}
+XQB nvb ob 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00 mult=8
+XOB vrefb nvb ob vdd ota5t
+
+* ---- output (behavioral copies, as v1b) ----
+FEXP out 0 VC2 1.0
+GLN  out 0 VALUE = {iunit*(V(ob)-V(oa))/nvt}
+VOUT out 0 0
+
+.control
+set filetype=ascii
+alterparam vsig = 1.0
+reset
+dc IU -1.5u 1.7u 0.025u
+wrdata v2a_usweep.csv i(VOUT)
+destroy all
+dc IV 0.05u 30u 0.1u
+wrdata v2a_vsweep.csv i(VOUT)
+echo V2A_DONE
+.endc
+.end

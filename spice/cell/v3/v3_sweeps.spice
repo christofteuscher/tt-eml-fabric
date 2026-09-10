@@ -1,0 +1,26 @@
+* v3 static conformity: u-sweep and v_eff-sweep.
+* Target: value = exp(u) - ln(v_eff/3);  u = -IU_IN/iu, v_eff = IV_IN/iu + 2.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+VDD vdd 0 3.3
+VRB vrefb 0 1.2
+VE  ve 0 0.55
+IUIN 0 nu 0
+IVIN 0 nv 0.5u
+XCELL nu nv out vdd vrefb ve emlcell
+VOUT out 0 0.9
+.include eml_cell_v3.inc
+
+.control
+set filetype=ascii
+* u sweep at v_eff = 3 (ln term = 0): IVIN = (3-2)*0.5u = 0.5u
+dc IUIN 1.5u -1.7u -0.02u
+wrdata v3_usweep.csv i(VOUT)
+destroy all
+* v_eff sweep at u = 0: IVIN = (v_eff-2)*0.5u, v_eff 1..32
+alter IUIN = 0
+dc IVIN -0.5u 15u 0.05u
+wrdata v3_vsweep.csv i(VOUT)
+echo V3_DONE
+.endc
+.end

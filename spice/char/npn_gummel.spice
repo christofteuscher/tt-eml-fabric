@@ -1,0 +1,15 @@
+* EML fabric Stage-B: sky130 npn_05v5 Gummel sweep (exp device candidate #2)
+* IC(VBE) at VCE=1.5V; how many clean exponential decades?
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+XQ1 c b 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+VC  c 0 1.5
+VB  b 0 0.0
+
+.control
+set filetype=ascii
+dc VB 0.1 0.95 0.002
+wrdata npn_gummel_ic.csv i(VC)
+echo DONE
+.endc
+.end

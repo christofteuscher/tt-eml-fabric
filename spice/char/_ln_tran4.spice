@@ -1,0 +1,9 @@
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _v2d_tran.inc
+.control
+set noaskquit
+option reltol=1e-4
+tran 5n 2.856m 2.850m
+print v(nva) v(oa) v(nsv)
+.endc
+.end

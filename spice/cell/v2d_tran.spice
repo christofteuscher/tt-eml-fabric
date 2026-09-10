@@ -1,0 +1,14 @@
+* Power-up transient: definitive test for latch vs solver artifact,
+* plus servo-loop stability. Point (u=0, v=5), 27C.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.param iunit=0.5u
+.param nvt=26.9m
+.param vsig=5.0
+.include v2d_rails.inc
+.control
+set filetype=ascii
+tran 0.05u 150u
+wrdata v2d_tran.csv i(VOUT) v(oa) v(ob) v(nva) v(nvb) v(ve) v(nb0)
+echo TRAN_DONE
+.endc
+.end

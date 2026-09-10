@@ -1,0 +1,47 @@
+flat / Goldstone       slope(logVar/logt)=+0.997  Var(end)=47.47   open JJ phase, laser phase, easy-plane spin, nematic director, CDW slide
+harmonic / driven RC   slope(logVar/logt)=+0.007  Var(end)=0.02026   CMOS analog node, CSTR concentration held by a maintained inflow
+washboard / fluxoid    slope(logVar/logt)=+0.013  Var(end)=0.02041   JJ in a superconducting loop; flux quantisation
+double well            slope(logVar/logt)=-0.021  Var(end)=0.002491   memristor filament, ferroelectric domain, CMOS latch, spin
+tilted washboard       slope(logVar/logt)=-0.008  Var(end)=0.02131   pinned CDW / skyrmion under drive
+
+held value -> where it ends up (restoring landscapes):
+  washboard / fluxoid    {0.37: 0.0005, 0.9: -0.0, 1.6: -0.0, 2.6: -0.0066}
+  double well            {0.37: 0.9961, 0.9: 0.9967, 1.6: 0.9958, 2.6: 0.9972}
+
+ATTRACTOR CENSUS  (node relaxing onto its own transfer curve)
+op    stable~   stable_mx continuum blurb
+bol   1.0       1         False     exp(u-v)                Arrhenius/detailed-bal
+dio   1.0       1         False     v*(exp(u)-1)            Shockley diode / subth
+nsp   1.0       1         False     sp(u)-sp(v)             two-state population l
+jjs   1.0       1         False     sin(u)+sin(v)           two junctions summing 
+rsj   1.0       1         False     sin(u)+v                JJ shunted by a geomet
+fmi   1.0       1         False     1/(1+e^(v-u))           Fermi-Dirac occupancy
+spn   1.0       1         False     tanh(u+v)               mean-field Ising magne
+tln   1.0       1         True      tanh(u) - ln(v)         bounded expanding port
+nrn   0.0       1         False     ln(u/v)                 Nernst concentration c
+squ   0.0       0         False     sin(u)*cos(v)           dc SQUID, flux-modulat
+ejs   0.0       0         False     exp(u)-sin(v)           diode + JJ summing at 
+njs   0.0       0         False     ln(u)-sin(v)            Nernst cell + JJ (HYBR
+mmk   0.0       1         False     u/(u+v)                 Michaelis-Menten / Lan
+hl2   0.0       1         False     u^2/(u^2+v^2)           Hill n=2 cooperative b
+par   0.0       0         False     uv/(u+v)                Kirchhoff parallel / s
+tun   0.0       0         False     u*exp(-v)               tunnel gap: bias x exp
+mas   0.0       0         True      u*v                     bimolecular mass actio
+dfz   0.0       0         False     erf(u*e^-v)             1-D diffusion profile 
+gsn   0.0       0         False     u*exp(-v^2)             Gaussian/diffusive ker
+lmw   0.0       0         False     u - W(e^(u+v))          diode + series R settl
+lmj   0.0       1         False     u-W(e^(u+v))-sin(v)     diode+R+JJ at one node
+eml   0.0       1         False     exp(u) - ln(v)          BASELINE (Odrzywolek)
+sag   0.0       0         False     sinh(u) - gd(v)         Gudermannian bridge
+sna   0.0       0         False     sinh(u) - sin(v)        oscillatory v port
+lse   0.0       0         False     ln(e^u + e^v)           log-sum-exp (contracti
+
+HOLD-TIME BOUND (Kramers): to hold ONE discrete value for time t against
+kT at 300 K needs a barrier dE >= kT ln(t/tau0); tau0 = 1 ps:
+   t=1e-09     dE >=   6.9 kT =  0.179 eV = 2.86e-20 J
+   t=1e-06     dE >=  13.8 kT =  0.357 eV = 5.72e-20 J
+   t=1e-03     dE >=  20.7 kT =  0.536 eV = 8.58e-20 J
+   t=1e+00     dE >=  27.6 kT =  0.714 eV = 1.14e-19 J
+   ...and a b-bit analog value needs 2^b such wells, i.e. it IS digital.
+
+wrote restoration.json

@@ -1,0 +1,13 @@
+have 13 rows, todo 11
+michaelis_menten  ideal        18 tr=0.1273 te=0.1292 traj=0.0541 tdiv/T=1.000 [   15s]
+michaelis_menten  ideal        32 tr=0.1220 te=0.1232 traj=0.0781 tdiv/T=0.438 [   41s]
+michaelis_menten  pedestal      8 tr=0.0899 te=0.0851 traj=0.0630 tdiv/T=1.000 [   49s]
+michaelis_menten  pedestal     18 tr=0.0561 te=0.0528 traj=0.0081 tdiv/T=1.000 [   65s]
+michaelis_menten  pedestal     32 tr=0.1805 te=0.1756 traj=0.0900 tdiv/T=0.606 [   92s]
+pendulum          ideal         8 tr=0.1727 te=0.1741 traj=0.8601 tdiv/T=0.054 [  100s]
+pendulum          ideal        18 tr=0.1149 te=0.1156 traj=0.2433 tdiv/T=0.082 [  115s]
+pendulum          ideal        32 tr=0.0992 te=0.0978 traj=0.2940 tdiv/T=0.116 [  143s]
+pendulum          pedestal      8 tr=0.1619 te=0.1623 traj=0.5935 tdiv/T=0.123 [  151s]
+pendulum          pedestal     18 tr=0.1771 te=0.1783 traj=0.7751 tdiv/T=0.049 [  167s]
+pendulum          pedestal     32 tr=0.1680 te=0.1681 traj=0.8089 tdiv/T=0.052 [  193s]
+DONE 24 rows (193s)

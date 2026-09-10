@@ -1,0 +1,353 @@
+{
+  "note": "SIMULATION ONLY: surrogate substituted for the nonlinear term inside a scipy-integrated ODE.",
+  "hw": {
+    "ideal": "AnalogConfig() ideal",
+    "pedestal": {
+      "ln_pedestal": 2.547
+    }
+  },
+  "cfgs": [
+    [
+      "mesh",
+      2,
+      4,
+      3
+    ],
+    [
+      "mesh",
+      3,
+      6,
+      3
+    ]
+  ],
+  "seeds": 3,
+  "iters": 3000,
+  "ntrain": 768,
+  "rows": [
+    {
+      "system": "mm_bisub",
+      "cls": "ratio/contract",
+      "model": "fabric_ideal_c8",
+      "test_nrmse": 0.09013776739368456,
+      "on_traj_nrmse": 0.08747629446365272,
+      "T": 6.0,
+      "info": {
+        "params": 85,
+        "cells": 8,
+        "cfg": [
+          "mesh",
+          2,
+          4,
+          3
+        ]
+      },
+      "traj_nrmse": 0.022273139169152762,
+      "t_div": 6.0,
+      "ss_err": 0.03394881921886739,
+      "oob": 0.0,
+      "inv": null,
+      "per_ic": [
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.011215156143071052,
+          "ss_err": 0.023127547305492734,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.015476486288498483,
+          "ss_err": 0.0163410836590379,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.05027938958553186,
+          "ss_err": 0.04477009113224205,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.02906979204980704,
+          "ss_err": 0.05593313647652324,
+          "oob": 0.0
+        }
+      ]
+    },
+    {
+      "system": "mm_bisub",
+      "cls": "ratio/contract",
+      "model": "fabric_ideal_c18",
+      "test_nrmse": 0.06003024371367922,
+      "on_traj_nrmse": 0.05437898738228135,
+      "T": 6.0,
+      "info": {
+        "params": 199,
+        "cells": 18,
+        "cfg": [
+          "mesh",
+          3,
+          6,
+          3
+        ]
+      },
+      "traj_nrmse": 0.019247361655391697,
+      "t_div": 6.0,
+      "ss_err": 0.024527585603425335,
+      "oob": 0.0,
+      "inv": null,
+      "per_ic": [
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.020271572303138283,
+          "ss_err": 0.03019838181894181,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.009716477640509346,
+          "ss_err": 0.013106434693366734,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.024882688929862205,
+          "ss_err": 0.018856789387908857,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.018223151007645114,
+          "ss_err": 0.03306450537057254,
+          "oob": 0.0
+        }
+      ]
+    },
+    {
+      "system": "mm_bisub",
+      "cls": "ratio/contract",
+      "model": "fabric_pedestal_c8",
+      "test_nrmse": 0.04187801383188339,
+      "on_traj_nrmse": 0.04840406631280514,
+      "T": 6.0,
+      "info": {
+        "params": 85,
+        "cells": 8,
+        "cfg": [
+          "mesh",
+          2,
+          4,
+          3
+        ]
+      },
+      "traj_nrmse": 0.010659159834633091,
+      "t_div": 6.0,
+      "ss_err": 0.01705244438742281,
+      "oob": 0.0,
+      "inv": null,
+      "per_ic": [
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.007307686248501787,
+          "ss_err": 0.011696515905870137,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.013623374833492477,
+          "ss_err": 0.02240837286897548,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.007694944835773707,
+          "ss_err": 0.009891210058487686,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.02744628341661386,
+          "ss_err": 0.02736973711281315,
+          "oob": 0.0
+        }
+      ]
+    },
+    {
+      "system": "mm_bisub",
+      "cls": "ratio/contract",
+      "model": "fabric_pedestal_c18",
+      "test_nrmse": 0.05787269967038762,
+      "on_traj_nrmse": 0.06390403688565444,
+      "T": 6.0,
+      "info": {
+        "params": 199,
+        "cells": 18,
+        "cfg": [
+          "mesh",
+          3,
+          6,
+          3
+        ]
+      },
+      "traj_nrmse": 0.02457401355406301,
+      "t_div": 6.0,
+      "ss_err": 0.02582617597597093,
+      "oob": 0.0,
+      "inv": null,
+      "per_ic": [
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.016525931697673458,
+          "ss_err": 0.031150419604399276,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.028389045444793534,
+          "ss_err": 0.02901024719952531,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.020758981663332482,
+          "ss_err": 0.022642104752416552,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.03465402030654388,
+          "ss_err": 0.022451142040371193,
+          "oob": 0.0
+        }
+      ]
+    },
+    {
+      "system": "mm_bisub",
+      "cls": "ratio/contract",
+      "model": "mlp_h21",
+      "test_nrmse": 0.04547153769792642,
+      "on_traj_nrmse": 0.024023545667481,
+      "T": 6.0,
+      "info": {
+        "params": 85,
+        "hidden": 21
+      },
+      "traj_nrmse": 0.004574471268761553,
+      "t_div": 6.0,
+      "ss_err": 0.005360831766081379,
+      "oob": 0.0,
+      "inv": null,
+      "per_ic": [
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.002998407816491982,
+          "ss_err": 0.0038229905290554245,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.005448952834137635,
+          "ss_err": 0.006898673003107332,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.0036999897033854704,
+          "ss_err": 0.003537886094548431,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.009969604654622375,
+          "ss_err": 0.015997315119116,
+          "oob": 0.0
+        }
+      ]
+    },
+    {
+      "system": "mm_bisub",
+      "cls": "ratio/contract",
+      "model": "mlp_h50",
+      "test_nrmse": 0.04631742263611402,
+      "on_traj_nrmse": 0.015123365334518746,
+      "T": 6.0,
+      "info": {
+        "params": 201,
+        "hidden": 50
+      },
+      "traj_nrmse": 0.0035310396211464122,
+      "t_div": 6.0,
+      "ss_err": 0.004307818067086924,
+      "oob": 0.0,
+      "inv": null,
+      "per_ic": [
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.0035974489793291673,
+          "ss_err": 0.0029999657587556966,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.003464630262963657,
+          "ss_err": 0.003789363061400529,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.0027373345282394003,
+          "ss_err": 0.0048262730727733185,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.006205990477169611,
+          "ss_err": 0.011136664920042422,
+          "oob": 0.0
+        }
+      ]
+    },
+    {
+      "system": "mm_bisub",
+      "cls": "ratio/contract",
+      "model": "poly",
+      "test_nrmse": 0.1387137323936116,
+      "on_traj_nrmse": 0.10147422469788334,
+      "T": 6.0,
+      "info": {
+        "params": 55,
+        "deg": 9
+      },
+      "traj_nrmse": 0.012915103543442674,
+      "t_div": 6.0,
+      "ss_err": 0.005646579758643543,
+      "oob": 0.0,
+      "inv": null,
+      "per_ic": [
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.004698962247253519,
+          "ss_err": 0.00507860161153084,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.019027112036727058,
+          "ss_err": 0.005496559221195905,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.006803095050158288,
+          "ss_err": 0.005796600296091181,
+          "oob": 0.0
+        },
+        {
+          "t_div": 6.0,
+          "traj_nrmse": 0.04200498633613805,
+          "ss_err": 0.0896404879817127,
+          "oob": 0.0
+        }
+      ]
+    }
+  ]
+}

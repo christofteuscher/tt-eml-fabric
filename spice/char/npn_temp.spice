@@ -1,0 +1,19 @@
+* EML Stage-B: NPN temperature sweep -20..85C
+* Gummel sweep at each temp -> dVBE/dT at fixed IC, slope(T)
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+XQ1 c b 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+VC  c 0 1.5
+VB  b 0 0.0
+
+.control
+set filetype=ascii
+foreach t -20 0 25 55 85
+  option temp = $t
+  dc VB 0.3 0.95 0.002
+  wrdata npn_temp_{$t}.csv i(VC)
+  destroy all
+end
+echo TEMP_DONE
+.endc
+.end

@@ -1,0 +1,7 @@
+* Extracted by KLayout with SKY130 LVS runset on : 24/07/2026 11:19
+
+.SUBCKT lvs_test2 A B P1 P2 VSS
+R$1 A B VSS sky130_fd_pr__res_high_po_0p35 R=13449.8742857 L=14.72 W=0.35
++ A=5.152 P=30.14
+C$2 P1 P2 sky130_fd_pr__model__cap_mim C=2.00028125e-12 A=1000.140625 P=126.5
+.ENDS lvs_test2

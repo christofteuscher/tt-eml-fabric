@@ -1,0 +1,42 @@
+/Users/cteusche/data/projects/eml/code/fabric_sim/bench/baselines.py:252: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  v = float(loss)
+eq          d ops                           trig method          params  nRMSE_test
+-----------------------------------------------------------------------------------
+I.6.2a      1 div,exp,mul,pow,sqrt            no poly6                7    0.000446
+I.6.2a      1 div,exp,mul,pow,sqrt            no lut-60              60    7.89e-05
+I.6.2a      1 div,exp,mul,pow,sqrt            no mlp-32x2          1153    0.000715
+I.12.5      2 mul                             no poly2                6    1.06e-15
+I.12.5      2 mul                             no lut-10             100    1.12e-08
+I.12.5      2 mul                             no mlp-32x2          1185     0.00208
+I.25.13     2 div,mul                         no poly6               28     0.00355
+I.25.13     2 div,mul                         no lut-20             400     0.00356
+I.25.13     2 div,mul                         no mlp-32x2          1185     0.00288
+II.11.28    2 add,div,mul                     no poly6               28    0.000125
+II.11.28    2 add,div,mul                     no lut-20             400    0.000281
+II.11.28    2 add,div,mul                     no mlp-32x2          1185     0.00376
+I.10.7      3 add,div,mul,pow,sqrt            no poly6               84     0.00211
+I.10.7      3 add,div,mul,pow,sqrt            no lut-10            1000     0.00567
+I.10.7      3 add,div,mul,pow,sqrt            no mlp-32x2          1217     0.00477
+I.16.6      3 add,div,mul,pow                 no poly6               84    0.000362
+I.16.6      3 add,div,mul,pow                 no lut-10            1000     0.00699
+I.16.6      3 add,div,mul,pow                 no mlp-16x2           353     0.00437
+I.26.2      2 asin,mul,sin                   YES poly6               28    9.29e-05
+I.26.2      2 asin,mul,sin                   YES lut-20             400     0.00015
+I.26.2      2 asin,mul,sin                   YES mlp-32x2          1185     0.00238
+I.30.3      3 div,mul,pow,sin                YES poly6               84        0.19
+I.30.3      3 div,mul,pow,sin                YES lut-10            1000      0.0785
+I.30.3      3 div,mul,pow,sin                YES mlp-32x2          1217      0.0641
+III.4.33    4 add,div,exp,mul                 no poly6              210     0.00216
+III.4.33    4 add,div,exp,mul                 no lut-4              256      0.0107
+III.4.33    4 add,div,exp,mul                 no mlp-32x2          1249     0.00649
+I.41.16     5 add,div,exp,mul,pow             no poly6              462      0.0335
+I.41.16     5 add,div,exp,mul,pow             no lut-3              243       0.289
+I.41.16     5 add,div,exp,mul,pow             no mlp-32x2          1281      0.0262
+I.11.19     6 add,mul                         no poly2               28    1.77e-15
+I.11.19     6 add,mul                         no lut-3              729    3.55e-08
+I.11.19     6 add,mul                         no mlp-32x2          1313      0.0101
+I.9.18      9 add,div,mul,pow                 no poly4              715      0.0213
+I.9.18      9 add,div,mul,pow                 no mlp-16x2           449      0.0262
+
+wrote /Users/cteusche/data/projects/eml/code/fabric_sim/bench/results_feynman_baselines.json

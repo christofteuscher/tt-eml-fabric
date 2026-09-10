@@ -1,0 +1,16 @@
+=== standard init on the corrected-PDK chip (the missing cell) ===
+target           init      cfg    depth  train med train best
+thermistor_sh    standard  pdk        3     5.3373     1.0534 [   44s]
+thermistor_sh    standard  pdk        4     5.4525     2.9640 [  101s]
+thermistor_sh    standard  pdk        6     2.7779     1.7750 [  196s]
+thermistor_sh    standard  pdk        8     6.2367     6.1944 [  375s]
+osc_k3           standard  pdk        3     0.3479     0.3471 [  418s]
+osc_k3           standard  pdk        4     0.3657     0.2942 [  475s]
+osc_k3           standard  pdk        6     0.3536     0.1133 [  573s]
+osc_k3           standard  pdk        8     0.4127     0.3953 [  750s]
+
+=== legacy AnalogEMLTree, same data, as a tie to RESULTS.md ===
+thermistor_sh    legacy    pdk        3     8.1034     2.7477 [  820s]
+osc_k3           legacy    pdk        3     0.4097     0.2976 [  891s]
+
+Saved results/supplement.json (891s)

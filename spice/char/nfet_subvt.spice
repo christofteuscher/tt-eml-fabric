@@ -1,0 +1,17 @@
+* EML fabric Stage-B characterization: sky130 nfet_01v8 subthreshold sweep
+* Question: how many clean exponential decades does ID(VGS) give us,
+* and what is the slope factor? (exp device candidate #1)
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+* W/L = 1u/1u, VDS held at 0.9 V (saturation for subthreshold)
+XM1 d g 0 0 sky130_fd_pr__nfet_01v8 W=1 L=1
+VD  d 0 0.9
+VG  g 0 0.0
+
+.control
+set filetype=ascii
+dc VG 0.0 0.9 0.002
+wrdata nfet_subvt_id.csv i(VD)
+echo DONE
+.endc
+.end

@@ -1,0 +1,8 @@
+* LVS reference generated from ../cell/v3/eml_cell_v3b.inc
+.subckt ota1vb inp inn out vdd vss pbias VSS
+MMT ntail pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8u W=32u
+MMP1 n1 inp ntail vdd sky130_fd_pr__pfet_g5v0d10v5 L=2u W=32u
+MMP2 out inn ntail vdd sky130_fd_pr__pfet_g5v0d10v5 L=2u W=32u
+MMN1 n1 n1 vss 0 sky130_fd_pr__nfet_g5v0d10v5 L=2u W=4u
+MMN2 out n1 vss 0 sky130_fd_pr__nfet_g5v0d10v5 L=2u W=4u
+.ends

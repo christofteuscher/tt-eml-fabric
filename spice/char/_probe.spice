@@ -1,0 +1,8 @@
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _v2d_quiet.inc
+.control
+set noaskquit
+tran 100n 3m
+wrdata /tmp/nodes.dat v(nva) v(oa) v(nvb) v(ob) v(nsv) v(gpass) v(vb2) v(nsum) v(nu) v(nc2) v(nb0)
+.endc
+.end

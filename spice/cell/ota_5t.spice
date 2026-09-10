@@ -1,0 +1,26 @@
+* 5T OTA for EML cell log amps (sky130, 3.3V rail, 5V devices)
+* PMOS input (CM ~1.2V), NMOS mirror load. Ideal 4uA tail for now
+* (bias tree is a separate low-risk block).
+* Characterized as unity buffer: out tied to inn, sweep inp.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.subckt ota5t inp inn out vdd
+ITAIL vdd ntail 4u
+XMP1 n1  inp ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+XMP2 out inn ntail vdd sky130_fd_pr__pfet_g5v0d10v5 W=8 L=1
+XMN1 n1  n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+XMN2 out n1 0 0 sky130_fd_pr__nfet_g5v0d10v5 W=4 L=2
+.ends
+
+VDD vdd 0 3.3
+VIN inp 0 1.2
+XOTA inp out out vdd ota5t
+
+.control
+set filetype=ascii
+dc VIN 0.2 2.8 0.005
+wrdata ota_buffer.csv v(out)
+* open-loop gain at CM=1.2: re-run as diff amp around balance point
+echo OTA_DONE
+.endc
+.end

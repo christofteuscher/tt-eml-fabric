@@ -1,0 +1,38 @@
+* How much does R_ptat actually need to move?
+* I_ptat = dV_BE / R_ptat, so the trim range must cover the SPREAD of
+* R_ptat (poly resistors run +-20-30% over process) plus whatever dV_BE
+* contributes.  The step must be fine enough that the residual error is
+* below what the two-point readout calibration cannot absorb.
+* This sweeps R_ptat and reports the resulting core current.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.param rp=30k
+.subckt core vdd VSUB pbias rp=30k
+XMPP1 nb  pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+XMPP2 pbias pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+XQP1 nb nb VSUB VSUB sky130_fd_pr__npn_05v5_W1p00L1p00
+XQP2 pbias nb ne2 VSUB sky130_fd_pr__npn_05v5_W1p00L2p00
+RPTAT ne2 VSUB 'rp'
+XSL1 nsl1 nsl1 pbias vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL2 nsl2 nsl2 nsl1 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL3 nsl3 nsl3 nsl2 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+XSL4 nd12 nd12 nsl3 vdd sky130_fd_pr__pfet_g5v0d10v5 W=4 L=8
+RD1 vdd nd12 210k
+.ends
+VDD vdd 0 3.3
+VSS VSUB 0 0
+XC vdd VSUB pbias core rp='rp'
+* monitor leg: a W/L=2 copy off pbias, one "unit" of the bias tree
+XMON nmon pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+VM nmon 0 1.0
+.control
+set filetype=ascii
+echo > rptat_sens.txt
+foreach r 21k 24k 27k 30k 33k 36k 39k
+  alterparam rp = $r
+  reset
+  op
+  echo $r $&i(VM) >> rptat_sens.txt
+end
+echo SENS_DONE
+.endc
+.end

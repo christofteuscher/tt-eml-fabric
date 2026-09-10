@@ -1,0 +1,21 @@
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include ../cell/v2d_core.inc
+.control
+set noaskquit
+alter @IUIN[dc] = 0
+alter @IV[dc] = 0.5u
+op
+echo AT_V1
+print v(oa)
+print v(ob)
+print v(nva)
+print v(nvb)
+alter @IV[dc] = 1.0u
+op
+echo AT_V2
+print v(oa)
+print v(ob)
+print v(nva)
+print v(nvb)
+.endc
+.end

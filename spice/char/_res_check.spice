@@ -1,0 +1,16 @@
+* Standalone DC check of the exact RU device in emlcell_b's layout:
+*   RU_0 vb2 nu VSUB sky130_fd_pr__res_high_po_0p35 L=58.88u W=0.35u
+* Inferred from the cell sim as ~66 kohm against a 53.8 kohm design target.
+* Force 0.5 uA (the unit current) through it and read the drop.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+VB b 0 0.7
+I1 b a 0.5u
+XR a b 0 sky130_fd_pr__res_high_po_0p35 L=58.88 W=0.35
+.control
+set noaskquit
+op
+print v(a) v(b)
+let rr = (v(a)-v(b))/0.5u
+print rr
+.endc
+.end

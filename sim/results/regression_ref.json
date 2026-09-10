@@ -1,0 +1,19 @@
+{
+  "tree_thermistor_beta_d3_ideal_s0_800": 1.824417481116716,
+  "tree_thermistor_sh_d3_pdk_s0_800": 6.9681318792099045,
+  "photodiode_log_d1_ideal_s0_600": 0.7767545844000114,
+  "fabric_osc_k3_d4_ideal_s0_800": 0.3599141744524267,
+  "fabric_thermistor_sh_mesh_d4w8_pdk_s0_800": 0.10331213308289525,
+  "equiv_tree_fabric_d4_ideal_maxabs": 0.0,
+  "equiv_tree_fabric_d3_pdk_maxabs": 0.0,
+  "mv_product_ideal_relrms": 1.8721000459212742e-16,
+  "mv_product_pedestal_relrms": 2.0233380392082556,
+  "mv_product_atten_relrms": 0.8214671085005373,
+  "mv_product_span_relrms": 1.1367935384544173e-05,
+  "mv_product_span2dec_relrms": 0.5106065945229525,
+  "mv_product_silicon_relrms": 0.36107756481726144,
+  "mv_product_pedestal_refit_relrms": 0.05645857011195362,
+  "mv_product_atten_refit_relrms": 4.74185062024645e-16,
+  "mv_product_span2dec_refit_relrms": 0.4821835725609485,
+  "mv_product_silicon_refit_relrms": 0.0943070344025368
+}

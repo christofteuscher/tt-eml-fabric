@@ -1,0 +1,23 @@
+* EML Stage-B: NPN mismatch Monte Carlo (tt_mm = mismatch-only section)
+* Fixed VBE in the clean-exp region; spread of ln(IC) across samples
+* = the exp-argument offset sigma (in V_T units) for AnalogConfig.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt_mm
+
+XQ1 c b 0 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+VC  c 0 1.5
+VB  b 0 0.60
+
+.control
+set filetype=ascii
+let runs = 200
+let idx = 0
+echo > npn_mc_ic.txt
+dowhile idx < runs
+  reset
+  op
+  echo $&i(VC) >> npn_mc_ic.txt
+  let idx = idx + 1
+end
+echo MC_DONE
+.endc
+.end

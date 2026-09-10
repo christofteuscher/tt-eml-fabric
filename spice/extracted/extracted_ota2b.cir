@@ -1,0 +1,19 @@
+* Extracted by KLayout with SKY130 LVS runset on : 24/07/2026 14:16
+
+.SUBCKT ota2b VSUB inn inp out pbias vdd
+C$1 \$2 out sky130_fd_pr__model__cap_mim C=2.00028125e-12 A=1000.140625 P=126.5
+M$2 \$2 \$4 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4 PS=9.2
++ PD=9.2
+M$3 \$4 \$4 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=2 W=4 AS=2.4 AD=2.4 PS=9.2
++ PD=9.2
+M$4 out \$2 VSUB VSUB sky130_fd_pr__nfet_g5v0d10v5 L=1 W=16 AS=9.6 AD=9.6
++ PS=33.2 PD=33.2
+M$5 \$2 inn \$3 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$6 \$4 inp \$3 vdd sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$7 \$3 pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=32 AS=19.2 AD=19.2
++ PS=65.2 PD=65.2
+M$8 out pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=48 AS=28.8 AD=28.8
++ PS=97.2 PD=97.2
+.ENDS ota2b

@@ -1,0 +1,57 @@
+* raildrv across corners + a power-up ramp.  Everything before this was
+* tt/27C with one step size (flagged in task #13 every round).  Two
+* questions: does the one-buffer design hold ve at every corner, and does
+* the loop START -- cst_startup.spice exists in this tree precisely
+* because these loops misbehave at power-up.
+* This file is a TEMPLATE: @CORNER@ and @TEMP@ are substituted by sed per
+* run (ngspice's -D defines do NOT expand {braces} in netlist cards -- the
+* first attempt produced 15 exit-1 runs that a sloppy harness printed as
+* 15 blank rows).  Run via the loop in the shell history / task #13.
+*
+* RESULTS 2026-07-29, all 15 corner/temp pairs (tt/ss/ff/sf/fs x -40/27/85):
+*   ve settled     545.7..552.3 mV   (+-0.5% of the 550 target, all corners)
+*   ve after step  = settled at every corner: full recovery
+*   step droop     507..526 mV transient
+*   vrefb          1189.6..1204.5 mV unbuffered (+-0.9% -> ~0.003% of output)
+*   POWER-UP: settles at EVERY corner.  One benign excursion: ve rides to
+*   740..994 mV during the vdd ramp (worst fs/-40C) before the loop takes
+*   over -- under all device ratings, fully recovered before use, and the
+*   usage model is power-on -> program -> settle -> measure.  No latch, no
+*   stuck rail, no startup failure at any corner.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice @CORNER@
+.temp @TEMP@
+
+* vdd RAMPS 0 -> 3.3 over 50 us: a power-up, not an op point.
+VDD vdd 0 PWL(0 0 50u 3.3 400u 3.3)
+IB pb 0 2u
+XPB pb pb vdd vdd sky130_fd_pr__pfet_g5v0d10v5 W=16 L=8
+
+* the real divider, trim leg, buffer and 2-cell load
+XCORE vdd 0 pbc nd12 nd055 vcasc ne2 ptatcore
+RPT ne2 0 30k
+XDRV ve nd055 vdd pb raildrv
+RVRB nd12 vrefb 0.001
+XCELLA nua nva outa vdd vrefb ve pb emlcell_b
+XCELLB nub nvb outb vdd vrefb ve pb emlcell_b
+IVA 0 nva 0.5u
+IVB 0 nvb 0.5u
+VOUTA outa 0 0.9
+VOUTB outb 0 0.9
+* the 10 uA load step, AFTER settling, to get per-corner step response too
+ISTEP ve 0 PULSE(0 10u 250u 20n 20n 60u 500u)
+
+.include ptatcore.inc
+.include ptat_bias.inc
+.include ../cell/v3/eml_cell_v3b.inc
+
+.control
+set filetype=ascii
+tran 0.5u 400u
+* startup: where does ve land, and does it get there monotonically-ish?
+meas tran ve_settled   AVG v(ve)    from=200u to=245u
+meas tran ve_startmax  MAX v(ve)    from=0    to=200u
+meas tran ve_afterstep AVG v(ve)    from=330u to=395u
+meas tran ve_stepmin   MIN v(ve)    from=250u to=330u
+meas tran vrefb_set    AVG v(vrefb) from=200u to=245u
+.endc
+.end

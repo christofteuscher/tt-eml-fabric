@@ -1,0 +1,6 @@
+* Extracted by KLayout with SKY130 LVS runset on : 24/07/2026 14:32
+
+.SUBCKT combtest
+M$1 D|S G|VDD D|S G|VDD sky130_fd_pr__pfet_g5v0d10v5 L=2 W=32 AS=19.2 AD=19.2
++ PS=68.8 PD=68.8
+.ENDS combtest

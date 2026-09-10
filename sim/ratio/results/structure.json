@@ -1,0 +1,82 @@
+{
+  "hill_n1": {
+    "loglin": 0.9291093218909094,
+    "rat": 1.0,
+    "cls": "ratio/contract"
+  },
+  "hill_n2": {
+    "loglin": 0.8656307828897774,
+    "rat": 0.980726245183304,
+    "cls": "ratio/contract"
+  },
+  "hill_n4": {
+    "loglin": 0.811225677669394,
+    "rat": -44.12680234149849,
+    "cls": "ratio/contract"
+  },
+  "enzyme_cascade": {
+    "loglin": 0.9182155578509803,
+    "rat": 1.0,
+    "cls": "ratio/contract"
+  },
+  "gene_autoreg": {
+    "loglin": 0.7276259953324253,
+    "rat": 0.9720455108726765,
+    "cls": "ratio/contract"
+  },
+  "monod_chemostat": {
+    "loglin": 0.9825744396495312,
+    "rat": 0.8659510040089652,
+    "cls": "ratio/contract"
+  },
+  "gompertz": {
+    "loglin": 0.3685596928172078,
+    "rat": -8901.775289916372,
+    "cls": "ratio/contract"
+  },
+  "bimolecular": {
+    "loglin": 1.0,
+    "rat": -1.1544409445369403,
+    "cls": "ratio/contract"
+  },
+  "mm_bisub": {
+    "loglin": 0.7246177831561496,
+    "rat": -60.33812552949054,
+    "cls": "ratio/contract"
+  },
+  "gene_repressilator": {
+    "loglin": 0.8644802322997919,
+    "rat": 0.7742661341562773,
+    "cls": "ratio/osc"
+  },
+  "goodwin": {
+    "loglin": 0.603206483132801,
+    "rat": 0.6538682530123361,
+    "cls": "ratio/osc"
+  },
+  "lotka_volterra": {
+    "loglin": 1.0,
+    "rat": 0.8152121636301946,
+    "cls": "ratio/osc"
+  },
+  "logistic": {
+    "loglin": 0.38789549758652697,
+    "rat": -1326.895143944552,
+    "cls": "poly/contract"
+  },
+  "duffing_damped": {
+    "loglin": 0.9524226718606928,
+    "rat": 0.9259199496698354,
+    "cls": "poly/contract"
+  },
+  "pendulum_damped": {
+    "loglin": 0.18199676841199697,
+    "rat": -2.899340917111581,
+    "cls": "trig/contract"
+  },
+  "brusselator": {
+    "loglin": 1.0,
+    "rat": 0.7462943931730761,
+    "cls": "poly/osc"
+  }
+}

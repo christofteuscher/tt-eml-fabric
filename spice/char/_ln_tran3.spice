@@ -1,0 +1,11 @@
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include _v2d_tran.inc
+.control
+set noaskquit
+option reltol=1e-4 abstol=1e-15 vntol=1e-9
+tran 5n 2.90m 2.80m
+let io = i(VOUT)/0.5u
+meas tran nva_min MIN v(nva) from=2.85m to=2.90m
+meas tran nva_max MAX v(nva) from=2.85m to=2.90m
+.endc
+.end

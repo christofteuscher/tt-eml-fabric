@@ -1,0 +1,21 @@
+* Does the sky130 NPN actually deliver VT*ln(ratio)?
+* Two transdiodes sharing an emitter node, forced collector currents.
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+VE ve 0 0.55
+VCA ca 0 1.6
+VCB cb 0 1.6
+IA ca a 0.5u
+IB cb b 0.5u
+XQA a a ve 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+XQB b b ve 0 sky130_fd_pr__npn_05v5_W1p00L1p00
+.control
+set noaskquit
+foreach r 1 2 4 8
+  alter @IA[dc] = $r*0.5u
+  op
+  echo RATIO $r
+  print v(a)
+  print v(b)
+end
+.endc
+.end
