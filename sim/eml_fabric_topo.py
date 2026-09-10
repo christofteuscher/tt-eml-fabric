@@ -516,6 +516,32 @@ class AnalogEMLFabric(nn.Module):
             child = self._cells(uv[:, 0], uv[:, 1], l, noisy)  # (n_l, B)
         return (self.ro_w.unsqueeze(-1) * child).sum(0) + self.ro_b
 
+    # -- random-feature readout ----------------------------------------------
+
+    @torch.no_grad()
+    def cell_features(self, x, noisy=False, quant=True):
+        """Every cell's output as (n_cells, B), deepest layer first.
+
+        `forward` reads layer 0 only, because a trained fabric is meant to
+        compute its answer at the root.  A random-feature (ELM) readout has
+        no such intention: the interior is a fixed nonlinear map and every
+        cell is a usable feature, so the readout sees all of them.  The
+        arithmetic is otherwise identical to `forward` -- same drive, same
+        connectivity, same mismatch buffers, same rails -- so the feature
+        bank is the fabric this paper simulates and not a second model.
+        """
+        X = self._prep_x(x)
+        child, feats = None, []
+        for l in reversed(range(self.depth)):
+            uv = self._drive(l, X, quant=quant)
+            if child is not None:
+                gm = self._quant(self.gamma[l]) if quant else self.gamma[l]
+                ci = getattr(self, f"conn_{l}")
+                uv = uv + (gm.unsqueeze(-1) * child[ci]).sum(dim=2)
+            child = self._cells(uv[:, 0], uv[:, 1], l, noisy)
+            feats.append(child)
+        return torch.cat(feats, dim=0)
+
     # -- diagnostics ----------------------------------------------------------
 
     @torch.no_grad()
