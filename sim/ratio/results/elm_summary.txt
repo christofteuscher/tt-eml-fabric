@@ -1,0 +1,248 @@
+ELM: seeds=5 ntrain=768 clip=8.0 sigma  cfgs=[['mesh', 2, 4, 3], ['mesh', 3, 6, 3], ['mesh', 3, 16, 3], ['mesh', 3, 64, 3]]
+trained study: seeds=3 iters=3000
+
+=== Q1 frozen interior vs trained interior -- POINTWISE FIT  [test_nrmse] ===
+system               class                    elm      trained     ratio   win
+hill_n1              ratio/contract      0.007284      0.01641      0.44   WIN
+hill_n2              ratio/contract     0.0006538      0.01623      0.04   WIN
+hill_n4              ratio/contract      0.003242     0.004692      0.69   WIN
+enzyme_cascade       ratio/contract       0.02346      0.03197      0.73   WIN
+gene_autoreg         ratio/contract     0.0003025     0.005402      0.06   WIN
+monod_chemostat      ratio/contract       0.01786      0.03565      0.50   WIN
+gompertz             ratio/contract      0.006893      0.02021      0.34   WIN
+bimolecular          ratio/contract     3.567e-08      0.01213      0.00   WIN
+gene_repressilator   ratio/osc            0.02744      0.02612      1.05     -
+goodwin              ratio/osc             0.1662      0.09738      1.71     -
+lotka_volterra       ratio/osc          2.038e-08      0.02984      0.00   WIN
+logistic             poly/contract      5.442e-09     0.001557      0.00   WIN
+duffing_damped       poly/contract       1.02e-07      0.03927      0.00   WIN
+pendulum_damped      trig/contract      5.399e-06      0.04297      0.00   WIN
+brusselator          poly/osc           1.313e-07      0.02112      0.00   WIN
+mm_bisub             ratio/contract        0.1432      0.04188      3.42     -
+                                                          wins   13 of 16   median ratio 0.20x
+
+=== Q2 frozen fabric vs matched baselines -- POINTWISE FIT  [test_nrmse] ===
+system               class                    elm     mlp/poly     ratio   win
+hill_n1              ratio/contract      0.007284     0.003201      2.28     -
+hill_n2              ratio/contract     0.0006538    0.0005776      1.13     -
+hill_n4              ratio/contract      0.003242    0.0003619      8.96     -
+enzyme_cascade       ratio/contract       0.02346     0.006932      3.38     -
+gene_autoreg         ratio/contract     0.0003025     0.001006      0.30   WIN
+monod_chemostat      ratio/contract       0.01786     0.009719      1.84     -
+gompertz             ratio/contract      0.006893     0.006033      1.14     -
+bimolecular          ratio/contract     3.567e-08    3.576e-16  35670.07     -
+gene_repressilator   ratio/osc            0.02744     0.001756     15.62     -
+goodwin              ratio/osc             0.1662     0.003408     48.77     -
+lotka_volterra       ratio/osc          2.038e-08    2.893e-16  20377.81     -
+logistic             poly/contract      5.442e-09    1.038e-15   5441.88     -
+duffing_damped       poly/contract       1.02e-07     3.42e-16 101954.18     -
+pendulum_damped      trig/contract      5.399e-06    3.384e-06      1.60     -
+brusselator          poly/osc           1.313e-07    1.802e-16 131307.03     -
+mm_bisub             ratio/contract        0.1432      0.04547      3.15     -
+                                                          wins    1 of 16   median ratio 6.17x
+
+=== Q3 eml features vs tanh features -- POINTWISE FIT  [test_nrmse] ===
+system               class                    elm      elmtanh     ratio   win
+hill_n1              ratio/contract      0.007284     0.001286      5.66     -
+hill_n2              ratio/contract     0.0006538    6.636e-05      9.85     -
+hill_n4              ratio/contract      0.003242    4.609e-07   7035.81     -
+enzyme_cascade       ratio/contract       0.02346     0.009157      2.56     -
+gene_autoreg         ratio/contract     0.0003025    6.221e-05      4.86     -
+monod_chemostat      ratio/contract       0.01786      0.01015      1.76     -
+gompertz             ratio/contract      0.006893     0.002125      3.24     -
+bimolecular          ratio/contract     3.567e-08    8.099e-08      0.44   WIN
+gene_repressilator   ratio/osc            0.02744    0.0001043    262.96     -
+goodwin              ratio/osc             0.1662     0.005507     30.19     -
+lotka_volterra       ratio/osc          2.038e-08     0.002012      0.00   WIN
+logistic             poly/contract      5.442e-09    8.135e-09      0.67   WIN
+duffing_damped       poly/contract       1.02e-07    5.196e-08      1.96     -
+pendulum_damped      trig/contract      5.399e-06     1.68e-08    321.29     -
+brusselator          poly/osc           1.313e-07     0.006469      0.00   WIN
+mm_bisub             ratio/contract        0.1432      0.04379      3.27     -
+                                                          wins    4 of 16   median ratio 3.26x
+
+=== Q4 silicon vs ideal, frozen -- POINTWISE FIT  [test_nrmse] ===
+system               class                silicon        ideal     ratio   win
+hill_n1              ratio/contract      0.009822     0.007284      1.35     -
+hill_n2              ratio/contract      0.001678    0.0006538      2.57     -
+hill_n4              ratio/contract      0.004357     0.003242      1.34     -
+enzyme_cascade       ratio/contract       0.02591      0.02346      1.10     -
+gene_autoreg         ratio/contract     0.0006975    0.0003025      2.31     -
+monod_chemostat      ratio/contract       0.02076      0.01786      1.16     -
+gompertz             ratio/contract      0.009657     0.006893      1.40     -
+bimolecular          ratio/contract     3.567e-08    3.828e-07      0.09   WIN
+gene_repressilator   ratio/osc            0.03008      0.02744      1.10     -
+goodwin              ratio/osc             0.1662       0.1734      0.96   WIN
+lotka_volterra       ratio/osc          2.038e-08    1.973e-07      0.10   WIN
+logistic             poly/contract      5.442e-09    4.839e-08      0.11   WIN
+duffing_damped       poly/contract      1.133e-07     6.13e-07      0.18   WIN
+pendulum_damped      trig/contract      5.829e-06    2.089e-05      0.28   WIN
+brusselator          poly/osc           1.313e-07    1.717e-06      0.08   WIN
+mm_bisub             ratio/contract        0.1663       0.1432      1.16     -
+                                                          wins    7 of 16   median ratio 1.10x
+
+=== Q1 frozen interior vs trained interior -- CLOSED LOOP  [traj_nrmse] ===
+system               class                    elm      trained     ratio   win
+hill_n1              ratio/contract      0.008484      0.02213      0.38   WIN
+hill_n2              ratio/contract     0.0005356      0.01791      0.03   WIN
+hill_n4              ratio/contract      0.004439     0.005484      0.81   WIN
+enzyme_cascade       ratio/contract       0.03402       0.0641      0.53   WIN
+gene_autoreg         ratio/contract     2.107e-05     0.002456      0.01   WIN
+monod_chemostat      ratio/contract        0.0186     0.008515      2.18     -
+gompertz             ratio/contract     0.0005189     0.004622      0.11   WIN
+bimolecular          ratio/contract      2.03e-07      0.01249      0.00   WIN
+gene_repressilator   ratio/osc            0.05374       0.1083      0.50   WIN
+goodwin              ratio/osc             0.2283      0.06152      3.71     -
+lotka_volterra       ratio/osc          3.621e-06       0.2659      0.00   WIN
+logistic             poly/contract      1.038e-07     0.000885      0.00   WIN
+duffing_damped       poly/contract      1.647e-06       0.4005      0.00   WIN
+pendulum_damped      trig/contract      8.028e-06      0.06715      0.00   WIN
+brusselator          poly/osc           2.116e-06       0.4945      0.00   WIN
+mm_bisub             ratio/contract       0.02083      0.01066      1.95     -
+                                                          wins   13 of 16   median ratio 0.07x
+
+=== Q2 frozen fabric vs matched baselines -- CLOSED LOOP  [traj_nrmse] ===
+system               class                    elm     mlp/poly     ratio   win
+hill_n1              ratio/contract      0.008484      0.00404      2.10     -
+hill_n2              ratio/contract     0.0005356    0.0002591      2.07     -
+hill_n4              ratio/contract      0.004439    0.0006682      6.64     -
+enzyme_cascade       ratio/contract       0.03402      0.01792      1.90     -
+gene_autoreg         ratio/contract     2.107e-05    2.866e-05      0.74   WIN
+monod_chemostat      ratio/contract        0.0186     0.002176      8.54     -
+gompertz             ratio/contract     0.0005189    0.0006574      0.79   WIN
+bimolecular          ratio/contract      2.03e-07    1.832e-07      1.11     -
+gene_repressilator   ratio/osc            0.05374     0.002163     24.85     -
+goodwin              ratio/osc             0.2283      0.01265     18.05     -
+lotka_volterra       ratio/osc          3.621e-06    4.173e-06      0.87   WIN
+logistic             poly/contract      1.038e-07    1.049e-07      0.99   WIN
+duffing_damped       poly/contract      1.647e-06    1.344e-06      1.22     -
+pendulum_damped      trig/contract      8.028e-06    4.089e-06      1.96     -
+brusselator          poly/osc           2.116e-06    1.213e-06      1.74     -
+mm_bisub             ratio/contract       0.02083     0.003531      5.90     -
+                                                          wins    4 of 16   median ratio 1.93x
+
+=== Q3 eml features vs tanh features -- CLOSED LOOP  [traj_nrmse] ===
+system               class                    elm      elmtanh     ratio   win
+hill_n1              ratio/contract      0.008484      0.00145      5.85     -
+hill_n2              ratio/contract     0.0005356    4.601e-05     11.64     -
+hill_n4              ratio/contract      0.004439    4.609e-07   9631.28     -
+enzyme_cascade       ratio/contract       0.03402      0.01905      1.79     -
+gene_autoreg         ratio/contract     2.107e-05    1.248e-06     16.88     -
+monod_chemostat      ratio/contract        0.0186     0.003236      5.75     -
+gompertz             ratio/contract     0.0005189    3.073e-05     16.88     -
+bimolecular          ratio/contract      2.03e-07    1.691e-07      1.20     -
+gene_repressilator   ratio/osc            0.05374    5.284e-05   1017.02     -
+goodwin              ratio/osc             0.2283       0.0135     16.91     -
+lotka_volterra       ratio/osc          3.621e-06    1.849e-05      0.20   WIN
+logistic             poly/contract      1.038e-07    1.045e-07      0.99   WIN
+duffing_damped       poly/contract      1.647e-06    1.355e-06      1.21     -
+pendulum_damped      trig/contract      8.028e-06    4.431e-07     18.12     -
+brusselator          poly/osc           2.116e-06    5.756e-06      0.37   WIN
+mm_bisub             ratio/contract       0.02083      0.00159     13.10     -
+                                                          wins    3 of 16   median ratio 8.75x
+
+=== Q4 silicon vs ideal, frozen -- CLOSED LOOP  [traj_nrmse] ===
+system               class                silicon        ideal     ratio   win
+hill_n1              ratio/contract        0.0115     0.008484      1.36     -
+hill_n2              ratio/contract      0.002147    0.0005356      4.01     -
+hill_n4              ratio/contract      0.004631     0.004439      1.04     -
+enzyme_cascade       ratio/contract       0.04609      0.03402      1.35     -
+gene_autoreg         ratio/contract     0.0001896    2.107e-05      9.00     -
+monod_chemostat      ratio/contract       0.02605       0.0186      1.40     -
+gompertz             ratio/contract      0.001102    0.0005189      2.12     -
+bimolecular          ratio/contract      2.03e-07    1.106e-06      0.18   WIN
+gene_repressilator   ratio/osc            0.05374      0.05762      0.93   WIN
+goodwin              ratio/osc             0.2283       0.2668      0.86   WIN
+lotka_volterra       ratio/osc           3.86e-06     5.01e-06      0.77   WIN
+logistic             poly/contract      1.038e-07    1.156e-07      0.90   WIN
+duffing_damped       poly/contract      1.647e-06    8.724e-06      0.19   WIN
+pendulum_damped      trig/contract      8.857e-06    2.839e-05      0.31   WIN
+brusselator          poly/osc           2.116e-06    7.242e-05      0.03   WIN
+mm_bisub             ratio/contract       0.02083      0.02417      0.86   WIN
+                                                          wins    9 of 16   median ratio 0.92x
+
+========================================================================
+HEADLINE: what the extracted non-idealities cost, trained vs frozen
+========================================================================
+Ratio is silicon / pedestal-only, so <1 means the extra
+non-idealities HELPED. This is the paper's central ELM result and it
+contains no energy model, no digital baseline and no node scaling.
+
+fitting rule     criterion          sil/ped  sil better
+trained          pointwise fit         2.56      1 of 16 
+trained          closed loop           1.92      1 of 16 
+frozen (ELM)     pointwise fit         0.95     12 of 16 
+frozen (ELM)     closed loop           0.99     12 of 16 
+
+=== Q1m frozen vs trained at MATCHED CELLS and MATCHED hw ===
+The family-vs-family Q1 above lets the ELM use up to 192 cells while
+the trained study stops at 18, so it is not a fair read on its own.
+Here each ELM is compared with the trained fabric of the SAME cell
+count on the SAME hw config. Trainable parameters are NOT matched:
+the ELM fits only its readout, so it has far fewer.
+
+-- test_nrmse --
+pair                                elm    trained    ratio  elm par  trn par   win
+ideal c8                         0.0143     0.0408     0.55        9       69 10/16
+ideal c18                        0.0030     0.0338     0.11       19      163 11/16
+pedestal c8                      0.0128     0.0341     0.48        9       69 10/16
+pedestal c18                     0.0066     0.0361     0.39       19      163 12/16
+
+-- traj_nrmse --
+pair                                elm    trained    ratio  elm par  trn par   win
+ideal c8                         0.0311     0.0497     0.42        9       69 11/16
+ideal c18                        0.0068     0.0316     0.18       19      163 15/16
+pedestal c8                      0.0134     0.0463     0.28        9       69 12/16
+pedestal c18                     0.0057     0.0468     0.31       19      163 12/16
+
+=== Q1c CONTROL: frozen vs trained, SAME cells, hw AND readout ===
+elm0_* freezes the interior but reads only layer 0, exactly the
+readout the trained fabric uses. The only difference left is whether
+the interior was trained. If elm0 still wins, gradient descent through
+the behavioural model is the problem; if it does not, the wider
+readout was doing the work in Q1m and that is what should be said.
+
+-- test_nrmse --
+pair                               elm0    trained    ratio    win
+ideal c8                         0.0717     0.0408     1.95  4/16 
+ideal c18                        0.0343     0.0338     0.84  9/16 
+pedestal c8                      0.0734     0.0341     1.56  6/16 
+pedestal c18                     0.0196     0.0361     0.91 10/16 
+
+-- traj_nrmse --
+pair                               elm0    trained    ratio    win
+ideal c8                         0.0945     0.0497     1.17  4/16 
+ideal c18                        0.0634     0.0316     0.83  9/16 
+pedestal c8                      0.0944     0.0463     1.00  8/16 
+pedestal c18                     0.0358     0.0468     0.86  9/16 
+
+=== scaling: does a wider feature bank help? (median over systems) ===
+model                  med test   med traj  cells
+elm_ideal_c8             0.0143     0.0311      8
+elm_ideal_c18            0.0030     0.0068     18
+elm_ideal_c48            0.0025     0.0014     48
+elm_ideal_c192           0.0019     0.0005    192
+elm_pedestal_c8          0.0128     0.0134      8
+elm_pedestal_c18         0.0066     0.0057     18
+elm_pedestal_c48         0.0041     0.0028     48
+elm_pedestal_c192        0.0032     0.0020    192
+elm_silicon_c8           0.0130     0.0137      8
+elm_silicon_c18          0.0066     0.0078     18
+elm_silicon_c48          0.0042     0.0027     48
+elm_silicon_c192         0.0030     0.0019    192
+elmtanh_f18              0.0036     0.0025      -
+elmtanh_f192             0.0007     0.0000      -
+fabric_ideal (trained)     0.0392     0.0350      -
+fabric_pedestal (trained)     0.0355     0.0463      -
+mlp (trained)            0.0054     0.0034      -
+poly (trained)           0.0069     0.0032      -
+
+=== headline ===
+Q1 POINTWISE FIT                 13 of 16   median ratio     0.20x
+Q2 POINTWISE FIT                  1 of 16   median ratio     6.17x
+Q3 POINTWISE FIT                  4 of 16   median ratio     3.26x
+Q4 POINTWISE FIT                  7 of 16   median ratio     1.10x
+Q1 CLOSED LOOP                   13 of 16   median ratio     0.07x
+Q2 CLOSED LOOP                    4 of 16   median ratio     1.93x
+Q3 CLOSED LOOP                    3 of 16   median ratio     8.75x
+Q4 CLOSED LOOP                    9 of 16   median ratio     0.92x
