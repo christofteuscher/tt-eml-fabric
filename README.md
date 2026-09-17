@@ -18,9 +18,10 @@ interpreted.
 ## Paper, simulation code and SPICE decks
 
 This repository also holds the software and circuit-level artifacts behind
-*What is a universality theorem worth once someone has to build it? The
-composability cost of an EML analog fabric* (submitted to npj Unconventional
-Computing, ICRC 2026 Collection).
+*Composability rather than computation sets the cost of an analog EML
+hardware fabric* — **[arXiv:2609.17903](https://arxiv.org/abs/2609.17903)**
+\[cs.ET\], 15 Sep 2026 (submitted to npj Unconventional Computing, ICRC 2026
+Collection).
 
 | directory | holds |
 |---|---|
@@ -140,6 +141,21 @@ Measured, not suspected, and described in detail in
 The layout **generators** (scripted GDS, LVS references, characterisation
 benches) live in a separate repository; this one carries only the
 submitted artefacts.
+
+## Citation
+
+```bibtex
+@misc{teuscher2026eml,
+  author        = {Teuscher, Christof},
+  title         = {Composability rather than computation sets the cost
+                   of an analog {EML} hardware fabric},
+  year          = {2026},
+  eprint        = {2609.17903},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.ET},
+  url           = {https://arxiv.org/abs/2609.17903}
+}
+```
 
 ## What is Tiny Tapeout?
 
