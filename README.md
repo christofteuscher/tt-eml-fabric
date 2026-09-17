@@ -20,8 +20,7 @@ interpreted.
 This repository also holds the software and circuit-level artifacts behind
 *Composability rather than computation sets the cost of an analog EML
 hardware fabric* — **[arXiv:2609.17903](https://arxiv.org/abs/2609.17903)**
-\[cs.ET\], 15 Sep 2026 (submitted to npj Unconventional Computing, ICRC 2026
-Collection).
+\[cs.ET\], 15 Sep 2026.
 
 | directory | holds |
 |---|---|
