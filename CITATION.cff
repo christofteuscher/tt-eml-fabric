@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "This repository holds the artifacts behind the paper below. Please cite the paper."
+title: "EML Fabric — an analog \"single operator\" computing tile"
+abstract: >-
+  A 2x2 Tiny Tapeout analog tile (SKY26c, sky130A) implementing a chain of two
+  EML cells, each computing exp(u) - ln(v) in current mode using translinear NPN
+  loops, together with the simulation code and SPICE decks behind the paper.
+authors:
+  - family-names: Teuscher
+    given-names: Christof
+    orcid: "https://orcid.org/0000-0002-5927-1900"
+    affiliation: "Department of Electrical and Computer Engineering, Portland State University"
+    email: teuscher@pdx.edu
+license: Apache-2.0
+repository-code: "https://github.com/christofteuscher/tt-eml-fabric"
+keywords:
+  - analog computing
+  - unconventional computing
+  - translinear circuits
+  - sky130
+  - Tiny Tapeout
+preferred-citation:
+  type: article
+  title: "Composability rather than computation sets the cost of an analog EML hardware fabric"
+  authors:
+    - family-names: Teuscher
+      given-names: Christof
+      orcid: "https://orcid.org/0000-0002-5927-1900"
+  year: 2026
+  month: 9
+  journal: "arXiv preprint arXiv:2609.17903"
+  doi: 10.48550/arXiv.2609.17903
+  url: "https://arxiv.org/abs/2609.17903"
