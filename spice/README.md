@@ -1,10 +1,11 @@
 # SPICE decks, netlists and post-layout extractions
 
-These are the circuit-level sources behind the results in *What is a
-universality theorem worth once someone has to build it? The composability cost
-of an EML analog fabric*. **No device was fabricated.** Every number in that
-paper is a simulator output on a netlist that LVS-matches the submitted layout,
-or a quantity extracted from that layout.
+These are the circuit-level sources behind the results in *Composability rather
+than computation sets the cost of an analog EML hardware fabric*
+([arXiv:2609.17903](https://arxiv.org/abs/2609.17903)). **No device was
+fabricated.** Every number in that paper is a simulator output on a netlist
+that LVS-matches the submitted layout, or a quantity extracted from that
+layout.
 
 | directory | holds |
 |---|---|

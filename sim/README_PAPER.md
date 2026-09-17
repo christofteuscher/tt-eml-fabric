@@ -1,7 +1,8 @@
 # Behavioral simulation code and benchmark harness
 
 The Tier-1 evidence behind *Composability rather than computation sets the
-cost of an analog EML fabric*: a
+cost of an analog EML hardware fabric*
+([arXiv:2609.17903](https://arxiv.org/abs/2609.17903)): a
 differentiable model of the EML network in PyTorch, evaluated in double
 precision, into which hardware-derived non-idealities enter as explicit
 forward-model terms.

@@ -346,3 +346,10 @@ expression becomes a binary tree of identical nodes under the grammar
 This chip is a hardware realisation of that node: two `eml` cells with
 programmable weights, so a depth-2 tree can be evaluated in continuous
 time rather than symbolically.
+
+The fabric on this tile — its network models, circuit simulation, energy
+analysis and layout — is described in:
+
+> C. Teuscher, **"Composability rather than computation sets the cost of an
+> analog EML hardware fabric"**,
+> [arXiv:2609.17903](https://arxiv.org/abs/2609.17903) \[cs.ET\], 15 Sep 2026.
