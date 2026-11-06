@@ -15,3 +15,6 @@ sim/**/__pycache__/
 
 # wake-up study waveforms (revision 1) are part of the record
 !spice/char/wakeup/runs/
+paper/figures/*.pdf
+paper/figures/*_preview.png
+paper/figures/fig_cell_src.*
