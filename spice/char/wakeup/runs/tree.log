@@ -1,0 +1,27 @@
+(i) spatial, all on for chain latency: P7=1194.58 uW x T7=352.24 ns = 420.8 pJ  [cells 239.0, links 181.0, div 0.74]
+(ii) ideal level-gated (each level on for one window, no wake cost):
+  A: paper per-cell 98.566uW x 402 ns            E_cell=   39.6 pJ t=    402 ns | tree cells=  277.3 +links=  487.3 pJ  latency=  1206 ns
+  B: chain-consistent 96.95uW x 1.19x166 ns      E_cell=   19.2 pJ t=    198 ns | tree cells=  134.1 +links=  235.6 pJ  latency=   593 ns
+    reuse ONE physical level of 4 cells for 3 logical levels, all 4 kept on: 4x3x39.62 = 475.4 pJ cells, latency 1206 ns
+(iii) realistic level-gated, post-layout wake-up (1 % F), links assumed to wake like cells (x0.883):
+  bias gating, u=+1 (10 ns edge)                 E_cell=  141.1 pJ t=   3873 ns | tree cells=  987.8 +links= 1735.8 pJ  latency= 11619 ns
+  bias gating, worst u (u=0)                     E_cell=  443.8 pJ t=   3840 ns | tree cells= 3106.8 +links= 5459.1 pJ  latency= 11520 ns
+  bias gating, best u (u=-1.5)                   E_cell=  100.3 pJ t=   3577 ns | tree cells=  702.4 +links= 1234.3 pJ  latency= 10731 ns
+  pfet-header supply gating, u=+1                E_cell=  157.0 pJ t=   3459 ns | tree cells= 1098.7 +links= 1930.6 pJ  latency= 10377 ns
+  pfet-header supply gating, worst u (-1.5)      E_cell=  967.6 pJ t=   3145 ns | tree cells= 6773.1 +links=11901.4 pJ  latency=  9435 ns
+  IDEAL fast-start (pbias forced), u=+1          E_cell=   67.0 pJ t=    657 ns | tree cells=  469.1 +links=  824.2 pJ  latency=  1971 ns
+  IDEAL fast-start, worst u (u=0)                E_cell=  315.6 pJ t=    723 ns | tree cells= 2208.8 +links= 3881.3 pJ  latency=  2169 ns
+
+(4) S/H, kT/C at 300 K, sigma <= LSB/2:
+  2 bits: V-mode 1 V FS C>=   0.000 fF | I-mode (subthreshold gate): C>=    0.23 fF at FS,    0.02 pF at FS/10; allowed droop 4.200 mV (FS)
+  3 bits: V-mode 1 V FS C>=   0.001 fF | I-mode (subthreshold gate): C>=    0.94 fF at FS,    0.09 pF at FS/10; allowed droop 2.100 mV (FS)
+  4 bits: V-mode 1 V FS C>=   0.004 fF | I-mode (subthreshold gate): C>=    3.76 fF at FS,    0.38 pF at FS/10; allowed droop 1.050 mV (FS)
+  6 bits: V-mode 1 V FS C>=   0.068 fF | I-mode (subthreshold gate): C>=   60.14 fF at FS,    6.01 pF at FS/10; allowed droop 0.263 mV (FS)
+  droop C=    60 fF Ileak=1.0 pA over 3 x 402 ns: 0.0201 mV
+  droop C=    60 fF Ileak=1.0 pA over 3 x 3.9 us wake: 0.1950 mV
+  droop C=    60 fF Ileak=2.5 pA over 3 x 402 ns: 0.0503 mV
+  droop C=    60 fF Ileak=2.5 pA over 3 x 3.9 us wake: 0.4875 mV
+  droop C=  1000 fF Ileak=1.0 pA over 3 x 402 ns: 0.0012 mV
+  droop C=  1000 fF Ileak=1.0 pA over 3 x 3.9 us wake: 0.0117 mV
+  droop C=  1000 fF Ileak=2.5 pA over 3 x 402 ns: 0.0030 mV
+  droop C=  1000 fF Ileak=2.5 pA over 3 x 3.9 us wake: 0.0293 mV

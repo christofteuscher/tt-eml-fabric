@@ -1,0 +1,25 @@
+* DC gate, die context (no IOFF2/IOFF3), tt 27C, netlist pex_ctrl
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include extract/pex_ctrl.inc
+.param iunit=0.5u
+.temp 27
+VDD  vdd   0 3.3
+VRB  vrefb 0 1.2
+VE   ve    0 0.55
+VOUT out   0 0.9
+IPB  pbias 0 {iunit}
+XPB  pbias pbias vdd vdd sky130_fd_pr__pfet_g5v0d10v5 L=8 W=4
+IVIN 0 nv {iunit}
+IUIN 0 nu 0
+XDUT nu nv out vdd vrefb ve pbias 0 nb0 nc2 ndl nsv emlcell_b
+.control
+set noaskquit
+foreach uu 0 0.75u -0.5u
+alter @IUIN[dc] = $uu
+op
+let io = i(VOUT)/0.5u
+let ivdd = -i(VDD)
+print io ivdd
+end
+.endc
+.end
