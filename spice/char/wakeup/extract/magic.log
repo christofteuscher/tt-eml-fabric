@@ -1,0 +1,87 @@
+
+Magic 8.3 revision 623 - Compiled on Tue Mar 17 08:19:43 UTC 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+WARNING: RLIMIT_NOFILE is above 1024 and Tcl_Version<9 this may cause runtime issues [rlim_cur=1048576]
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading "extract_rc.tcl" from command line.
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 6.0
+Library name: LIB
+Reading "emlcell_b".
+Extracting emlcell_b into emlcell_b.ext:
+Processing cell emlcell_b for resistance extraction.
+Total Nets: 42
+Nets extracted: 0 (0.000000)
+Nets output: 0 (0.000000)
+EXTRACT_FEEDBACK 0
+exttosim finished.
+Adding  VSUB
+Missing substrate connection of device at (12740 8770) on net VSUB
+Missing substrate connection of device at (12740 8770) on net VSUB
+Missing substrate connection of device at (9880 11630) on net VSUB
+Missing substrate connection of device at (12740 11630) on net VSUB
+Missing substrate connection of device at (9880 8770) on net VSUB
+Missing substrate connection of device at (9880 8770) on net VSUB
+Adding  nv; Tnew = 1.51ns, Told = 0.00ns
+Missing terminal connection of device at (9880 11630) on net nv
+Adding  dw_12460_11350#; Tnew = 5.28ns, Told = 0.00ns
+Missing terminal connection of device at (12740 11630) on net dw_12460_11350
+Warning:  Orphaned node "dw_12460_11350#" arbitrarily attached to "dw_12460_11350.t1"
+Adding  nb0; Tnew = 14.52ns, Told = 0.00ns
+Missing terminal connection of device at (7720 15800) on net nb0
+Missing gate connection of device at (9880 8770) on net nb0
+Missing gate connection of device at (4454 3250) on net nb0
+Missing gate connection of device at (3834 3250) on net nb0
+Missing gate connection of device at (9880 8770) on net nb0
+Warning:  Orphaned node "nb0" arbitrarily attached to "nb0.t1"
+Adding  nc2; Tnew = 19.67ns, Told = 0.00ns
+Missing gate connection of device at (12040 15800) on net nc2
+Missing terminal connection of device at (12040 15800) on net nc2
+Missing gate connection of device at (12040 15800) on net nc2
+Missing terminal connection of device at (12040 15800) on net nc2
+Missing gate connection of device at (12040 18280) on net nc2
+Warning:  Orphaned node "nc2" arbitrarily attached to "nc2.t1"
+Adding  vdd; Tnew = 19.67ns, Told = -33364.46ns
+Adding  w_9880_11630#; Tnew = 4.94ns, Told = 0.00ns
+Adding  w_12740_11630#; Tnew = 4.94ns, Told = -44295.49ns
+Adding  w_12740_8770#; Tnew = 14.17ns, Told = 0.00ns
+Adding  ndl; Tnew = 14.17ns, Told = -8386.27ns
+Adding  nsv; Tnew = 2.40ns, Told = 0.00ns
+Adding  out; Tnew = 2.40ns, Told = -19509.50ns
+Adding  vrefb; Tnew = 1.77ns, Told = 0.00ns
+Adding  a_13717_18364#; Tnew = 0.02ns, Told = 0.00ns
+Adding  a_13100_15680#; Tnew = 0.02ns, Told = -25283.45ns
+Adding  nu; Tnew = 1.22ns, Told = 0.00ns
+Adding  a_14221_18364#; Tnew = 0.03ns, Told = 0.00ns
+Adding  a_14725_18364#; Tnew = 0.02ns, Told = 0.00ns
+Adding  a_15733_18364#; Tnew = 0.02ns, Told = 0.00ns
+Adding  a_16237_18364#; Tnew = 0.02ns, Told = 0.00ns
+Adding  a_16741_18364#; Tnew = 0.02ns, Told = 0.00ns
+Adding  a_1400_10660#
+Adding  a_380_8760#; Tnew = 0.02ns, Told = -3604.92ns
+Adding  a_5880_10660#
+Adding  a_4860_8760#; Tnew = 0.02ns, Told = -4130.25ns
+Adding  ve; Tnew = 0.26ns, Told = 0.00ns
+Adding  a_2374_3250#; Tnew = 0.26ns, Told = -12502.98ns
+Adding  a_600_1350#; Tnew = 0.26ns, Told = -4244.33ns
+Adding  a_1840_1350#; Tnew = 0.26ns, Told = -67252.58ns
+Adding  a_14480_2450#
+Adding  a_13460_550#; Tnew = 0.26ns, Told = -2215.03ns
+Total Nets: 42
+Nets extracted: 31 (0.738095)
+Nets output: 31 (0.738095)
+exttospice finished.
+EXTRACT_DONE emlcell_b

@@ -11,6 +11,7 @@ layout.
 |---|---|
 | `cell/` | the EML cell. `cell/v3/eml_cell_v3b.inc` is the netlist the paper's transfer functions and non-ideality parameters come from |
 | `char/` | characterisation decks: DC sweeps per port, step-settling, kick-response stability, the corner campaign |
+| `char/wakeup/` | wake-up and power-gating study of the post-layout cell (revision 1: Results 2.5, Table 5), with the re-extracted netlist and the waveforms of every reported run |
 | `bias/` | PTAT bias core and reference-resistor trim |
 | `mdac/`, `mux/` | radix-4 signed current MDACs and the port multiplexing |
 | `toplevel/` | the assembled two-cell chain |

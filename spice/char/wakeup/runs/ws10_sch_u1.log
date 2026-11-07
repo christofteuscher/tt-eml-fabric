@@ -1,0 +1,80 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * ws10_sch_u1: kind=supply net=emlcell_b_sim12.inc u0=-1.5 u1=1.0 v=1.0 edge=1e-08 tt/27c
+
+Warning: Model issue on line 2932 :
+  .model xdut.xqr:sky130_fd_pr__npn_05v5_w1p00l1p00__model npn level=1.0 t ...
+unrecognized parameter (dcap) - ignored
+unrecognized parameter (gap1) - ignored
+unrecognized parameter (gap2) - ignored
+
+Warning: Model issue on line 2932 :
+  .model xdut.xq2:sky130_fd_pr__npn_05v5_w1p00l1p00__model npn level=1.0 t ...
+unrecognized parameter (dcap) - ignored
+unrecognized parameter (gap1) - ignored
+unrecognized parameter (gap2) - ignored
+
+Warning: Model issue on line 2932 :
+  .model xdut.xqa:sky130_fd_pr__npn_05v5_w1p00l1p00__model npn level=1.0 t ...
+unrecognized parameter (dcap) - ignored
+unrecognized parameter (gap1) - ignored
+unrecognized parameter (gap2) - ignored
+
+Warning: Model issue on line 2932 :
+  .model xdut.xqb:sky130_fd_pr__npn_05v5_w1p00l1p00__model npn level=1.0 t ...
+unrecognized parameter (dcap) - ignored
+unrecognized parameter (gap1) - ignored
+unrecognized parameter (gap2) - ignored
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                          0
+vddc                                         0
+vddr                                         0
+vrefb                                      1.2
+ve                                        0.55
+out                                        0.9
+pbias                             -6.76444e-42
+nv                                    0.708763
+nu                                   -0.480243
+nb0                               -3.14648e-42
+xdut.vb2                             -0.454471
+xdut.xu_0.ra                         -0.454796
+xdut.xot.ntail                    -3.50953e-18
+xdut.xot.n1                        -7.8512e-19
+xdut.xot.no1                      -4.55327e-18
+nc2                                  -0.148083
+xdut.oa                              0.0270565
+xdut.xoa.ntail                     7.94856e-13
+xdut.xoa.n1                          0.0288459
+xdut.xsa_0.xsky130_fd_pr__res_xhigh_po_0p35.ra        0.711687
+xdut.nvb                               0.70542
+xdut.ob                               0.147942
+xdut.xob.ntail                     2.43882e-12
+xdut.xob.n1                          0.0288459
+xdut.xsb_0.xsky130_fd_pr__res_xhigh_po_0p35.ra        0.708364
+xdut.xln_0.ra                        0.0270565
+nsv                                  0.0270564
+xdut.xon.ntail                    -4.96314e-27
+xdut.xon.n1                       -1.54649e-23
+xdut.gpass                        -2.20063e-23
+ndl                                  0.0270564
+vout#branch                        -0.00135076
+ve#branch                         -3.40228e-12
+vrb#branch                        -9.80432e-06
+vamr#branch                       -5.02024e-70
+vamc#branch                        -0.00136106
+vdd#branch                          0.00136106
+
+ Reference value :  0.00000e+00 Reference value :  5.73472e-06 Reference value :  1.36097e-05 Reference value :  2.13797e-05 Reference value :  2.91397e-05 Reference value :  3.69097e-05
+No. of Data Rows : 8194
+Note: Simulation executed from .control section 

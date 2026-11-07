@@ -1,0 +1,26 @@
+* wsr10_pex_u1: kind=supply_refon net=extract/pex_ship.inc u0=-1.5 u1=1.0 v=1.0 edge=1e-08 tt/27C
+.lib $PDK_ROOT/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include extract/pex_ship.inc
+.temp 27
+.options method=gear maxord=2 reltol=1e-5 abstol=1e-15 vntol=1e-9
+VDD vdd 0 PWL(0 0 1e-06 0 1.0099999999999999e-06 3.3)
+VAMC vdd vddc 0
+VAMR vdd vddr 0
+VRB  vrefb 0 1.2
+VE   ve    0 0.55
+VOUT out   0 0.9
+IPB pbias 0 5e-07
+XPB  pbias pbias vddr vddr sky130_fd_pr__pfet_g5v0d10v5 L=8 W=4
+IVIN 0 nv 5e-07
+IUIN 0 nu -5e-07
+XDUT nu nv out vddc vrefb ve pbias 0 nb0 nc2 ndl nsv emlcell_b
+.control
+set noaskquit
+tran 5e-09 4e-05 0
+let io = i(VOUT)/0.5u
+let icell = i(VAMC)
+let iref = i(VAMR)
+let vd = v(vdd)
+wrdata runs/wsr10_pex_u1.dat io icell iref vd
+.endc
+.end

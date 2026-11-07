@@ -107,6 +107,19 @@ arch -arm64 .../python3.12 run_nonideal.py --pilot      # effects (a)/(b)/(c)
 
 Results land in `results/*.json`; see `RESULTS.md` for the analyzed runs.
 
+## Revision 1 additions (November 2026)
+
+* `corpus/corpus_enum.py` enumerates the grammar S -> 1 | x | eml(S,S) to
+  depth 4. `python3 corpus_enum.py exact` (needs `mpmath`, a few minutes)
+  compares values in 400-digit arithmetic and writes
+  `corpus_stats_exact.json`, the counts the revised paper reports (47,094
+  distinct functions). `float` mode compares in double precision and
+  reproduces the submitted paper's 44,559, which merged 2,535 pairs of
+  different functions by rounding.
+* `ml/check_osc_prod.py` reruns the perceptron on sin(2 pi x1 x2) with ten
+  times the parameters and eight times the training points;
+  `ml/results/log_osc_prod_check.txt` holds the output.
+
 ## Known limitations / next steps
 
 - Gradient training is a proxy for in-situ hardware training (which would
