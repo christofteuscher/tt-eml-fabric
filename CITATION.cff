@@ -13,6 +13,13 @@ authors:
     email: teuscher@pdx.edu
 license: Apache-2.0
 repository-code: "https://github.com/christofteuscher/tt-eml-fabric"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24354266
+    description: "Zenodo concept DOI, resolving to the latest archived release"
+  - type: doi
+    value: 10.5281/zenodo.24354267
+    description: "Zenodo DOI of release npj-r1, the version behind revision 1 of the paper"
 keywords:
   - analog computing
   - unconventional computing

@@ -20,7 +20,10 @@ interpreted.
 This repository also holds the software and circuit-level artifacts behind
 *Composability rather than computation sets the cost of an analog EML
 hardware fabric* — **[arXiv:2609.17903](https://arxiv.org/abs/2609.17903)**
-\[cs.ET\], 15 Sep 2026.
+\[cs.ET\], 15 Sep 2026. Releases of this repository are archived on Zenodo
+under the concept DOI [10.5281/zenodo.24354266](https://doi.org/10.5281/zenodo.24354266);
+release `npj-r1`, the version behind revision 1 of the paper, is
+[10.5281/zenodo.24354267](https://doi.org/10.5281/zenodo.24354267).
 
 | directory | holds |
 |---|---|
