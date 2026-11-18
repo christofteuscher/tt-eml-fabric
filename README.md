@@ -28,9 +28,9 @@ hardware fabric* — **[arXiv:2609.17903](https://arxiv.org/abs/2609.17903)**
 | [`spice/`](spice/README.md) | the SPICE decks, the cell and chain netlists, and the post-layout extractions with parasitic R and coupling C |
 | `gds/`, `lef/`, `src/`, `openlane/` | the layout, the generators and the implementation flow, as submitted to the shuttle |
 
-**Nothing here was fabricated.** Every quantity in the paper is a simulator
-output on a netlist that LVS-matches the submitted layout, or is extracted from
-that layout. To run the decks, set `PDK_ROOT` to the directory containing
+All current results are from simulation: every quantity in the paper is a
+simulator output on a netlist that LVS-matches the submitted layout, or is
+extracted from that layout. To run the decks, set `PDK_ROOT` to the directory containing
 `sky130A` and invoke ngspice; see [`spice/README.md`](spice/README.md).
 
 ## At a glance
